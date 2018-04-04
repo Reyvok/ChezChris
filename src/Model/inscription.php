@@ -9,7 +9,7 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Inscription') {
         (isset($_POST['mail']) && !empty($_POST['mail']))) {
 
         $base = mysql_connect('localhost', 'root', '');
-        mysql_select_db('test', $base);
+        mysql_select_db('chezchris', $base);
 
         // on recherche si ce login est déjà utilisé par un autre membre
         $sql = 'SELECT count(*) FROM account WHERE username="' . mysql_escape_string($_POST['username']) . '"';
@@ -17,10 +17,10 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Inscription') {
         $data = mysql_fetch_array($req);
 
         if ($data[0] == 0) {
-            $sql = 'INSERT INTO account VALUES("", "' . mysql_escape_string($_POST['username']) . '", "' . mysql_escape_string(md5($_POST['pass'])) . '")';
+            $sql = 'INSERT INTO account VALUES("", "' . mysql_escape_string($_POST['username']) . '", "' . mysql_escape_string(md5($_POST['password'])) . '")';
             mysql_query($sql) or die('Erreur SQL !' . $sql . '<br />' . mysql_error());
             session_start();
-            $_SESSION['login'] = $_POST['login'];
+            $_SESSION['username'] = $_POST['username'];
             header('Location: membre.php');
             exit();
         } else {
@@ -33,21 +33,3 @@ if (isset($_POST['inscription']) && $_POST['inscription'] == 'Inscription') {
     }
 }
 ?>
-<html>
-<head>
-    <title>Inscription</title>
-</head>
-
-<body>
-Inscription à l'espace membre :<br />
-<form action="inscription.php" method="post">
-    Login : <input type="text" name="login" value="<?php if (isset($_POST['login'])) echo htmlentities(trim($_POST['login'])); ?>"><br />
-    Mot de passe : <input type="password" name="pass" value="<?php if (isset($_POST['pass'])) echo htmlentities(trim($_POST['pass'])); ?>"><br />
-    Confirmation du mot de passe : <input type="password" name="pass_confirm" value="<?php if (isset($_POST['pass_confirm'])) echo htmlentities(trim($_POST['pass_confirm'])); ?>"><br />
-    <input type="submit" name="inscription" value="Inscription">
-</form>
-<?php
-if (isset($erreur)) echo '<br />',$erreur;
-?>
-</body>
-</html>

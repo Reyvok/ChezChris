@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-
 
 <html>
 
 <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../web/assets/css/accueil.css">
+    <link rel="stylesheet" href="../../web/assets/css/accueil.css">
     <title>Chez Chris</title>
 </head>
 
@@ -14,7 +12,7 @@
 <header>
 
     <span style="font-size:small;"><div id="banniere"> </div></span>
-    <button id="connexion">Connexion</button>
+    <a href="connexion.php" id="connexion">Connexion</a>
 
 </header>
 
@@ -22,7 +20,7 @@
 
 
 <ul>
-    <li><a href="accueil.html">Accueil</a></li>
+    <li><a href="accueil.php">Accueil</a></li>
     <li><a href="forum.html">Forums</a></li>
     <li><a href="news.html">News</a></li>
     <li><a href="fanfic.html">Fan Fictions</a></li>
