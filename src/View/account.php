@@ -3,14 +3,13 @@
  * Created by Reyvok
  * Date: 04/04/2018
  */
-include("..\..\app\config.php");
+
+include("..\Model\AccountModel.php");
 
 $idUser = $_GET['idUser'];
+$accountModel = new AccountModel();
+$userData = $accountModel->getAccountInformations($idUser);
 
-$link = mysqli_connect(hostname, username, password, database);
-$sql = "SELECT * FROM account WHERE id =".$idUser.";";
-$res = mysqli_query($link, $sql);
-$userData = mysqli_fetch_array($res);
 
 $html =
     "<table>
