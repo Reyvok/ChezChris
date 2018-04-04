@@ -1,31 +1,19 @@
-footer {
-    margin-left: 16.2%;
-    margin-right: 16.2%;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 68.8%;
-    background-color: white;
-    color: black;
-    text-align: center;
-}
-
-
-li a {
-    display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-    text-align: center;
-
-}
-
-li a:hover {
-    background-color: #555;
-    color: white;
-}
-
-.active {
-    background-color: #4CAF50;
-    color: white;
+.page-footer .footer-copyright {
+    overflow: hidden;
+    min-height: 50px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 10px 0px;
+    color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(51, 51, 51, 0.08);
 }
