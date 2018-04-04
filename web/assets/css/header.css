@@ -1,0 +1,12 @@
+header {
+    display: block;
+}
+#banniere
+{
+    height: 325px;
+    width: auto;
+    background: url('../img/banniere.jpg') no-repeat;
+    position: relative;
+    background-position: center center;
+
+}
