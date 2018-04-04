@@ -19,7 +19,7 @@ drop table if exists role;
 
 create table if not exists role(
 id int not null auto_increment,
-label varchar(10) not null,
+label varchar(25) not null default 'ROLE_USER',
 primary key(id)
 ) engine=myisam, default charset=utf8;
 
@@ -28,13 +28,14 @@ primary key(id)
 create table if not exists grade(
 id int not null auto_increment,
 scoreLimit int not null,
-label varchar(10) not null,
+label varchar(25) not null default 'Nouveau membre',
 primary key(id)
 ) engine=myisam, default charset=utf8;
 
 
 
 create table if not exists account(
+id int not null auto_increment;
 username varchar(20) not null unique,
 firstname varchar(20),
 lastname varchar(20),
@@ -43,7 +44,7 @@ mail varchar(40) not null unique,
 score int not null,
 grade int not null,
 role int not null,
-primary key(username),
+primary key(id),
 constraint grade_account foreign key(grade) references grade(id),
 constraint role_account foreign key(role) references role(id)
 ) default charset=utf8;
