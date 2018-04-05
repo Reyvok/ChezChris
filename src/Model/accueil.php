@@ -12,7 +12,7 @@
 <header>
 
     <span style="font-size:small;"><div id="banniere"> </div></span>
-    <a href="connexion.php" id="connexion">Connexion</a>
+    <a href="../View/connexion.html" id="connexion">Connexion</a>
 
 </header>
 
@@ -21,8 +21,8 @@
 
 <ul>
     <li><a href="accueil.php">Accueil</a></li>
-    <li><a href="forum.html">Forums</a></li>
-    <li><a href="news.html">News</a></li>
+    <li><a href="../View/forum.html">Forums</a></li>
+    <li><a href="../View/news.html">News</a></li>
     <li><a href="fanfic.html">Fan Fictions</a></li>
     <li><a href="fanart.html">Fan Arts</a></li>
     <li><a href="livre.html">Livre d'or</a></li>

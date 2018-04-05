@@ -6,14 +6,14 @@
 
 <body>
 Connexion à l'espace membre :<br />
-<form action="membre.php" method="post">
-    Login : <input type="text" name="username" value="<?php if (isset($_POST['username'])) echo htmlentities(trim($_POST['username'])); ?>"><br />
-    Mot de passe : <input type="password" name="password" value="<?php if (isset($_POST['password'])) echo htmlentities(trim($_POST['password'])); ?>"><br />
+<form action="account.php" method="post">
+    Login : <input type="text" name="username" value=""><br />
+        Mot de passe : <input type="password" name="password" value=""><br />
     <input type="submit" name="connexion" value="Connexion">
 </form>
-<a href="inscription.php">Vous inscrire</a>
+<a href="inscription.html">Vous inscrire</a>
 <?php
-if (isset($erreur)) echo '<br /><br />',$erreur;
+if (isset($erreur)) => echo '<br/><br/>,$erreur';
 ?>
 </body>
 </html>

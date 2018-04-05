@@ -25,3 +25,4 @@ $html =
 echo $html;
 
 echo "<a href='chemin de modification'>Modifier les informations</a>";
+echo "<a href='../Model/deconnexion.php'>Déconnexion</a>";

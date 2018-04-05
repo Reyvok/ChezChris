@@ -1,7 +1,7 @@
 <?php
 // on teste si le visiteur a soumis le formulaire de connexion
 if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
-    if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['pass']) && !empty($_POST['pass']))) {
+    if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
 
         $base = mysql_connect ('localhost', 'root', '');
         mysql_select_db ('chezchris', $base);
@@ -14,7 +14,7 @@ if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
         mysql_free_result($req);
         mysql_close();
 
-        // si on obtient une réponse, alors l'utilisateur est un membre
+        // si on obtient une réponse, alors  l'utilisateur est un membre
         if ($data[0] == 1) {
             session_start();
             $_SESSION['username'] = $_POST['username'];
