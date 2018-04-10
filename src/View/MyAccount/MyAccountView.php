@@ -4,10 +4,39 @@
  * Date: 04/04/2018
  */
 
-include("..\Model\AccountModel.php");
+
+include("..\Model\MyAccountModel.php");
 
 $idUser = $_GET['idUser'];
-$accountModel = new AccountModel();
+$accountModel = new MyAccountModel();
+$userData = $accountModel->getInformations($idUser);
+
+/**
+ * Table with informations about the user
+ */
+$table = "<table><tr><td>Username: </td><td>".$userData['username']."</td></tr>
+                <tr><td>First name: </td><td>".$userData['firstname']."</td></tr>
+                <tr><td>Last name: </td><td>".$userData['lastname']."</td></tr>
+                <tr><td>Mail: </td><td>".$userData['mail']."</td></tr>
+                <tr><td>Score: </td><td>".$userData['score']."</td></tr>
+                <tr><td>Grade: </td><td>".$userData['grade']."</td></tr></table>";
+
+echo $table;
+
+// Link to change the informations
+echo "<a href='AccountUpdate.php?idUser=".$idUser."'>Modifier les informations</a>";
+// Link to change the password
+echo "<a href='passwordUpdate.php?idUSer=".$idUser."'>Modifier le mot de passe</a>"; // TODO : faire le changement de mdp
+
+
+/*   Account Update
+ *
+
+
+include("..\Model\MyAccountModel.phphp");
+
+$idUser = $_GET['idUser'];
+$accountModel = new MyAccountModel();
 $userData = $accountModel->getInformations($idUser);
 
 session_start();
@@ -15,7 +44,7 @@ session_start();
 /**
  * Update form
  * If there is some errors, they are displayed under the inputs
- */
+ *
 $form =
     "<form method='post' action=''>
         <input type='hidden' name='id' value='".$idUser."'/>
@@ -33,7 +62,7 @@ echo $form;
 
 /**
  * Send data to verification if all inputs are set
- */
+ *
 if(isset($_POST['id']) and isset($_POST['username']) and isset($_POST['firstname']) and isset($_POST['lastname']) and isset($_POST['mail'])){
     $newData['id'] = $_POST['id'];
     $newData['username'] = $_POST['username'];
@@ -42,3 +71,4 @@ if(isset($_POST['id']) and isset($_POST['username']) and isset($_POST['firstname
     $newData['mail'] = $_POST['mail'];
     $accountModel->verifyUpdate($newData);
 }
+ */

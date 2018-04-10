@@ -6,7 +6,7 @@
 
 include("..\..\app\config.php");
 
-class AccountModel{
+class MyAccountModel{
     private $link;
 
     public function __construct(){

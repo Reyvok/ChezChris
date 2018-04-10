@@ -11,9 +11,9 @@ Connexion à l'espace membre :<br />
         Mot de passe : <input type="password" name="password" value=""><br />
     <input type="submit" name="connexion" value="Connexion">
 </form>
-<a href="inscription.html">Vous inscrire</a>
+<a href="SignUpView.php">Vous inscrire</a>
 <?php
-if (isset($erreur)) => echo '<br/><br/>,$erreur';
+if (isset($erreur)) echo '<br/><br/>,$erreur';
 ?>
 </body>
 </html>
