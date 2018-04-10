@@ -23,9 +23,9 @@
     <li><a href="accueil.php">Accueil</a></li>
     <li><a href="../View/forum.html">Forums</a></li>
     <li><a href="../View/news.html">News</a></li>
-    <li><a href="fanfic.html">Fan Fictions</a></li>
-    <li><a href="fanart.html">Fan Arts</a></li>
-    <li><a href="livre.html">Livre d'or</a></li>
+    <li><a href="../View/fanfic.html">Fan Fictions</a></li>
+    <li><a href="../View/fanart.html">Fan Arts</a></li>
+    <li><a href="../View/livre.html">Livre d'or</a></li>
 
 </ul>
 
