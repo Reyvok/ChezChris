@@ -177,6 +177,7 @@ create table if not exists suggestion(
 id int not null auto_increment,
 title tinytext not null,
 txt mediumtext not null,
+pubDate datetime not null default current_timestamp,
 author varchar(20),
 primary key(id),
 constraint author_suggestion foreign key(author) references account(username)
