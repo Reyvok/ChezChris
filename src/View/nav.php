@@ -2,7 +2,7 @@
 
 
 <nav>
-    <ul style="list-style-type: none;">
+    <ul class="menu expanded text-center">
         <li><a href="">Accueil</a></li>
         <li><a href="">Forum</a></li>
         <li><a href="">News</a></li>

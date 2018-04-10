@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Chez Chris</title>
     <link rel="stylesheet" type="text/css" href="/ChezChris/foundation/css/foundation.css">
+    <link rel="stylesheet" type="text/css" href="/ChezChris/foundation/css/app.css">
 </head>
 
 
