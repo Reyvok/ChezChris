@@ -8,7 +8,7 @@
 include("..\Model\MyAccountModel.php");
 
 $idUser = $_GET['idUser'];
-$accountModel = new MyAccountModel();
+$accountModel = new AccountModel();
 $userData = $accountModel->getInformations($idUser);
 
 /**
@@ -31,9 +31,6 @@ echo "<a href='passwordUpdate.php?idUSer=".$idUser."'>Modifier le mot de passe</
 
 /*   Account Update
  *
-
-
-include("..\Model\MyAccountModel.phphp");
 
 $idUser = $_GET['idUser'];
 $accountModel = new MyAccountModel();

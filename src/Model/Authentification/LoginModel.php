@@ -1,37 +1,14 @@
 <?php
-// on teste si le visiteur a soumis le formulaire de connexion
-if (isset($_POST['connexion']) && $_POST['connexion'] == 'Connexion') {
-    if ((isset($_POST['login']) && !empty($_POST['login'])) && (isset($_POST['password']) && !empty($_POST['password']))) {
+include("../../Model/Account/AccountModel.php");
 
-        $base = mysql_connect ('localhost', 'root', '');
-        mysql_select_db ('chezchris', $base);
-
-        // on teste si une entrée de la base contient ce couple login / pass
-        $sql = 'SELECT count(*) FROM account WHERE username="'.mysql_escape_string($_POST['username']).'" AND pass_md5="'.mysql_escape_string(md5($_POST['password'])).'"';
-        $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-        $data = mysql_fetch_array($req);
-
-        mysql_free_result($req);
-        mysql_close();
-
-        // si on obtient une réponse, alors  l'utilisateur est un membre
-        if ($data[0] == 1) {
-            session_start();
-            $_SESSION['username'] = $_POST['username'];
-            header('Location: membre.php');
-            exit();
-        }
-        // si on ne trouve aucune réponse, le visiteur s'est trompé soit dans son login, soit dans son mot de passe
-        elseif ($data[0] == 0) {
-            $erreur = 'Compte non reconnu.';
-        }
-        // sinon, alors la, il y a un gros problème
-        else {
-            $erreur = 'Probème dans la base de données : plusieurs membres ont les mêmes identifiants de connexion.';
-        }
-    }
-    else {
-        $erreur = 'Au moins un des champs est vide.';
+function verifyInformations($data){
+    $accountModel = new AccountModel();
+    /* If there is an account with the given username and password, the user is log in and redirect to the home page */
+    if($accountModel->verifyUsernameAndPassword($data['username'], $data['password'])[0]==1){
+        $_SESSION['username'] = $data['username'];
+        header('Location: ../../index.php');
+        exit();
+    }else{ /* else, an error is display */
+        $_SESSION['errorLogin'] = "Nom d'utilisateur ou mot de passe incorrect";
     }
 }
-?>
