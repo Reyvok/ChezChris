@@ -84,6 +84,7 @@ primary key(id)
 
 create table if not exists opinion(
 id int not null auto_increment,
+title tinytext not null,
 txt mediumtext not null,
 note float(2,1) not null,
 pubDate datetime not null default current_timestamp,
