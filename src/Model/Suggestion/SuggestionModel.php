@@ -24,11 +24,11 @@ class SuggestionModel{
 
     }
 
-    public function addSuggestion(){
+    public function addSuggestion($data){
 
-        $sql = "INSERT INTO suggestion  ";
+        $sql = "INSERT INTO suggestion title =  '".$data['title']."', txt='".$data['txt']."', author = '".$data['author']."' WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
-
+        
 
     }
 

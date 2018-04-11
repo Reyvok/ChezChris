@@ -24,9 +24,9 @@ class FanartModel{
 
     }
 
-    public function addFanArt(){
+    public function addFanArt($data){
 
-        $sql = "INSERT INTO fanart  ";
+        $sql = "INSERT INTO fanart id = '".$data['id']."', title = '".$data['title']."', pathFile = '".$data['id']."',  WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
 
 

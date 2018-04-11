@@ -64,6 +64,7 @@ class MyAccountModel{
                 if($data['username']==$username and !isset($_SESSION['errorUsername'])) $_SESSION['errorUsername'] = "Nom d\'utilisateur indisponible\n";
             }
         }
+
         if((!preg_match("/^[A-z ]{0,20}/",$data['firstname']))) $_SESSION['errorFName'] = "Prénom incorrect\n";
         if((!preg_match("/^[A-z ]{0,20}/",$data['lastname']))) $_SESSION['errorLName'] = "Nom incorrect\n";
         if((!preg_match("/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/",$data['mail']))) $_SESSION['errorMail'] = "Adresse email incorrecte";

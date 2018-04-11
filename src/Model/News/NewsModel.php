@@ -23,9 +23,9 @@ class NewsModel{
 
     }
 
-    public function addNews(){
+    public function addNews($data){
 
-        $sql = "INSERT INTO news  ";
+        $sql = "INSERT INTO news  title = '".$data['title']."', txt = '".$data['txt']."', status = '".$data['status']."' ";
         mysqli_query($this->link, $sql);
 
 
