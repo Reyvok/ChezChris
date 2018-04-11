@@ -1,32 +1,47 @@
 <?php
-/**
- * Created by Reyvok
- * Date: 04/04/2018
- */
+include("./../header.php");
+include("./../nav.php");
+?>
 
 
-include("..\Model\MyAccountModel.php");
+<body>
+    <div class="grid-x align-justify solidBorder">
+        <div class="grid-y">
+            <div class="grid-y">
+                <span>Prénom: prénom <a href="">Modifier</a></span>
+                <span>Nom: nom <a href="">Modifier</a></span>
+                <span>Email: email@lel.fr <a href="">Modifier</a></span>
+            </div>
 
-$idUser = $_GET['idUser'];
-$accountModel = new AccountModel();
-$userData = $accountModel->getInformations($idUser);
+            <div class="grid-y">
+                <span>Score: score</span>
+                <span>Grade: grade</span>
+            </div>
 
-/**
- * Table with informations about the user
- */
-$table = "<table><tr><td>Username: </td><td>".$userData['username']."</td></tr>
-                <tr><td>First name: </td><td>".$userData['firstname']."</td></tr>
-                <tr><td>Last name: </td><td>".$userData['lastname']."</td></tr>
-                <tr><td>Mail: </td><td>".$userData['mail']."</td></tr>
-                <tr><td>Score: </td><td>".$userData['score']."</td></tr>
-                <tr><td>Grade: </td><td>".$userData['grade']."</td></tr></table>";
+            <div class="grid-y">
+                <a href="">Mes fanfics</a>
+                <a href="">Mes fanarts</a>
+                <a href="">Mes avis</a>
+            </div>
+        </div>
 
-echo $table;
+        <div class="grid-y">
+            <div><img src="" alt="img"><a href="">Modifier</a></div>
+            <div><a href="">Modifier mon mot de passe</a><br/>
+            <a href="">Supprimer mon compte</a></div>
+        </div>
+    </div>
+</body>
 
-// Link to change the informations
-echo "<a href='AccountUpdate.php?idUser=".$idUser."'>Modifier les informations</a>";
-// Link to change the password
-echo "<a href='passwordUpdate.php?idUSer=".$idUser."'>Modifier le mot de passe</a>"; // TODO : faire le changement de mdp
+
+<?php include("./../footer.php");
+
+
+
+
+
+
+
 
 
 /*   Account Update

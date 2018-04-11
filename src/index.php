@@ -7,44 +7,44 @@ include("./View/nav.php");
 
 <body>
 
-<div class="grid-x grid-padding-x">
-    <div class="grid-y grid-padding-y">
-        <div class="grid-y grid-padding-y">
-            <div class="cell medium"><h1>Dernières news</h1></div>
+<div class="grid-x align-spaced">
+    <div class="grid-y align-spaced">
+        <div class="grid-y solidBorder">
+            <div class="cell medium"><h2>Dernières news</h2></div>
 
-            <div class="grid-x grid-padding-x">
-                <div class="cell small-4" id="news1">News 1</div>
-                <div class="cell small-4" id="news2">News 2</div>
-                <div class="cell small-4" id="news3">News 3</div>
+            <div class="grid-x align-spaced text-center">
+                <div class="cell auto solidBorder" id="news1">News 1</div>
+                <div class="cell auto solidBorder" id="news2">News 2</div>
+                <div class="cell auto solidBorder" id="news3">News 3</div>
             </div>
         </div>
 
-        <div class="grid-x grid-padding-x">
-            <div class="grid-y grid-padding-y">
-                <div class="cell medium"><h1>Dernière fiction</h1></div>
+        <div class="grid-x solidBorder">
+            <div class="grid-y">
+                <div class="cell medium"><h2>Dernière fiction</h2></div>
 
-                <div class="cell medium" id="fanfiction">Fiction</div>
+                <div class="cell medium solidBorder" id="fanfiction">Fiction</div>
             </div>
 
-            <div class="grid-y grid-padding-y">
-                <div class="cell medium"><h1>Dernier fanart</h1></div>
+            <div class="grid-y solidBorder">
+                <div class="cell medium"><h2>Dernier fanart</h2></div>
 
-                <div class="cell medium" id="fanart">Fanart</div>
+                <div class="cell medium solidBorder" id="fanart">Fanart</div>
             </div>
         </div>
     </div>
 
-    <div class="grid-y grid-padding-y">
-        <div class="grid-y grid-padding-y">
-            <div class="cell medium"><h1>Derniers topics</h1></div>
-            <div class="cell medium" id="topic1">Topic 1</div>
-            <div class="cell medium" id="topic2">Topic 2</div>
+    <div class="grid-y">
+        <div class="grid-y solidBorder">
+            <div class="cell medium"><h2>Derniers topics</h2></div>
+            <div class="cell medium solidBorder" id="topic1">Topic 1</div>
+            <div class="cell medium solidBorder" id="topic2">Topic 2</div>
         </div>
 
-        <div class="grid-y grid-padding-y">
-            <div class="cell medium"><h1>Derniers avis</h1></div>
-            <div class="cell medium" id="opinion1">Avis 1</div>
-            <div class="cell medium" id="opinion2">Avis 2</div>
+        <div class="grid-y solidBorder">
+            <div class="cell medium"><h2>Derniers avis</h2></div>
+            <div class="cell medium solidBorder" id="opinion1">Avis 1</div>
+            <div class="cell medium solidBorder" id="opinion2">Avis 2</div>
         </div>
     </div>
 </div>
