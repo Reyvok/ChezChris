@@ -1,37 +1,40 @@
-<html>
+<?php
+include("./../header.php");
+include("./../nav.php");
+?>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../web/assets/css/accueil.css">
-    <title>Chez Chris</title>
-</head>
 
 <body>
 
-<header>
+    <div class="grid-x">
+        <div><button>Trier par</button></div>
+        <div><button>Nouvelle fanfic</button></div>
+        <div><input title="search" placeholder="Rechercher"></div>
+    </div>
 
-    <span style="font-size:small;"><div id="banniere"> </div></span>
-    <a href="../Authentification/LoginView.php" id="connexion">Connexion</a>
+    <div class="grid-y align-spaced solidBorder">
+        <div class="grid-y solidBorder">
+            <div class="grid-x">
+                <div><h2>Titre 1</h2></div><div><button>Download</button></div><div>Auteur 01/01/2000</div>
+            </div>
+            <div><p>Résumé</p></div>
+        </div>
 
-</header>
+        <div class="grid-y solidBorder">
+            <div class="grid-x">
+                <div><h2>Titre 3</h2></div><div>Auteur 01/01/2000</div>
+            </div>
+            <div><p>Résumé</p></div>
+        </div>
 
-<main>
+        <div class="grid-y solidBorder">
+            <div class="grid-x">
+                <div><h2>Titre 3</h2></div><div><button>Download</button></div><div>Auteur 01/01/2000</div>
+            </div>
+        </div>
+    </div>
 
-    <ul>
-        <li><a href="../../Model/Home/HomeModel.php">Accueil</a></li>
-        <li><a href="../Forum/ForumView.php">Forums</a></li>
-        <li><a href="../News/NewsView.php">News</a></li>
-        <li><a href="FanfictionView.php">Fan Fictions</a></li>
-        <li><a href="fanart.html">Fan Arts</a></li>
-        <li><a href="livre.html">Livre d'or</a></li>
-
-    </ul>
-    <section>
-        <div>Nouvelle fan fiction</div>
-        <input type="file" value="Parcourir"> <br/>
-        <input type="button" value ="Publier">
-
-    </section>
-</main>
 </body>
-</html>
+
+
+<?php include("./../footer.php");

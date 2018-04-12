@@ -2,6 +2,5 @@
 session_start();
 session_unset();
 session_destroy();
-header('Location: HomeModel.php');
+header('Location: /ChezChris/src/index.php');
 exit();
-?>

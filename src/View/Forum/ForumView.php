@@ -1,73 +1,44 @@
-<html>
+<?php
+include("./../header.php");
+include("./../nav.php");
+?>
 
-<head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../web/assets/css/accueil.css">
-    <title>Chez Chris</title>
-</head>
 
 <body>
 
-<header>
+    <div class="grid-y align-spaced solidBorder">
+        <div class="grid-y align-spaced solidBorder">
+            <div class="grid-x">
+                <div><button>-</button></div><div><h2>Catégorie 1</h2></div><div>Topics</div>
+            </div>
+            <div class="grid-x">
+                <div><h3>Thème 1</h3></div><div>2</div>
+            </div>
+            <div class="grid-x">
+                <div><h3>Thème 2</h3></div><div>4</div>
+            </div>
+            <div class="grid-x">
+                <div><h3>Thème 3</h3></div><div>1</div>
+            </div>
+        </div>
 
-    <span style="font-size:small;"><div id="banniere"> </div></span>
-    <a href="../Authentification/LoginView.php" id="connexion">Connexion</a>
+        <div class="grid-y align-spaced solidBorder">
+            <div class="grid-x">
+                <div><button>+</button></div><div><h2>Catégorie 2</h2></div>
+            </div>
+        </div>
 
-</header>
-
-<main>
-
-    <ul>
-        <li><a href="../../Model/Home/HomeModel.php">Accueil</a></li>
-        <li><a href="ForumView.php">Forums</a></li>
-        <li><a href="../News/NewsView.php">News</a></li>
-        <li><a href="../Fanfictions/FanfictionView.php">Fan Fictions</a></li>
-        <li><a href="fanart.html">Fan Arts</a></li>
-        <li><a href="livre.html">Livre d'or</a></li>
-
-    </ul>
-
-    <u2>
-
-        <a1>Général</a1>
-
-        <a2><li>Annonces</li></a2>
-        <a2><li>Présentation</li></a2>
-        <a2><li>Réglement forum</li></a2>
-        <a2><li>Suggestions</li></a2>
-
-
-        <a1>Littérature</a1>
-
-        <a2><li>Annonces</li></a2>
-        <a2><li>Discussions</li></a2>
-        <a2><li>Fan fictions</li></a2>
-        <a2><li>Autres oeuvres</li></a2>
-
-
-        <a1>Jeux vidéo</a1>
-
-        <a2><li>Annonces</li></a2>
-        <a2><li>Discussins</li></a2>
-        <a2><li>Youtube</li></a2>
-
-
-        <a1>Hors sujet</a1>
-
-        <a2><li>Discussion générale</li></a2>
-        <a2><li>Astuces</li></a2>
-        <a2><li>Médias</li></a2>
-
-
-    </u2>
-
-</main>
-
-
-<footer>
-
-</footer>
+        <div class="grid-y align-spaced solidBorder">
+            <div class="grid-x">
+                <div><button>-</button></div><div><h2>Catégorie 3</h2></div><div>Topics</div>
+            </div>
+            <div class="grid-x">
+                <div><h3>Thème 1</h3></div><div>2</div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
-</html>
+
+<?php include("./../footer.php");
