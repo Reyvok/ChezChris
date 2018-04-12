@@ -16,33 +16,24 @@ class SuggestionModel{
     }
 
     public function getInfo($idSug){
-
         $sql = "SELECT * FROM account WHERE id =".$idSug.";";
         $res = mysqli_query($this->link, $sql);
         $userData = mysqli_fetch_array($res);
         return $userData;
-
     }
 
     public function addSuggestion($data){
-
         $sql = "INSERT INTO suggestion title =  '".$data['title']."', txt='".$data['txt']."', author = '".$data['author']."' WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
-        
-
     }
 
     public function updateSuggestion($data){
-
         $sql = "UPDATE suggestion SET title='".$data['title']."', txt='".$data['txt']."' WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
-
     }
 
     public function deleteSuggestion($data){
-
         $sql = "DELETE FROM suggestion WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
-
     }
 }

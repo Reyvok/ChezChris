@@ -1,22 +1,26 @@
-<?php
-include("./../header.php");
-include("./../nav.php");
-?>
+<?php include("./../head.php"); ?>
+
 
 
 <body>
 
-    <div class="grid-y align-spaced solidBorder">
-        <div><h2>Laisser une suggestion</h2></div>
+    <div id="page">
+        <?php include("./../nav.php"); ?>
 
-        <div><input placeholder="Titre"></div>
+        <div class="grid-y align-spaced solidBorder">
+            <div><h2>Laisser une suggestion</h2></div>
 
-        <div><input placeholder="suggestion"></div>
+            <div><input placeholder="Titre"></div>
 
-        <div class="grid-x"><button>Annuler</button><button>Soumettre</button></div>
+            <div><input placeholder="suggestion"></div>
+
+            <div class="grid-x"><button>Annuler</button><button>Soumettre</button></div>
+        </div>
+
+        <?php include("./../footer.php"); ?>
     </div>
 
 </body>
 
 
-<?php include("./../footer.php");
+</html>

@@ -1,49 +1,50 @@
-<?php
-include("./../header.php");
-include("./../nav.php");
-?>
+<?php include("./../head.php"); ?>
+
 
 
 <body>
-    <div class="grid-x align-justify solidBorder">
-        <div class="grid-y">
+
+    <div id="page">
+        <?php include("./../nav.php"); ?>
+
+        <div class="grid-x align-justify solidBorder">
             <div class="grid-y">
-                <span>Prénom: prénom <a href="">Modifier</a></span>
-                <span>Nom: nom <a href="">Modifier</a></span>
-                <span>Email: email@lel.fr <a href="">Modifier</a></span>
+                <div class="grid-y">
+                    <span>Prénom: prénom <a href="">Modifier</a></span>
+                    <span>Nom: nom <a href="">Modifier</a></span>
+                    <span>Email: email@lel.fr <a href="">Modifier</a></span>
+                </div>
+
+                <div class="grid-y">
+                    <span>Score: score</span>
+                    <span>Grade: grade</span>
+                </div>
+
+                <div class="grid-y">
+                    <a href="">Mes fanfics</a>
+                    <a href="">Mes fanarts</a>
+                    <a href="">Mes avis</a>
+                </div>
             </div>
 
             <div class="grid-y">
-                <span>Score: score</span>
-                <span>Grade: grade</span>
-            </div>
-
-            <div class="grid-y">
-                <a href="">Mes fanfics</a>
-                <a href="">Mes fanarts</a>
-                <a href="">Mes avis</a>
+                <div><img src="" alt="img"><a href="">Modifier</a></div>
+                <div><a href="">Modifier mon mot de passe</a><br/>
+                <a href="">Supprimer mon compte</a></div>
             </div>
         </div>
-
-        <div class="grid-y">
-            <div><img src="" alt="img"><a href="">Modifier</a></div>
-            <div><a href="">Modifier mon mot de passe</a><br/>
-            <a href="">Supprimer mon compte</a></div>
-        </div>
+        <?php include("./../footer.php"); ?>
     </div>
+
 </body>
 
 
-<?php include("./../footer.php");
+</html>
 
 
 
 
-
-
-
-
-
+<?php
 /*   Account Update
  *
 
