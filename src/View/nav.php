@@ -1,12 +1,22 @@
 <?php session_start(); ?>
 
-<header>
-    <h1>Chez Chris</h1>
+
+<header class="grid-x align-justify">
+    <div class="grid-x">
+        <div class="grid-y" style="padding-right: 10px">
+            <div><h1 style="margin-bottom: 0px; height: 50px">Chez Chris</h1></div>
+            <div class="grid-x align-right"><h2 style="margin-bottom: 0px; height: 50px">Accueil</h2></div>
+        </div>
+        <div class="solidBorder">Réseaux</div>
+    </div>
+    <div>
+        <img src="" alt="img"><span>Pseudal</span>
+    </div>
 </header>
 <nav id="nav" data-sticky-container>
     <div class="title-bar-container" data-sticky data-top-anchor="nav" data-btm-anchor="page:bottom" data-options="marginTop:0; stickyOn:small">
         <div class="title-bar">
-            <div class="title-bar-title">
+            <div class="title-bar-title" style="width: 100%">
                 <ul class="menu expanded text-center">
                     <li><a href="/src/index.php">Accueil</a></li>
                     <li><a href="/src/View/Forum/ForumView.php">Forum</a></li>
