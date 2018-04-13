@@ -1,4 +1,7 @@
-<?php include("./../head.php"); ?>
+<?php
+include("./../head.php");
+$_SESSION['page'] = "Mon compte";
+?>
 
 
 
@@ -7,30 +10,34 @@
     <div id="page">
         <?php include("./../nav.php"); ?>
 
-        <div class="grid-x align-justify solidBorder">
-            <div class="grid-y">
-                <div class="grid-y">
-                    <span>Prénom: prénom <a href="">Modifier</a></span>
-                    <span>Nom: nom <a href="">Modifier</a></span>
-                    <span>Email: email@lel.fr <a href="">Modifier</a></span>
+        <div class="grid-x align-justify solidBorder myaccount-container">
+            <div class="grid-y align-spaced" id="myaccount-left-container">
+                <div class="grid-y" id="myaccount-info1-container">
+                    <div>Prénom: prénom <a href="">Modifier</a></div>
+                    <div>Nom: nom <a href="">Modifier</a></div>
+                    <div>Email: email@lel.fr <a href="">Modifier</a></div>
                 </div>
 
-                <div class="grid-y">
+                <div class="grid-y" id="myaccount-info2-container">
                     <span>Score: score</span>
                     <span>Grade: grade</span>
                 </div>
 
-                <div class="grid-y">
+                <div class="grid-y" id="myaccount-info3-container">
                     <a href="">Mes fanfics</a>
                     <a href="">Mes fanarts</a>
                     <a href="">Mes avis</a>
                 </div>
             </div>
 
-            <div class="grid-y">
-                <div><img src="" alt="img"><a href="">Modifier</a></div>
-                <div><a href="">Modifier mon mot de passe</a><br/>
-                <a href="">Supprimer mon compte</a></div>
+            <div class="grid-y align-spaced" id="myaccount-right-container">
+                <div id="myaccount-info4-container">
+                    <div><img src="" alt="img"><a href="">Modifier</a></div>
+                </div>
+                <div id="myaccount-info5-container">
+                    <a href="">Modifier mon mot de passe</a><br/>
+                    <a href="">Supprimer mon compte</a>
+                </div>
             </div>
         </div>
         <?php include("./../footer.php"); ?>

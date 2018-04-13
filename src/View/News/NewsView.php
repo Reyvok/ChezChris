@@ -1,4 +1,7 @@
-<?php include("./../head.php"); ?>
+<?php
+include("./../head.php");
+$_SESSION['page'] = "News";
+?>
 
 
 
@@ -7,18 +10,31 @@
     <div id="page">
         <?php include("./../nav.php"); ?>
 
-        <div class="grid-y align-spaced solidBorder">
-            <div class="grid-y align-spaced solidBorder">
-                <div><h2>News 1</h2></div>
-                <div><p>Message</p></div>
+        <div style="margin-left: 20px; margin-top: 10px;"><button>Trier par</button></div>
+
+        <div class="grid-y align-spaced solidBorder news-container">
+            <div class="grid-y align-spaced solidBorder news-news-container">
+                <div class="grid-x align-justify">
+                    <div class="news-title-container"><h2>News 1</h2></div>
+                    <div class="news-author-container">Auteur 01/01/2000</div>
+                </div>
+                <div class="news-message-container"><p>Message</p></div>
             </div>
-            <div class="grid-y align-spaced solidBorder">
-                <div><h2>News 2</h2></div>
-                <div><p>Message</p></div>
+
+            <div class="grid-y align-spaced solidBorder news-news-container">
+                <div class="grid-x align-justify">
+                    <div class="news-title-container"><h2>News 1</h2></div>
+                    <div class="news-author-container">Auteur 01/01/2000</div>
+                </div>
+                <div class="news-message-container"><p>Message</p></div>
             </div>
-            <div class="grid-y align-spaced solidBorder">
-                <div><h2>News 3</h2></div>
-                <div><p>Message</p></div>
+
+            <div class="grid-y align-spaced solidBorder news-news-container">
+                <div class="grid-x align-justify">
+                    <div class="news-title-container"><h2>News 1</h2></div>
+                    <div class="news-author-container">Auteur 01/01/2000</div>
+                </div>
+                <div class="news-message-container"><p>Message</p></div>
             </div>
         </div>
 

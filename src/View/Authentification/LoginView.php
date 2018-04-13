@@ -1,5 +1,8 @@
-<?php include("./../../Model/Authentification/LoginModel.php"); ?>
-<?php include("./../head.php"); ?>
+<?php
+include("./../../Model/Authentification/LoginModel.php");
+include("./../head.php");
+$_SESSION['page'] = "Connexion";
+?>
 
 
 

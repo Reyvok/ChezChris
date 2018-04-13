@@ -1,4 +1,7 @@
-<?php include("./View/head.php"); ?>
+<?php
+include("./View/head.php");
+$_SESSION['page'] = "Accueil";
+?>
 
 
 

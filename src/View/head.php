@@ -9,3 +9,5 @@
     <link rel="stylesheet" type="text/css" href="/foundation/css/foundation.css">
     <link rel="stylesheet" type="text/css" href="/foundation/css/app.css">
 </head>
+
+<?php session_start(); ?>
