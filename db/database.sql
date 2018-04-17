@@ -19,7 +19,7 @@ drop table if exists role;
 
 create table if not exists role(
 id int not null auto_increment,
-label varchar(25) not null default 'ROLE_USER',
+label varchar(25) not null default 'client',
 primary key(id)
 ) engine=myisam, default charset=utf8;
 
@@ -28,7 +28,7 @@ primary key(id)
 create table if not exists grade(
 id int not null auto_increment,
 scoreLimit int not null,
-label varchar(25) not null default 'Nouveau membre',
+label varchar(25) not null default 'Noob',
 primary key(id)
 ) engine=myisam, default charset=utf8;
 
@@ -64,10 +64,10 @@ id int not null auto_increment,
 title tinytext not null,
 txt mediumtext not null,
 pubDate datetime not null default current_timestamp,
-author varchar(20) not null,
+author int not null,
 status int not null,
 primary key(id),
-constraint account_news foreign key(author) references account(username),
+constraint account_news foreign key(author) references account(id),
 constraint status_news foreign key(status) references status(id)
 ) default charset=utf8;
 
@@ -88,10 +88,10 @@ title tinytext not null,
 txt mediumtext not null,
 note float(2,1) not null,
 pubDate datetime not null default current_timestamp,
-author varchar(20) not null,
+author int not null,
 book int not null,
 primary key(id),
-constraint author_opinion foreign key(author) references account(username),
+constraint author_opinion foreign key(author) references account(id),
 constraint book_opinion foreign key(book) references book(id)
 ) default charset=utf8;
 
@@ -105,10 +105,10 @@ pathFile tinytext,
 status int not null,
 note float(2,1),
 pubDate datetime not null default current_timestamp,
-author varchar(20) not null,
+author int not null,
 primary key(id),
 constraint status_fanfiction foreign key(status) references status(id),
-constraint author_fanfiction foreign key(author) references account(username)
+constraint author_fanfiction foreign key(author) references account(id)
 ) default charset=utf8;
 
 
@@ -120,10 +120,10 @@ pathFile tinytext not null,
 status int not null,
 note float(2,1) not null,
 pubDate datetime not null default current_timestamp,
-author varchar(20) not null,
+author int not null,
 primary key(id),
 constraint status_fanart foreign key(status) references status(id), 
-constraint author_fanart foreign key(author) references account(username)
+constraint author_fanart foreign key(author) references account(id)
 ) default charset=utf8;
 
 
@@ -150,11 +150,11 @@ create table if not exists topic(
 id int not null auto_increment,
 title tinytext not null,
 theme int not null,
-author varchar(20) not null,
+author int not null,
 pubDate datetime not null default current_timestamp,
 primary key(id),
 constraint theme_topic foreign key(theme) references theme(id),
-constraint author_topic foreign key(author) references account(username)
+constraint author_topic foreign key(author) references account(id)
 ) engine=myisam default charset=utf8;
 
 
@@ -164,11 +164,11 @@ id int not null auto_increment,
 title tinytext not null,
 txt mediumtext not null,
 topic int not null,
-author varchar(20) not null,
+author int not null,
 pubDate datetime not null default current_timestamp,
 primary key(id),
 constraint topic_message foreign key(topic) references topic(id),
-constraint author_message foreign key(author) references account(username)
+constraint author_message foreign key(author) references account(id)
 ) default charset=utf8;
 
 
@@ -178,9 +178,9 @@ id int not null auto_increment,
 title tinytext not null,
 txt mediumtext not null,
 pubDate datetime not null default current_timestamp,
-author varchar(20),
+author int not null,
 primary key(id),
-constraint author_suggestion foreign key(author) references account(username)
+constraint author_suggestion foreign key(author) references account(id)
 ) default charset=utf8;
 
 

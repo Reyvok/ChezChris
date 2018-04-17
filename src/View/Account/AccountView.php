@@ -1,4 +1,7 @@
-<?php include("./../head.php"); ?>
+<?php
+include("./../head.php");
+$_SESSION['page'] = "Pseudal";
+?>
 
 
 
