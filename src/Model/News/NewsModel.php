@@ -1,9 +1,5 @@
 <?php
-/**
- * Created by Reyvok
- * Date: 10/04/2018
- */
-include("..\..\app\config.php");
+include_once("D:\Stage\ChezChris\app\config.php");
 
 
 class NewsModel{
@@ -13,6 +9,21 @@ class NewsModel{
     public function __construct(){
         $this->link = mysqli_connect(hostname,username,password,database);
     }
+
+
+    /**
+     * Get the last 3 published news
+     * @return array|null
+     */
+    public function getLast3News(){
+        $sql = "SELECT n.title, n.txt, n.pubDate, a.username FROM news n 
+                INNER JOIN account a ON n.author=a.id
+                WHERE status=1 ORDER BY pubDate DESC LIMIT 3;";
+        $res = mysqli_query($this->link, $sql);
+        $news = mysqli_fetch_all($res);
+        return $news;
+    }
+
 
     public function getInfo($idNews){
         $sql = "SELECT * FROM account WHERE id =".$idNews.";";
