@@ -12,18 +12,18 @@ $_SESSION['page'] = "Mon compte";
 
         <div class="grid-x align-justify solidBorder myaccount-container">
             <div class="grid-y align-spaced" id="myaccount-left-container">
-                <div class="grid-y" id="myaccount-info1-container">
+                <div class="grid-y">
                     <div>Prénom: prénom <a href="">Modifier</a></div>
                     <div>Nom: nom <a href="">Modifier</a></div>
                     <div>Email: email@lel.fr <a href="">Modifier</a></div>
                 </div>
 
-                <div class="grid-y" id="myaccount-info2-container">
+                <div class="grid-y">
                     <span>Score: score</span>
                     <span>Grade: grade</span>
                 </div>
 
-                <div class="grid-y" id="myaccount-info3-container">
+                <div class="grid-y">
                     <a href="">Mes fanfics</a>
                     <a href="">Mes fanarts</a>
                     <a href="">Mes avis</a>
@@ -31,10 +31,10 @@ $_SESSION['page'] = "Mon compte";
             </div>
 
             <div class="grid-y align-spaced" id="myaccount-right-container">
-                <div id="myaccount-info4-container">
+                <div>
                     <div><img src="" alt="img"><a href="">Modifier</a></div>
                 </div>
-                <div id="myaccount-info5-container">
+                <div>
                     <a href="">Modifier mon mot de passe</a><br/>
                     <a href="">Supprimer mon compte</a>
                 </div>
