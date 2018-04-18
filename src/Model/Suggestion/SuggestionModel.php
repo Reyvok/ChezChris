@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by Reyvok
- * Date: 10/04/2018
- */
-
-include("..\..\app\config.php");
+include_once(__DIR__."/../../../app/config.php");
 
 
 class SuggestionModel{

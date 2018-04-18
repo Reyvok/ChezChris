@@ -1,5 +1,5 @@
 <?php
-include("../../Model/Account/AccountModel.php");
+include(__DIR__."/../../Model/Account/AccountModel.php");
 
 function verifyInformations($data){
     $accountModel = new AccountModel();

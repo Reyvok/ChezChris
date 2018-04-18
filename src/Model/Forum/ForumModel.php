@@ -1,5 +1,5 @@
 <?php
-include_once("D:/Stage/ChezChris/app/config.php");
+include_once(__DIR__."/../../../app/config.php");
 
 
 class ForumModel{

@@ -1,6 +1,5 @@
 <?php
-
-include("../../../app/config.php");
+include(__DIR__."/../../../app/config.php");
 
 class AccountModel{
     private $link;

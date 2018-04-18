@@ -1,23 +1,23 @@
 <?php
-include("D:/Stage/ChezChris/src/View/head.php");
+include(__DIR__."/View/head.php");
 $_SESSION['page'] = "Accueil";
 
-include("D:/Stage/ChezChris/src/Model/News/NewsModel.php");
+include(__DIR__."/Model/News/NewsModel.php");
 $newsModel = new NewsModel();
 $last3News = $newsModel->getLast3News();
 unset($newsModel);
 
-include("D:/Stage/ChezChris/src/Model/Fanfictions/FanfictionModel.php");
+include(__DIR__."/Model/Fanfictions/FanfictionModel.php");
 $fanficModel = new FanfictionModel();
 $lastFanfic = $fanficModel->getLastFiction();
 unset($fanficModel);
 
-include("D:/Stage/ChezChris/src/Model/Forum/ForumModel.php");
+include(__DIR__."/Model/Forum/ForumModel.php");
 $forumModel = new ForumModel();
 $last2Topics = $forumModel->getLast2Topics();
 unset($forumModel);
 
-include("D:/Stage/ChezChris/src/Model/GoldenBook/GoldenBookModel.php");
+include(__DIR__."/Model/GoldenBook/GoldenBookModel.php");
 $goldenBookModel = new GoldenBookModel();
 $last2Opinions = $goldenBookModel->getLast2Opinions(1);
 
@@ -29,7 +29,7 @@ var_dump($last2Opinions);
 <body>
 
     <div id="page">
-        <?php include("D:/Stage/ChezChris/src/View/nav.php"); ?>
+        <?php include(__DIR__."/View/nav.php"); ?>
 
         <main class="grid-x align-spaced">
             <div class="grid-y align-spaced home-left-container">
@@ -127,7 +127,7 @@ var_dump($last2Opinions);
             </div>
         </main>
 
-        <?php include("D:/Stage/ChezChris/src/View/footer.php"); ?>
+        <?php include(__DIR__."/View/footer.php"); ?>
     </div>
 
 </body>

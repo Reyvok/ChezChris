@@ -1,5 +1,5 @@
 <?php
-include("./../head.php");
+include(__DIR__."/../head.php");
 $_SESSION['page'] = "Livre d'or";
 ?>
 
@@ -8,7 +8,7 @@ $_SESSION['page'] = "Livre d'or";
 <body>
 
     <div id="page">
-        <?php include("./../nav.php"); ?>
+        <?php include(__DIR__."/../nav.php"); ?>
 
         <div class="grid-x" style="margin-top: 10px; margin-bottom: 5px;">
             <div style="margin-left: 20px;"><button>Livre</button></div>
@@ -70,7 +70,7 @@ $_SESSION['page'] = "Livre d'or";
             </div>
         </div>
 
-        <?php include("./../footer.php"); ?>
+        <?php include(__DIR__."/../footer.php"); ?>
     </div>
 
 </body>

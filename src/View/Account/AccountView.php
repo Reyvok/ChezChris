@@ -1,5 +1,5 @@
 <?php
-include("./../head.php");
+include(__DIR__."/../head.php");
 $_SESSION['page'] = "Pseudal";
 ?>
 
@@ -8,7 +8,7 @@ $_SESSION['page'] = "Pseudal";
 <body>
 
     <div id="page">
-        <?php include("./../nav.php"); ?>
+        <?php include(__DIR__."/../nav.php"); ?>
 
         <div class="grid-x align-spaced solidBorder account-container">
             <div class="grid-y align-spaced">
@@ -51,7 +51,7 @@ $_SESSION['page'] = "Pseudal";
             </div>
         </div>
 
-        <?php include("./../footer.php"); ?>
+        <?php include(__DIR__."/../footer.php"); ?>
     </div>
 
 </body>

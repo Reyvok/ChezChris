@@ -1,5 +1,5 @@
 <?php
-include("./../head.php");
+include(__DIR__."/../head.php");
 $_SESSION['page'] = "News";
 ?>
 
@@ -8,7 +8,7 @@ $_SESSION['page'] = "News";
 <body>
 
     <div id="page">
-        <?php include("./../nav.php"); ?>
+        <?php include(__DIR__."/../nav.php"); ?>
 
         <div style="margin-left: 20px; margin-top: 10px;"><button>Trier par</button></div>
 
@@ -38,7 +38,7 @@ $_SESSION['page'] = "News";
             </div>
         </div>
 
-        <?php include("./../footer.php"); ?>
+        <?php include(__DIR__."/../footer.php"); ?>
     </div>
 
 </body>

@@ -1,6 +1,6 @@
 <?php
-include("./../../Model/Authentification/LoginModel.php");
-include("./../head.php");
+include(__DIR__."/../../Model/Authentification/LoginModel.php");
+include(__DIR__."/../head.php");
 $_SESSION['page'] = "Connexion";
 ?>
 
@@ -9,7 +9,7 @@ $_SESSION['page'] = "Connexion";
 <body>
 
     <div id="page">
-        <?php include("./../nav.php"); ?>
+        <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
             <div class="solidBorder">
@@ -35,7 +35,7 @@ $_SESSION['page'] = "Connexion";
             }
         ?>
 
-        <?php include("./../footer.php"); ?>
+        <?php include(__DIR__."../footer.php"); ?>
     </div>
 
 </body>
