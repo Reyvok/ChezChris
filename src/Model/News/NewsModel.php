@@ -25,25 +25,16 @@ class NewsModel{
     }
 
 
-    public function getInfo($idNews){
-        $sql = "SELECT * FROM account WHERE id =".$idNews.";";
+    /**
+     * Get all published news
+     * @return array|null
+     */
+    public function getNews(){
+        $sql = "SELECT n.id, n.title, n.txt, n.pubDate, a.username FROM news n
+                INNER JOIN account a ON n.author=a.id
+                WHERE n.status=1;";
         $res = mysqli_query($this->link, $sql);
-        $userData = mysqli_fetch_array($res);
-        return $userData;
-    }
-
-    public function addNews($data){
-        $sql = "INSERT INTO news  title = '".$data['title']."', txt = '".$data['txt']."', status = '".$data['status']."' ";
-        mysqli_query($this->link, $sql);
-    }
-
-    public function updateNews($data){
-        $sql = "UPDATE news SET title='".$data['title']."', txt='".$data['txt']."', status='".$data['status']."' WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
-
-    public function deleteNews($data){
-        $sql = "DELETE FROM news WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
+        $news = mysqli_fetch_all($res);
+        return $news;
     }
 }

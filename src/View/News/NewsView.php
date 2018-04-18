@@ -1,6 +1,12 @@
 <?php
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "News";
+
+include(__DIR__."/../../Model/News/NewsModel.php");
+$newsModel = new NewsModel();
+$news = $newsModel->getNews();
+unset($newsModel);
+
 ?>
 
 
@@ -13,29 +19,22 @@ $_SESSION['page'] = "News";
         <div style="margin-left: 20px; margin-top: 10px;"><button>Trier par</button></div>
 
         <div class="grid-y align-spaced solidBorder news-container">
-            <div class="grid-y align-spaced solidBorder news-news-container">
-                <div class="grid-x align-justify">
-                    <div class="news-title-container"><h2>News 1</h2></div>
-                    <div class="news-author-container">Auteur 01/01/2000</div>
-                </div>
-                <div class="news-message-container"><p>Message</p></div>
-            </div>
 
-            <div class="grid-y align-spaced solidBorder news-news-container">
-                <div class="grid-x align-justify">
-                    <div class="news-title-container"><h2>News 1</h2></div>
-                    <div class="news-author-container">Auteur 01/01/2000</div>
-                </div>
-                <div class="news-message-container"><p>Message</p></div>
-            </div>
+            <?php
 
-            <div class="grid-y align-spaced solidBorder news-news-container">
-                <div class="grid-x align-justify">
-                    <div class="news-title-container"><h2>News 1</h2></div>
-                    <div class="news-author-container">Auteur 01/01/2000</div>
-                </div>
-                <div class="news-message-container"><p>Message</p></div>
-            </div>
+                foreach($news as $new){
+                    echo "
+                        <div class='grid-y align-spaced solidBorder news-news-container'>
+                            <div class='grid-x align-justify'>
+                                <div class='news-title-container'><h2>".$new[1]."</h2></div>
+                                <div class='news-author-container'>".$new[4]." - ".$new[3]."</div>
+                            </div>
+                            <div class='cell auto news-message-container'><p>".$new[2]."</p></div>
+                        </div>";
+                }
+
+            ?>
+
         </div>
 
         <?php include(__DIR__."/../footer.php"); ?>
