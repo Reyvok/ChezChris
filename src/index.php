@@ -12,6 +12,11 @@ $fanficModel = new FanfictionModel();
 $lastFanfic = $fanficModel->getLastFiction();
 unset($fanficModel);
 
+include(__DIR__."/Model/Fanarts/FanartModel.php");
+$fanartModel = new FanartModel();
+$lastFanart = $fanartModel->getLastFanart();
+unset($fanartModel);
+
 include(__DIR__."/Model/Forum/ForumModel.php");
 $forumModel = new ForumModel();
 $last2Topics = $forumModel->getLast2Topics();
@@ -20,8 +25,8 @@ unset($forumModel);
 include(__DIR__."/Model/GoldenBook/GoldenBookModel.php");
 $goldenBookModel = new GoldenBookModel();
 $last2Opinions = $goldenBookModel->getLast2Opinions(1);
+unset($goldenBookModel);
 
-var_dump($last2Opinions);
 ?>
 
 
@@ -85,7 +90,18 @@ var_dump($last2Opinions);
                     <div class="grid-y align-spaced solidBorder home-art-container">
                         <div class="cell medium"><h2>Dernier fanart</h2></div>
 
-                        <div class="cell medium solidBorder" id="home-fanart">Fanart</div>
+                        <div class="grid-y solidBorder" id="home-fanart">
+                            <div class="cell auto">
+                                <div><strong><?php echo $lastFanart[0][0]; ?></strong></div>
+                            </div>
+
+                            <div>
+                                <div class="grid-x align-justify">
+                                    <div><?php echo $lastFanart[0][2]; ?></div>
+                                    <div id="home-fanart-img-container"><img src="<?php echo '/assets/img/'.$lastFanart[0][1]; ?>"/></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
