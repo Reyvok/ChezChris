@@ -37,6 +37,7 @@ primary key(id)
 create table if not exists account(
 id int not null auto_increment,
 username varchar(20) not null unique,
+imagePath tinytext,
 firstname varchar(20),
 lastname varchar(20),
 password varchar(20) not null,

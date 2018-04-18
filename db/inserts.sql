@@ -14,6 +14,7 @@ delete from grade where 1=1;
 delete from role where 1=1;
 
 set names utf8;
+
 insert into role values
 (1, "admin"),
 (2, "client");
@@ -26,9 +27,9 @@ insert into grade values
 
 
 insert into account values
-(1, "user1", "fstname", "lstname", "password", "mail1@gmail.com", 5, 1, 1),
-(2, "user2", "fstname", "lstname", "password", "mail2@gmail.com", 10, 2, 2),
-(3, "user3", null, null, "password", "mail3@gmail.com", 15, 3, 2);
+(1, "user1", null, "fstname", "lstname", "password", "mail1@gmail.com", 5, 1, 1),
+(2, "user2", null, "fstname", "lstname", "password", "mail2@gmail.com", 10, 2, 2),
+(3, "user3", null, null, null, "password", "mail3@gmail.com", 15, 3, 2);
 
 
 insert into status values
@@ -40,7 +41,8 @@ insert into news values
 (1, "news1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", current_timestamp(), 1, 1),
 (2, "news2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", current_timestamp(), 1, 1),
 (3, "news3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", current_timestamp(), 1, 1),
-(4, "news4", "Lorem ipsum.", current_timestamp(), 1, 1);
+(4, "news4", "Lorem ipsum.", current_timestamp(), 1, 1),
+(5, "aoe", "Wololo", current_timestamp(), 1, 1);
 
 
 insert into book values
@@ -57,7 +59,10 @@ insert into fanfiction values
 (2, "fic2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", null, 2, null, current_timestamp(), 3);
 
 
-
+insert into fanart values
+(1, "Wow", "user2_18-04-18_13-25-59.jpg", 1, 5.0, current_timestamp(), 2),
+(2, "Much blood", "user2_18-04-18_14-49-21.png", 1, 5.0, current_timestamp(), 2),
+(3, "Wuw", "user3_17-04-18_15-20-36.jpg", 1, 4.5, current_timestamp(), 3);
 
 
 insert into category values

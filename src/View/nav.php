@@ -7,7 +7,14 @@
         <div class="solidBorder">Réseaux</div>
     </div>
     <div>
-        <img src="" alt="img"><span>Pseudal</span>
+        <img src="" alt="img">
+        <?php
+            if(isset($_SESSION['username'])){
+                echo "<span>".$_SESSION['username']."</span>";
+            }else{
+                echo "<span>Pseudal</span>";
+            }
+        ?>
     </div>
 </header>
 <nav id="nav" data-sticky-container>
