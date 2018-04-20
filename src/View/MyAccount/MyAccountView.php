@@ -1,6 +1,14 @@
 <?php
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "Mon compte";
+
+include(__DIR__."/../../Model/Account/AccountModel.php");
+$accountModel = new AccountModel();
+$account = $accountModel->getInformationsByUsername($_SESSION['username']);
+unset($accountModel);
+
+var_dump($account);
+
 ?>
 
 
@@ -13,14 +21,14 @@ $_SESSION['page'] = "Mon compte";
         <div class="grid-x align-justify solidBorder myaccount-container">
             <div class="grid-y align-spaced" id="myaccount-left-container">
                 <div class="grid-y">
-                    <div>Prénom: prénom <a href="">Modifier</a></div>
-                    <div>Nom: nom <a href="">Modifier</a></div>
-                    <div>Email: email@lel.fr <a href="">Modifier</a></div>
+                    <div>Prénom: <?= $account[0][2];?> <a href="">Modifier</a></div>
+                    <div>Nom: <?= $account[0][3];?> <a href="">Modifier</a></div>
+                    <div>Email: <?= $account[0][5];?> <a href="">Modifier</a></div>
                 </div>
 
                 <div class="grid-y">
-                    <span>Score: score</span>
-                    <span>Grade: grade</span>
+                    <span>Score: <?= $account[0][6];?></span>
+                    <span>Grade: <?= $account[0][7];?></span>
                 </div>
 
                 <div class="grid-y">
@@ -32,7 +40,7 @@ $_SESSION['page'] = "Mon compte";
 
             <div class="grid-y align-spaced" id="myaccount-right-container">
                 <div>
-                    <div><img src="" alt="img"><a href="">Modifier</a></div>
+                    <div id="myaccount-right-img-container"><img src="/assets/profil_images/<?= $account[0][1];?>" alt="img"><a href="">Modifier</a></div>
                 </div>
                 <div>
                     <a href="">Modifier mon mot de passe</a><br/>

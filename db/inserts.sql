@@ -28,8 +28,8 @@ insert into grade values
 
 insert into account values
 (1, "user1", null, "fstname", "lstname", "password", "mail1@gmail.com", 5, 1, 1),
-(2, "user2", null, "fstname", "lstname", "password", "mail2@gmail.com", 10, 2, 2),
-(3, "user3", null, null, null, "password", "mail3@gmail.com", 15, 3, 2);
+(2, "user2", "pi_user2.jpg", "fstname", "lstname", "password", "mail2@gmail.com", 10, 2, 2),
+(3, "user3", "pi_user3.jpg", null, null, "password", "mail3@gmail.com", 15, 3, 2);
 
 
 insert into status values

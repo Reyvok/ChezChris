@@ -10,15 +10,45 @@ class AccountModel{
 
 
     /**
-     * Get the informations of a user
+     * Get the informations of a user by id
      * @param $idUser int
      * @return array|null
      */
-    public function getInformations($idUser){
-        $sql = "SELECT * FROM account WHERE id =".$idUser.";";
+    public function getInformationsById($idUser){
+        $sql = "SELECT a.username, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
+                INNER JOIN grade g ON a.grade=g.id
+                WHERE id =".$idUser.";";
         $res = mysqli_query($this->link, $sql);
         $userData = mysqli_fetch_array($res);
         return $userData;
+    }
+
+
+    /**
+     * Get the informations of a user by username
+     * @param $username string
+     * @return array|null
+     */
+    public function getInformationsByUsername($username){
+        $sql = "SELECT a.id, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
+                INNER JOIN grade g ON a.grade=g.id
+                WHERE username='".$username."';";
+        $res = mysqli_query($this->link, $sql);
+        $userData = mysqli_fetch_all($res);
+        return $userData;
+    }
+
+
+    /**
+     * Get the image of a user
+     * @param $username string
+     * @return array|null
+     */
+    public function getImage($username){
+        $sql = "SELECT imagePath FROM account WHERE username='".$username."';";
+        $res = mysqli_query($this->link, $sql);
+        $img = mysqli_fetch_all($res);
+        return $img;
     }
 
 

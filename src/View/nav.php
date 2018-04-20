@@ -7,14 +7,15 @@
         <div class="solidBorder">Réseaux</div>
     </div>
     <div>
-        <img src="" alt="img">
         <?php
-            if(isset($_SESSION['username'])){
-                echo "<span>".$_SESSION['username']."</span>";
-            }else{
-                echo "<span>Pseudal</span>";
-            }
-        ?>
+            if(isset($_SESSION['username'])):?>
+                <span><?= $_SESSION['username'];?></span>
+                <?php if(isset($_SESSION['imagePath'])):?>
+                    <img style="height: 50px; width:auto;" src="/assets/profil_images/<?= $_SESSION['imagePath'] ;?>" alt="img">
+                <?php endif; ?>
+            <?php else: ?>
+                <span>Pseudal</span>
+            <?php endif; ?>
     </div>
 </header>
 <nav id="nav" data-sticky-container>
