@@ -26,4 +26,21 @@ class GoldenBookModel{
         $opinions = mysqli_fetch_all($res);
         return $opinions;
     }
+
+
+    /**
+     * Get all of the opinions about a book
+     * @param $book int
+     * @return array|null
+     */
+    public function getOpinions($book){
+        $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username FROM opinion o
+                INNER JOIN account a ON o.author=a.id
+                INNER JOIN book b ON o.book=b.id
+                WHERE b.id=".$book."
+                ORDER BY o.pubDate;";
+        $res = mysqli_query($this->link, $sql);
+        $opinions = mysqli_fetch_all($res);
+        return $opinions;
+    }
 }
