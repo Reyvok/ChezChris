@@ -1,6 +1,12 @@
 <?php
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "Fanfictions";
+
+include(__DIR__."/../../Model/Fanfictions/FanfictionModel.php");
+$fanficModel = new FanfictionModel();
+$fictions = $fanficModel->getFictions();
+unset($fanficModel);
+
 ?>
 
 
@@ -19,38 +25,24 @@ $_SESSION['page'] = "Fanfictions";
         </div>
 
         <div class="grid-y align-spaced solidBorder fanfictions-container">
-            <div class="grid-y solidBorder fanfictions-fiction-container">
-                <div class="grid-x align-justify">
-                    <div class="grid-x">
-                        <div class="fanfictions-title-container"><h2>Titre 1</h2></div>
-                        <div><button>Download</button></div>
-                    </div>
-                    <div class="fanfictions-author-container">Auteur 01/01/2000</div>
-                </div>
-                <div class="fanfictions-resume-container"><p>Résumé</p></div>
-            </div>
 
-            <div class="grid-y solidBorder fanfictions-fiction-container">
-                <div class="grid-x align-justify">
-                    <div class="grid-x">
-                        <div class="fanfictions-title-container"><h2>Titre 2</h2></div>
-                        <div><button>Download</button></div>
+            <?php foreach($fictions as $fiction): ?>
+                <div class="grid-y solidBorder fanfictions-fiction-container">
+                    <div class="grid-x align-justify">
+                        <div class="grid-x">
+                            <div class="fanfictions-title-container"><h2><?= $fiction[0];?></h2></div>
+                            <?php if($fiction[2] != null || trim($fiction[2]) != ""): ?>
+                                <div><a href="/assets/fanfictions/<?= $fiction[2];?>" download="<?= $fiction[0];?>">Download</a></div>
+                            <?php endif ?>
+                        </div>
+                        <div class="fanfictions-author-container"><?= $fiction[4]." - ".$fiction[3];?></div>
                     </div>
-                    <div class="fanfictions-author-container">Auteur 01/01/2000</div>
+                    <?php if($fiction[1] != null || trim($fiction[1])): ?>
+                        <div class="fanfictions-resume-container"><p><?= $fiction[1];?></p></div>
+                    <?php endif ?>
                 </div>
-                <div class="fanfictions-resume-container"><p>Résumé</p></div>
-            </div>
+            <?php endforeach; ?>
 
-            <div class="grid-y solidBorder fanfictions-fiction-container">
-                <div class="grid-x align-justify">
-                    <div class="grid-x">
-                        <div class="fanfictions-title-container"><h2>Titre 3</h2></div>
-                        <div><button>Download</button></div>
-                    </div>
-                    <div class="fanfictions-author-container">Auteur 01/01/2000</div>
-                </div>
-                <div class="fanfictions-resume-container"><p>Résumé</p></div>
-            </div>
         </div>
 
         <?php include(__DIR__."/../footer.php"); ?>

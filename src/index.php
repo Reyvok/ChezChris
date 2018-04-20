@@ -78,11 +78,21 @@ unset($goldenBookModel);
                             <div class="grid-x align-justify">
                                 <div><strong><?php echo $lastFanfic[0][0]; ?></strong></div>
                                 <div><?php echo $lastFanfic[0][3]; ?></div>
-                                <div>Download</div>
+                                <?php
+                                    if($lastFanfic[0][2] != null || trim($lastFanfic[0][2]) != ""){
+                                        echo "<div><a href='/assets/fanfictions/".$lastFanfic[0][2]."' download='".$lastFanfic[0][0].".pdf'>Download</a></div>";
+                                    }
+                                ?>
                             </div>
 
                             <div class="cell auto" id="home-fanfiction-text-container">
-                                <?php echo $lastFanfic[0][1]; ?>
+                                <?php
+                                    if($lastFanfic[0][1] != null || trim($lastFanfic[0][1]) != ""){
+                                        echo $lastFanfic[0][1];
+                                    } else {
+                                        echo "<a href='/assets/fanfictions/".$lastFanfic[0][2]."' download='".$lastFanfic[0][0].".pdf'>Téléchargez la fiction</a>";
+                                    }
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -98,7 +108,7 @@ unset($goldenBookModel);
                             <div>
                                 <div class="grid-x align-justify">
                                     <div><?php echo $lastFanart[0][2]; ?></div>
-                                    <div id="home-fanart-img-container"><img src="<?php echo '/assets/img/'.$lastFanart[0][1]; ?>"/></div>
+                                    <div id="home-fanart-img-container"><img src="<?php echo '/assets/fanarts/'.$lastFanart[0][1]; ?>"/></div>
                                 </div>
                             </div>
                         </div>

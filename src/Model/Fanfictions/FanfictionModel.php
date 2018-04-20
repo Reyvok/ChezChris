@@ -24,27 +24,19 @@ class FanfictionModel{
         return $fanfiction;
     }
 
-    public function getInfo($idFanFic){
-        $sql = "SELECT * FROM account WHERE id =".$idFanFic.";";
+
+    /**
+     * Get all of the fanfictions
+     * @return array|null
+     */
+    public function getFictions(){
+        $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, a.username FROM fanfiction f
+                INNER JOIN account a ON f.author=a.id
+                WHERE status=1 ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
-        $userData = mysqli_fetch_array($res);
-        return $userData;
+        $fictions = mysqli_fetch_all($res);
+        return $fictions;
     }
 
-    public function addFiction($data){
-        $sql = "INSERT INTO news id = '".$data['id']."', title = '".$data['title']."', 
-        txt = '".$data['id']."', pubDate = '".$data['id']."',
-        author = '".$data['id']."', status = '".$data['id']."' WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
 
-    public function updateFiction($data){
-        $sql = "UPDATE fanfiction SET title='".$data['title']."', txt='".$data['txt']."', status='".$data['status']."' WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
-
-    public function deleteFiction($data){
-        $sql = "DELETE FROM fanfiction WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
 }

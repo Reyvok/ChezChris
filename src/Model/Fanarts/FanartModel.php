@@ -24,28 +24,18 @@ class FanartModel{
         return $fanart;
     }
 
-    public function getInfo($idFanArt){
-        $sql = "SELECT * FROM account WHERE id =".$idFanArt.";";
+
+    /**
+     * Get all of the fanarts
+     * @return array|null
+     */
+    public function getFanarts(){
+        $sql = "SELECT f.title, f.pathFile, f.pubDate, a.username FROM fanart f
+                INNER JOIN account a ON f.author=a.id
+                WHERE f.status=1 ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
-        $userData = mysqli_fetch_array($res);
-        return $userData;
-    }
-
-    public function addFanArt($data){
-        $sql = "INSERT INTO fanart id = '".$data['id']."', title = '".$data['title']."', 
-        pathFile = '".$data['id']."', status = '".$data['id']."', 
-        note = '".$data['id']."', pubDate = '".$data['id']."', author = '".$data['id']."' WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
-
-    public function updateFanArt($data){
-        $sql = "UPDATE fanart SET title='".$data['title']."', txt='".$data['txt']."', status='".$data['status']."' WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
-
-    public function deleteFanArt($data){
-        $sql = "DELETE FROM fanart WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
+        $fanarts = mysqli_fetch_all($res);
+        return $fanarts;
     }
 
 }

@@ -55,14 +55,20 @@ insert into opinion values
 
 
 insert into fanfiction values
-(1, "fic1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", null, 1, 5.0, current_timestamp(), 2),
-(2, "fic2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", null, 2, null, current_timestamp(), 3);
+(1, "fic1", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", "ff_user2_2018-04-20_10-06-25.pdf", 1, 5.0, current_timestamp(), 2),
+(2, "fic2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", null, 2, null, current_timestamp(), 3),
+(3, "fic3", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", null, 1, null, current_timestamp(), 3);
 
 
 insert into fanart values
-(1, "Wow", "user2_18-04-18_13-25-59.jpg", 1, 5.0, current_timestamp(), 2),
-(2, "Much blood", "user2_18-04-18_14-49-21.png", 1, 5.0, current_timestamp(), 2),
-(3, "Wuw", "user3_17-04-18_15-20-36.jpg", 1, 4.5, current_timestamp(), 3);
+(1, "Wow", "fa_user2_2018-04-18_13-25-59.jpg", 1, 5.0, current_timestamp(), 2),
+(2, "Much blood", "fa_user2_2018-04-18_14-49-21.png", 1, 5.0, current_timestamp(), 2),
+(3, "Wuw", "fa_user3_2018-04-17_15-20-36.jpg", 1, 4.5, current_timestamp(), 3),
+(4, "art4", "fa_user3_2018-04-20_11-12-56.jpg", 1, 3.8, current_timestamp(), 3),
+(5, "art5", "fa_user3_2018-04-18_14-49-43.jpg", 1, 5.0, current_timestamp(), 3),
+(6, "art6", "fa_user2_2018-04-20_11-18-41.jpg", 1, 4.7, current_timestamp(), 2),
+(7, "art7", "fa_user3_2018-04-20_11-19-23.jpg", 1, 3.6, current_timestamp(), 3),
+(8, "art8", "fa_user3_2018-04-20_11-20-12.jpg", 2, 4.1, current_timestamp(), 3);
 
 
 insert into category values

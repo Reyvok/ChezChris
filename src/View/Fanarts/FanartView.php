@@ -1,6 +1,12 @@
 <?php
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "Fanarts";
+
+include(__DIR__."/../../Model/Fanarts/FanartModel.php");
+$fanartModel = new FanartModel();
+$fanarts = $fanartModel->getFanarts();
+unset($fanartModel);
+
 ?>
 
 
@@ -18,62 +24,24 @@ $_SESSION['page'] = "Fanarts";
             <div><input title="search" placeholder="Rechercher"></div>
         </div>
 
-        <div class="grid-y align-spaced solidBorder fanarts-container">
-            <div class="grid-x align-spaced fanarts-line-container">
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 1</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 2</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 3</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 4</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 5</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-            </div>
 
-            <div class="grid-x align-spaced fanarts-line-container">
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 6</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
+        <div class="grid-y align-spaced solidBorder fanarts-container">
+
+            <?php for($i=0; $i<sizeof($fanarts); $i+=5): ?>
+                <div class="grid-x align-spaced fanarts-line-container">
+                <?php for($j=0; $j<5; $j++): ?>
+                    <?php if($i+$j==sizeof($fanarts)) break; ?>
+
+                    <div class="grid-y solidBorder fanarts-art-container">
+                        <div><h2><?= $fanarts[$i+$j][0];?></h2></div>
+                        <div><?= $fanarts[$i+$j][3]." - ".$fanarts[$i+$j][2]; ?></div>
+                        <div class="fanarts-art-img-container"><img src="/assets/fanarts/<?= $fanarts[$i+$j][1];?>" alt="<?= $fanarts[$i+$j][1];?>"/></div>
+                    </div>
+
+                <?php endfor;?>
                 </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 7</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 8</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 9</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-                <div class="grid-y solidBorder fanarts-art-container">
-                    <div><h2>Fanart 10</h2></div>
-                    <div>Aueur 01/01/2000</div>
-                    <div><img src="" alt="img"></div>
-                </div>
-            </div>
+            <?php endfor; ?>
+
         </div>
 
         <?php include(__DIR__."/../footer.php"); ?>

@@ -20,20 +20,15 @@ unset($newsModel);
 
         <div class="grid-y align-spaced solidBorder news-container">
 
-            <?php
-
-                foreach($news as $new){
-                    echo "
-                        <div class='grid-y align-spaced solidBorder news-news-container'>
-                            <div class='grid-x align-justify'>
-                                <div class='news-title-container'><h2>".$new[1]."</h2></div>
-                                <div class='news-author-container'>".$new[4]." - ".$new[3]."</div>
-                            </div>
-                            <div class='cell auto news-message-container'><p>".$new[2]."</p></div>
-                        </div>";
-                }
-
-            ?>
+            <?php foreach($news as $new): ?>
+                    <div class='grid-y align-spaced solidBorder news-news-container'>
+                        <div class='grid-x align-justify'>
+                            <div class='news-title-container'><h2><?= $new[1];?></h2></div>
+                            <div class='news-author-container'><?= $new[4]." - ".$new[3];?></div>
+                        </div>
+                        <div class='cell auto news-message-container'><p><?= $new[2];?></p></div>
+                    </div>
+            <?php endforeach; ?>
 
         </div>
 
