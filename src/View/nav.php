@@ -29,9 +29,17 @@
                     <li><a href="/src/View/Fanfictions/FanfictionView.php">Fanfictions</a></li>
                     <li><a href="/src/View/Fanarts/FanartView.php">Fanarts</a></li>
                     <li><a href="/src/View/GoldenBook/GoldenBookView.php">Livre d'or</a></li>
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
                     <li><a href="/src/View/Suggestion/SuggestionView.php">Suggestions</a></li>
-                    <?php if(isset($_SESSION['username'])) echo "<li><a href='/src/View/MyAccount/MyAccountView.php'>Mon compte</a></li><li><a href='/src/Model/Authentification/LogoutModel.php'>Déconnexion</a></li>";
-                    else echo "<li><a href='/src/View/Authentification/LoginView.php'>Connexion</a></li>";?>
+                    <?php else: ?>
+                    <li><a href="/src/View/Suggestion/SuggestionAdd.php">Suggestions</a></li>
+                    <?php endif; ?>
+                    <?php if(isset($_SESSION['username'])): ?>
+                        <li><a href='/src/View/MyAccount/MyAccountView.php'>Mon compte</a></li>
+                        <li><a href='/src/Model/Authentification/LogoutModel.php'>Déconnexion</a></li>
+                    <?php else: ?>
+                        <li><a href='/src/View/Authentification/LoginView.php'>Connexion</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
