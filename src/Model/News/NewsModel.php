@@ -32,9 +32,31 @@ class NewsModel{
     public function getNews(){
         $sql = "SELECT n.id, n.title, n.txt, n.pubDate, a.username FROM news n
                 INNER JOIN account a ON n.author=a.id
-                WHERE n.status=1;";
+                WHERE n.status=1 ORDER BY n.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $news = mysqli_fetch_all($res);
         return $news;
+    }
+
+
+    /**
+     * Add a news
+     * @param $data array
+     */
+    public function addNews($data){
+        $sql = "INSERT INTO news VALUES
+                  (null, '".$data['title']."', '".$data['text']."', current_timestamp(), ".$_SESSION['idUser'].", 1);";
+        mysqli_query($this->link, $sql);
+        //header("Location: ".__DIR__."/../../View/News/NewsView.php");
+    }
+
+
+    /**
+     * Delete a news
+     * @param $id int
+     */
+    public function deleteNews($id){
+        $sql = "DELETE FROM news WHERE id=".$id.";";
+        mysqli_query($this->link, $sql);
     }
 }

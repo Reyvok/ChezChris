@@ -46,24 +46,24 @@ unset($goldenBookModel);
                     <div class="grid-x align-spaced text-center">
                         <div class="cell auto solidBorder" id="home-news1">
                             <div class="grid-x align-justify home-news-news-container">
-                                <div><strong><?php echo $last3News[0][0]; ?></strong></div>
-                                <div><?php echo explode(" ",$last3News[0][2])[0]." - ".$last3News[0][3]; ?></div>
+                                <div><strong><?= $last3News[0][0]; ?></strong></div>
+                                <div><?= explode(" ",$last3News[0][2])[0]." - ".$last3News[0][3]; ?></div>
                             </div>
-                            <div class="home-news-text-container" style="overflow: scroll"><?php echo $last3News[0][1]; ?></div>
+                            <div class="home-news-text-container" style="overflow: scroll"><?= $last3News[0][1]; ?></div>
                         </div>
                         <div class="cell auto solidBorder" id="home-news2">
                             <div class="grid-x align-justify home-news-news-container">
-                                <div><strong><?php echo $last3News[1][0]; ?></strong></div>
-                                <div><?php echo explode(" ",$last3News[1][2])[0]." - ".$last3News[1][3]; ?></div>
+                                <div><strong><?= $last3News[1][0]; ?></strong></div>
+                                <div><?= explode(" ",$last3News[1][2])[0]." - ".$last3News[1][3]; ?></div>
                             </div>
-                            <div class="home-news-text-container" style="overflow: scroll"><?php echo $last3News[1][1]; ?></div>
+                            <div class="home-news-text-container" style="overflow: scroll"><?= $last3News[1][1]; ?></div>
                         </div>
                         <div class="cell auto solidBorder" id="home-news3">
                             <div class="grid-x align-justify home-news-news-container">
-                                <div><strong><?php echo $last3News[2][0]; ?></strong></div>
-                                <div><?php echo explode(" ",$last3News[2][2])[0]." - ".$last3News[2][3]; ?></div>
+                                <div><strong><?= $last3News[2][0]; ?></strong></div>
+                                <div><?= explode(" ",$last3News[2][2])[0]." - ".$last3News[2][3]; ?></div>
                             </div>
-                            <div class="home-news-text-container" style="overflow: scroll"><?php echo $last3News[2][1]; ?></div>
+                            <div class="home-news-text-container" style="overflow: scroll"><?= $last3News[2][1]; ?></div>
                         </div>
                     </div>
                 </div>
@@ -76,8 +76,8 @@ unset($goldenBookModel);
 
                         <div class="grid-y solidBorder" id="home-fanfiction">
                             <div class="grid-x align-justify">
-                                <div><strong><?php echo $lastFanfic[0][0]; ?></strong></div>
-                                <div><?php echo $lastFanfic[0][3]; ?></div>
+                                <div><strong><?= $lastFanfic[0][0]; ?></strong></div>
+                                <div><?= $lastFanfic[0][3]; ?></div>
                                 <?php
                                     if($lastFanfic[0][2] != null || trim($lastFanfic[0][2]) != ""){
                                         echo "<div><a href='/assets/fanfictions/".$lastFanfic[0][2]."' download='".$lastFanfic[0][0].".pdf'>Download</a></div>";
@@ -102,13 +102,13 @@ unset($goldenBookModel);
 
                         <div class="grid-y solidBorder" id="home-fanart">
                             <div class="cell auto">
-                                <div><strong><?php echo $lastFanart[0][0]; ?></strong></div>
+                                <div><strong><?= $lastFanart[0][0]; ?></strong></div>
                             </div>
 
                             <div>
                                 <div class="grid-x align-justify">
-                                    <div><?php echo $lastFanart[0][2]; ?></div>
-                                    <div id="home-fanart-img-container"><img src="<?php echo '/assets/fanarts/'.$lastFanart[0][1]; ?>"/></div>
+                                    <div><?= $lastFanart[0][2]; ?></div>
+                                    <div id="home-fanart-img-container"><img src="<?= '/assets/fanarts/'.$lastFanart[0][1]; ?>"/></div>
                                 </div>
                             </div>
                         </div>
@@ -124,10 +124,10 @@ unset($goldenBookModel);
 
                     <div class="grid-y solidBorder" id="home-topic1">
                         <div class="grid-x align-justify">
-                            <div><strong><?php echo $last2Topics[0][0]; ?></strong></div>
-                            <div><?php echo explode(" ",$last2Topics[0][1])[0]." - ".$last2Topics[0][2]; ?></div>
+                            <div><strong><?= $last2Topics[0][0]; ?></strong></div>
+                            <div><?= explode(" ",$last2Topics[0][1])[0]." - ".$last2Topics[0][2]; ?></div>
                         </div>
-                        <div class="cell auto" style="overflow: scroll"><?php echo $last2Topics[0][3]; ?></div>
+                        <div class="cell auto" style="overflow: scroll"><?= $last2Topics[0][3]; ?></div>
                     </div>
                     <div class="cell medium solidBorder" id="home-topic2">Topic 2</div>
                 </div>
@@ -137,17 +137,17 @@ unset($goldenBookModel);
 
                     <div class="grid-y solidBorder" id="home-opinion1">
                         <div class="grid-x align-justify">
-                            <div><strong><?php echo $last2Opinions[0][0]." - ".$last2Opinions[0][2]; ?></strong></div>
-                            <div><?php echo explode(" ",$last2Opinions[0][3])[0]." - ".$last2Opinions[0][4]; ?></div>
+                            <div><strong><?= $last2Opinions[0][0]." - ".$last2Opinions[0][2]; ?></strong></div>
+                            <div><?= explode(" ",$last2Opinions[0][3])[0]." - ".$last2Opinions[0][4]; ?></div>
                         </div>
-                        <div class="cell auto" style="overflow: scroll"><?php echo $last2Opinions[0][1]; ?></div>
+                        <div class="cell auto" style="overflow: scroll"><?= $last2Opinions[0][1]; ?></div>
                     </div>
                     <div class="grid-y solidBorder" id="home-opinion2">
                         <div class="grid-x align-justify">
-                            <div><strong><?php echo $last2Opinions[1][0]." - ".$last2Opinions[1][2]; ?></strong></div>
-                            <div><?php echo explode(" ",$last2Opinions[1][3])[0]." - ".$last2Opinions[1][4]; ?></div>
+                            <div><strong><?= $last2Opinions[1][0]." - ".$last2Opinions[1][2]; ?></strong></div>
+                            <div><?= explode(" ",$last2Opinions[1][3])[0]." - ".$last2Opinions[1][4]; ?></div>
                         </div>
-                        <div class="cell auto" style="overflow: scroll"><?php echo $last2Opinions[1][1]; ?></div>
+                        <div class="cell auto" style="overflow: scroll"><?= $last2Opinions[1][1]; ?></div>
                     </div>
                 </div>
             </div>

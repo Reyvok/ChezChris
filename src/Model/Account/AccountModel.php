@@ -53,12 +53,40 @@ class AccountModel{
 
 
     /**
+     * Get the role of a user
+     * @param $username string
+     * @return array|null
+     */
+    public function getRole($username){
+        $sql = "SELECT r.label FROM role r
+                INNER JOIN account a ON a.role=r.id
+                WHERE a.username = '".$username."';";
+        $res = mysqli_query($this->link, $sql);
+        $role = mysqli_fetch_all($res);
+        return $role;
+    }
+
+
+    /**
      * Update an account
      * @param $data array of data
      */
     public function update($data){
         $sql = "UPDATE account SET username='".$data['username']."', firstname='".$data['firstname']."', lastname='".$data['lastname']."', mail='".$data['mail']."' WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
+    }
+
+
+    /**
+     * Get the id of a user
+     * @param $username string
+     * @return array|null
+     */
+    public function getId($username){
+        $sql = "SELECT id FROM account WHERE username='".$username."';";
+        $res = mysqli_query($this->link, $sql);
+        $id = mysqli_fetch_all($res);
+        return $id;
     }
 
 
@@ -90,10 +118,10 @@ class AccountModel{
     //////// check mdp preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $password)
 
 
-    /**
+    /*
      * Verify if there is no error before updating an account
      * @param $data array of data
-     */
+     *
     public function verifyUpdate($data){
         $usernames = $this->getUsernames();
         if((!preg_match("/^[A-z0-9_ ]{3,20}/",$data['username']))){
@@ -113,5 +141,5 @@ class AccountModel{
         } else {
             header('Location: ..\View\accountUpdate.php?idUser='.$data['id']);
         }
-    }
+    }*/
 }
