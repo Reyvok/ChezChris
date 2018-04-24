@@ -1,5 +1,10 @@
 <?php
+
 include(__DIR__."/../head.php");
+if(!isset($_SESSION['role']) || $_SESSION['role'] != 'admin'){
+    header("Location: ./GoldenBookView.php");
+    exit();
+}
 $_SESSION['page'] = "News";
 
 include(__DIR__."/../../Model/News/NewsModel.php");
