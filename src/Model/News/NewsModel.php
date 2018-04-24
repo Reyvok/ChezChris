@@ -40,6 +40,21 @@ class NewsModel{
 
 
     /**
+     * Get a news by its id
+     * @param $id int
+     * @return array|null
+     */
+    public function getNewsById($id){
+        $sql = "SELECT n.title, n.txt, n.pubDate, a.username FROM news n
+                INNER JOIN account a ON n.author=a.id
+                WHERE n.id=".$id.";";
+        $res = mysqli_query($this->link, $sql);
+        $news = mysqli_fetch_all($res);
+        return $news;
+    }
+
+
+    /**
      * Add a news
      * @param $data array
      */
@@ -47,7 +62,6 @@ class NewsModel{
         $sql = "INSERT INTO news VALUES
                   (null, '".$data['title']."', '".$data['text']."', current_timestamp(), ".$_SESSION['idUser'].", 1);";
         mysqli_query($this->link, $sql);
-        //header("Location: ".__DIR__."/../../View/News/NewsView.php");
     }
 
 
@@ -57,6 +71,17 @@ class NewsModel{
      */
     public function deleteNews($id){
         $sql = "DELETE FROM news WHERE id=".$id.";";
+        mysqli_query($this->link, $sql);
+    }
+
+
+    /**
+     * Edit a news
+     * @param $id int
+     * @param $data array
+     */
+    public function editNews($id, $data){
+        $sql = "UPDATE news SET title='".$data['title']."', txt='".$data['text']."' WHERE id=".$id.";";
         mysqli_query($this->link, $sql);
     }
 }

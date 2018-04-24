@@ -10,7 +10,6 @@ if(isset($_GET['book']))
 else
     $opinions = $goldenbookModel->getOpinions(1);
 
-var_dump($_SESSION['role']);
 ?>
 
 
