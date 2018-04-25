@@ -10,7 +10,7 @@ include(__DIR__."/../../Model/Fanarts/FanartModel.php");
 $fanartModel = new FanartModel();
 $idUser = $fanartModel->getAuthor($_GET['id']);
 
-if($_SESSION['idUser'] !== $idUser || $_SESSION['role']!='admin'){
+if($_SESSION['idUser'] !== $idUser && $_SESSION['role']!='admin'){
     header("Location: ./FanartView.php");
     exit();
 }

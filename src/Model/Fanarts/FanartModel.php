@@ -64,8 +64,8 @@ class FanartModel{
      * @param $id int
      * @return int
      */
-    public function getAuthor($id){
-        $sql = "SELECT author FROM fanart WHERE id=".$id.";";
+    public function getAuthor($idArt){
+        $sql = "SELECT author FROM fanart WHERE id=".$idArt.";";
         $res = mysqli_query($this->link, $sql);
         $author = mysqli_fetch_all($res)[0][0];
         return $author;

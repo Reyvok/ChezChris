@@ -35,7 +35,7 @@ $fanartModel = new FanartModel();
     </div>
 
     <?php
-        if(isset($_POST['title']) && isset($_FILES['file'])){
+        if(isset($_POST['title']) && isset($_FILES['file']) && !empty($_FILES['file']['name'])){
             date_default_timezone_set('Europe/Paris');
             $target_dir = __DIR__."/../../../assets/fanarts/";
             $imageFileType = strtolower(pathinfo($target_dir.basename($_FILES["file"]["name"]), PATHINFO_EXTENSION));

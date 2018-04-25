@@ -19,7 +19,7 @@ unset($fanficModel);
         <div class="grid-x align-justify" style="margin-top: 10px; margin-bottom: 5px;">
             <div class="grid-x">
                 <div style="margin-left: 20px;"><button>Trier par</button></div>
-                <div style="margin-left: 20px;"><button>Nouvelle fanfic</button></div>
+                <div style="margin-left: 20px;"><a href="/src/View/Fanfictions/FanfictionAdd.php">Nouvelle fanfiction</a></div>
             </div>
             <div><input title="search" placeholder="Rechercher"></div>
         </div>
@@ -34,6 +34,7 @@ unset($fanficModel);
                             <?php if($fiction[2] != null || trim($fiction[2]) != ""): ?>
                                 <div><a href="/assets/fanfictions/<?= $fiction[2];?>" download="<?= $fiction[0];?>">Download</a></div>
                             <?php endif ?>
+                            <?php if(isset($_SESSION['idUser']) && ($_SESSION['role']==='admin' || $_SESSION['idUser'] === $fiction[5])):?><div><a href="/src/View/Fanfictions/FanfictionDelete.php?id=<?= $fiction[6];?>">Supprimer</a></div><?php endif;?>
                         </div>
                         <div class="fanfictions-author-container"><?= $fiction[4]." - ".$fiction[3];?></div>
                     </div>
