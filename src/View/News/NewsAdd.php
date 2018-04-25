@@ -44,7 +44,7 @@ $newsModel = new NewsModel();
             $newsModel->addNews($data);
             header("Location: ./NewsView.php");
             exit();
-        };?>
+        }?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>
