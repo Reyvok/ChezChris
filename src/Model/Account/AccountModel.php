@@ -68,16 +68,6 @@ class AccountModel{
 
 
     /**
-     * Update an account
-     * @param $data array of data
-     */
-    public function update($data){
-        $sql = "UPDATE account SET username='".$data['username']."', firstname='".$data['firstname']."', lastname='".$data['lastname']."', mail='".$data['mail']."' WHERE id=".$data['id'];
-        mysqli_query($this->link, $sql);
-    }
-
-
-    /**
      * Get the id of a user
      * @param $username string
      * @return array|null
@@ -115,31 +105,48 @@ class AccountModel{
         return $data;
     }
 
-    //////// check mdp preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $password)
 
-
-    /*
-     * Verify if there is no error before updating an account
+    /**
+     * Update an account
      * @param $data array of data
-     *
+     */
+    public function updateAccount($data){
+        //, imagePath='".$data['pathfile']."'
+        $sql = "UPDATE account SET username='".$data['username']."',firstname='".$data['firstname']."', lastname='".$data['lastname']."', password='".$data['password']."', mail='".$data['mail']."' WHERE id=".$data['id'];
+        mysqli_query($this->link, $sql);
+    }
+
+
+    /**
+     * Verify if there is no error before updating an account
+     * @param $data array
+     * @return bool
+     */
     public function verifyUpdate($data){
-        $usernames = $this->getUsernames();
-        if((!preg_match("/^[A-z0-9_ ]{3,20}/",$data['username']))){
+        if((!preg_match("/^[A-z0-9_. ]{2,20}/",$data['username']))){
             $_SESSION['errorUsername'] = "Nom d'utilisateur incorrect\n";
         } else {
+            $usernames = $this->getUsernames();
             foreach($usernames as $username){
-                if($data['username']==$username and !isset($_SESSION['errorUsername'])) $_SESSION['errorUsername'] = "Nom d\'utilisateur indisponible\n";
+                if($data['username']==$username and !isset($_SESSION['errorUsername'])){
+                    $_SESSION['errorUsername'] = "Nom d\'utilisateur indisponible\n";
+                    break;
+                }
             }
         }
-        if((!preg_match("/^[A-z ]{0,20}/",$data['firstname']))) $_SESSION['errorFName'] = "Prénom incorrect\n";
-        if((!preg_match("/^[A-z ]{0,20}/",$data['lastname']))) $_SESSION['errorLName'] = "Nom incorrect\n";
-        if((!preg_match("/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/",$data['mail']))) $_SESSION['errorMail'] = "Adresse email incorrecte";
+        if(!preg_match("/^[A-z ]{0,20}/",$data['firstname'])) $_SESSION['errorFName'] = "Prénom incorrect\n";
+        if(!preg_match("/^[A-z ]{0,20}/",$data['lastname'])) $_SESSION['errorLName'] = "Nom incorrect\n";
+        if(!preg_match("/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/",$data['mail'])) $_SESSION['errorMail'] = "Adresse email incorrecte";
+        if($data['password'] != $data['confirmPassword']) $_SESSION['errorPassword'] = "Mots de passe différents";
+        if(!preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $data['password']) && !isset($_SESSION['errorPassword'])) $_SESSION['errorPassword'] = "Mot de passe incorrect";
 
-        if(!isset($_SESSION['errorUsername']) and !isset($_SESSION['errorFName']) and !isset($_SESSION['errorLName']) and !isset($_SESSION['errorMail'])){
-            $this->update($data);
-            header('Location: ..\View\accountView.php?idUser='.$data['id']);
+        if(!isset($_SESSION['errorUsername']) and !isset($_SESSION['errorFName']) and !isset($_SESSION['errorLName']) and !isset($_SESSION['errorMail']) and !isset($_SESSION['errorPassword'])){
+            $this->updateAccount($data);
+            $_SESSION['username'] = $data['username'];
+            //if($data['imagePath']!=null) $_SESSION['imagePath'] = $data['imagePath'];
+            return true;
         } else {
-            header('Location: ..\View\accountUpdate.php?idUser='.$data['id']);
+            return false;
         }
-    }*/
+    }
 }

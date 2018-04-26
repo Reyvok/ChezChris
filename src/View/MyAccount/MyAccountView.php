@@ -7,8 +7,6 @@ $accountModel = new AccountModel();
 $account = $accountModel->getInformationsByUsername($_SESSION['username']);
 unset($accountModel);
 
-var_dump($account);
-
 ?>
 
 
@@ -21,9 +19,10 @@ var_dump($account);
         <div class="grid-x align-justify solidBorder myaccount-container">
             <div class="grid-y align-spaced" id="myaccount-left-container">
                 <div class="grid-y">
-                    <div>Prénom: <?= $account[0][2];?> <a href="">Modifier</a></div>
-                    <div>Nom: <?= $account[0][3];?> <a href="">Modifier</a></div>
-                    <div>Email: <?= $account[0][5];?> <a href="">Modifier</a></div>
+                    <div>Prénom: <span id="myaccount-firstname"><?= $account[0][2];?></span></div>
+                    <div>Nom: <span id="myaccount-lastname"><?= $account[0][3];?></span></div>
+                    <div>Email: <span id="myaccount-email"><?= $account[0][5];?></span></div>
+                    <div><a href="/src/View/MyAccount/MyAccountEdit.php">Modifier</a></div>
                 </div>
 
                 <div class="grid-y">
@@ -54,22 +53,15 @@ var_dump($account);
 </body>
 
 
+
 </html>
 
 
 
 
 <?php
-/*   Account Update
- *
 
-$idUser = $_GET['idUser'];
-$accountModel = new MyAccountModel();
-$userData = $accountModel->getInformations($idUser);
-
-session_start();
-
-/**
+/*
  * Update form
  * If there is some errors, they are displayed under the inputs
  *
