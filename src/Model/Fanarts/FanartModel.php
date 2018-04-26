@@ -40,6 +40,20 @@ class FanartModel{
 
 
     /**
+     * Get the fanarts of a user
+     * @param $id int
+     * @return array|null
+     */
+    public function getFanartsOfUser($id){
+        $sql = "SELECT f.title, f.pathFile, f.pubDate, f.id FROM fanart f
+                WHERE f.author=".$id." ORDER BY f.pubDate DESC;";
+        $res = mysqli_query($this->link, $sql);
+        $fanarts = mysqli_fetch_all($res);
+        return $fanarts;
+    }
+
+
+    /**
      * Add a fanart
      * @param $data array
      */

@@ -40,6 +40,34 @@ class FanfictionModel{
 
 
     /**
+     * Get the fictions of a user
+     * @param $id int
+     * @return array|null
+     */
+    public function getFictionsOfUser($id){
+        $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id FROM fanfiction f
+                WHERE author=".$id." ORDER BY f.pubDate DESC;";
+        $res = mysqli_query($this->link, $sql);
+        $fictions = mysqli_fetch_all($res);
+        return $fictions;
+    }
+
+
+    /**
+     * Get a fiction
+     * @param $id int
+     * @return mixed
+     */
+    public function getFiction($id){
+        $sql = "SELECT f.title, f.txt, f.pathFile FROM fanfiction f
+                WHERE f.id=".$id.";";
+        $res = mysqli_query($this->link, $sql);
+        $fiction = mysqli_fetch_all($res)[0];
+        return $fiction;
+    }
+
+
+    /**
      * Add a fanfiction
      * @param $data array
      */
@@ -55,6 +83,20 @@ class FanfictionModel{
      */
     public function deleteFanfiction($id){
         $sql = "DELETE FROM fanfiction WHERE id=".$id.";";
+        mysqli_query($this->link, $sql);
+    }
+
+
+    /**
+     * Edit a fanfiction
+     * @param $data array
+     */
+    public function editFanfiction($data){
+        if(isset($data['pathfile'])){
+            $sql = "UPDATE fanfiction SET title='".$data['title']."', txt='".$data['text']."', pathFile='".$data['pathfile']."', pubDate=current_timestamp() WHERE id=".$data['id'].";";
+        }else{
+            $sql = "UPDATE fanfiction SET title='".$data['title']."', txt='".$data['text']."', pubDate=current_timestamp() WHERE id=".$data['id'].";";
+        }
         mysqli_query($this->link, $sql);
     }
 

@@ -11,7 +11,7 @@ $fanfictionModel = new FanfictionModel();
 $idUser = $fanfictionModel->getAuthor($_GET['id']);
 
 if($_SESSION['idUser'] !== $idUser && $_SESSION['role']!='admin'){
-    //header("Location: ./FanfictionView.php");
+    header("Location: ./FanfictionView.php");
     exit();
 }
 
