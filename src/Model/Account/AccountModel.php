@@ -111,8 +111,8 @@ class AccountModel{
      * @param $data array of data
      */
     public function updateAccount($data){
-        //, imagePath='".$data['pathfile']."'
-        $sql = "UPDATE account SET username='".$data['username']."',firstname='".$data['firstname']."', lastname='".$data['lastname']."', password='".$data['password']."', mail='".$data['mail']."' WHERE id=".$data['id'];
+        if($data['imagePath'] != null) $sql = "UPDATE account SET username='".$data['username']."',firstname='".$data['firstname']."', lastname='".$data['lastname']."', imagePath='".$data['imagePath']."', password='".$data['password']."', mail='".$data['mail']."' WHERE id=".$data['id'];
+        else $sql = "UPDATE account SET username='".$data['username']."',firstname='".$data['firstname']."', lastname='".$data['lastname']."', password='".$data['password']."', mail='".$data['mail']."' WHERE id=".$data['id'];
         mysqli_query($this->link, $sql);
     }
 
@@ -120,7 +120,6 @@ class AccountModel{
     /**
      * Verify if there is no error before updating an account
      * @param $data array
-     * @return bool
      */
     public function verifyUpdate($data){
         if((!preg_match("/^[A-z0-9_. ]{2,20}/",$data['username']))){
@@ -140,13 +139,54 @@ class AccountModel{
         if($data['password'] != $data['confirmPassword']) $_SESSION['errorPassword'] = "Mots de passe différents";
         if(!preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/", $data['password']) && !isset($_SESSION['errorPassword'])) $_SESSION['errorPassword'] = "Mot de passe incorrect";
 
-        if(!isset($_SESSION['errorUsername']) and !isset($_SESSION['errorFName']) and !isset($_SESSION['errorLName']) and !isset($_SESSION['errorMail']) and !isset($_SESSION['errorPassword'])){
-            $this->updateAccount($data);
-            $_SESSION['username'] = $data['username'];
-            //if($data['imagePath']!=null) $_SESSION['imagePath'] = $data['imagePath'];
-            return true;
+        if($data['imagePath'] != null){
+            date_default_timezone_set('Europe/Paris');
+            $target_dir = __DIR__."/../../../assets/profil_images/";
+            $imageFileType = strtolower(pathinfo($target_dir.basename($_FILES["file"]["name"]), PATHINFO_EXTENSION));
+            $imagePath = "pi_".$_SESSION['username']."_".date("Y-m-d_h-i-s").".".$imageFileType;
+            $target_file = $target_dir.$imagePath;
+
+            // Check if image file is a actual image or fake image
+            if (getimagesize($_FILES["file"]["tmp_name"]) == false){
+                $_SESSION['errorImage'] = "File is not an image.";
+            }
+
+            // Check if file already exists
+            if (file_exists($target_file)) {
+                $_SESSION['errorImage'] = "Sorry, file already exists.";
+            }
+
+            // Check file size
+            if ($_FILES["file"]["size"] > $_POST['MAX_FILE_SIZE']) {
+                $_SESSION['errorImage'] = "Sorry, your file is too large.";
+            }
+
+            // Allow certain file formats
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif") {
+                $_SESSION['errorImage'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            }
+
+            if(!isset($_SESSION['errorUsername']) and !isset($_SESSION['errorFName']) and !isset($_SESSION['errorLName']) and !isset($_SESSION['errorMail']) and !isset($_SESSION['errorPassword']) and !isset($_SESSION['errorImage'])){
+                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                    $data['imagePath'] = $imagePath;
+                    $this->updateAccount($data);
+                    $_SESSION['username'] = $data['username'];
+                    $_SESSION['imagePath'] = $imagePath;
+                    unlink($target_dir.$data['oldImage']);
+                    //header("Location: ../../View/MyAccount/MyAccountView.php");
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            }
         } else {
-            return false;
+            if(!isset($_SESSION['errorUsername']) and !isset($_SESSION['errorFName']) and !isset($_SESSION['errorLName']) and !isset($_SESSION['errorMail']) and !isset($_SESSION['errorPassword']) and !isset($_SESSION['errorImage'])){
+                $this->updateAccount($data);
+                $_SESSION['username'] = $data['username'];
+                //header("Location: ../../View/MyAccount/MyAccountView.php");
+            }
         }
+
+
     }
 }
