@@ -20,7 +20,7 @@ $_SESSION['page'] = "Connexion";
                     <label>Mot de passe : </label><input id="login-password" title="Mot de passe" type="password" name="password" value=""/><br/>
                     <input type="submit" name="connexion" value="Connexion"/>
                 </form>
-                <br/><a href="SignUpView.php">Pas de compte ? Je m'inscris</a>
+                <br/><a href="/src/View/Authentification/SignUpView.php">Pas de compte ? Je m'inscris</a>
             </div>
         </main>
 

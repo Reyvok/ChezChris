@@ -100,7 +100,7 @@ class AccountModel{
     public function getUsernames(){
         $sql = "SELECT username FROM account;";
         $res = mysqli_query($this->link, $sql);
-        $usernames = mysqli_fetch_array($res);
+        $usernames = mysqli_fetch_all($res);
         return $usernames;
     }
 
@@ -114,8 +114,8 @@ class AccountModel{
     public function verifyUsernameAndPassword($username, $password){
         $sql = "SELECT count(*) FROM account WHERE username='".mysqli_real_escape_string($this->link,$username)."' and password='".mysqli_real_escape_string($this->link,$password)."';";
         $res = mysqli_query($this->link, $sql);
-        $data = mysqli_fetch_array($res);
-        return $data;
+        $data = mysqli_fetch_all($res);
+        return $data[0];
     }
 
 
