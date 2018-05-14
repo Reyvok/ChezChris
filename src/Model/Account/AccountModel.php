@@ -17,10 +17,10 @@ class AccountModel{
     public function getInformationsById($idUser){
         $sql = "SELECT a.username, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
                 INNER JOIN grade g ON a.grade=g.id
-                WHERE id =".$idUser.";";
+                WHERE a.id=".$idUser.";";
         $res = mysqli_query($this->link, $sql);
-        $userData = mysqli_fetch_array($res);
-        return $userData;
+        $userData = mysqli_fetch_all($res);
+        return $userData[0];
     }
 
 
@@ -77,6 +77,19 @@ class AccountModel{
         $res = mysqli_query($this->link, $sql);
         $id = mysqli_fetch_all($res);
         return $id;
+    }
+
+
+    /**
+     * Get the username of a user
+     * @param $id int
+     * @return mixed
+     */
+    public function getUsername($id){
+        $sql = "SELECT username FROM account WHERE id=".$id.";";
+        $res = mysqli_query($this->link, $sql);
+        $username = mysqli_fetch_all($res);
+        return $username[0][0];
     }
 
 

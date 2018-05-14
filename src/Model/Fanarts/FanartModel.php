@@ -26,6 +26,19 @@ class FanartModel{
 
 
     /**
+     * Get the last 2 published fanarts
+     * @return array|null
+     */
+    public function getLast2Fanarts($id){
+        $sql = "SELECT f.title, f.pathFile FROM fanart f
+                WHERE f.author=".$id." and f.status=1 ORDER BY f.pubDate DESC LIMIT 2;";
+        $res = mysqli_query($this->link, $sql);
+        $fanart = mysqli_fetch_all($res);
+        return $fanart;
+    }
+
+
+    /**
      * Get all of the fanarts
      * @return array|null
      */

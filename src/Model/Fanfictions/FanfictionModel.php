@@ -12,13 +12,26 @@ class FanfictionModel{
 
 
     /**
-     * Get the last fanfiction published
+     * Get the last published fanfiction
      * @return array|null
      */
     public function getLastFiction(){
         $sql = "SELECT f.title, f.txt, f.pathFile, a.username FROM fanfiction f 
                 INNER JOIN account a ON f.author=a.id
                 WHERE status=1 ORDER BY pubDate DESC LIMIT 1;";
+        $res = mysqli_query($this->link, $sql);
+        $fanfiction = mysqli_fetch_all($res);
+        return $fanfiction;
+    }
+
+
+    /**
+     * Get the last 2 published fanfictions
+     * @return array|null
+     */
+    public function getLast2Fictions($id){
+        $sql = "SELECT f.title, f.txt FROM fanfiction f 
+                WHERE f.author=".$id." and f.status=1 ORDER BY pubDate DESC LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $fanfiction = mysqli_fetch_all($res);
         return $fanfiction;
@@ -46,7 +59,7 @@ class FanfictionModel{
      */
     public function getFictionsOfUser($id){
         $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id FROM fanfiction f
-                WHERE author=".$id." ORDER BY f.pubDate DESC;";
+                WHERE f.author=".$id." ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fictions = mysqli_fetch_all($res);
         return $fictions;
