@@ -16,37 +16,39 @@ unset($accountModel);
     <div id="page">
         <?php include(__DIR__."/../nav.php"); ?>
 
-        <div class="grid-x align-justify solidBorder myaccount-container">
-            <div class="grid-y align-spaced" id="myaccount-left-container">
-                <div class="grid-y">
-                    <div>Prénom: <span id="myaccount-firstname"><?= $account[0][2];?></span></div>
-                    <div>Nom: <span id="myaccount-lastname"><?= $account[0][3];?></span></div>
-                    <div>Email: <span id="myaccount-email"><?= $account[0][5];?></span></div>
-                    <div><a href="/src/View/MyAccount/MyAccountEdit.php">Modifier</a></div>
+        <main>
+            <div class="grid-x align-justify callout myaccount-container">
+                <div class="grid-y align-spaced" id="myaccount-left-container">
+                    <div class="grid-y">
+                        <div>Prénom: <span id="myaccount-firstname"><?= $account[0][2];?></span></div>
+                        <div>Nom: <span id="myaccount-lastname"><?= $account[0][3];?></span></div>
+                        <div>Email: <span id="myaccount-email"><?= $account[0][5];?></span></div>
+                        <div><a href="/src/View/MyAccount/MyAccountEdit.php">Modifier</a></div>
+                    </div>
+
+                    <div class="grid-y">
+                        <span>Score: <?= $account[0][6];?></span>
+                        <span>Grade: <?= $account[0][7];?></span>
+                    </div>
+
+                    <div class="grid-y">
+                        <a href="/src/View/MyAccount/MyFanfictionsView.php">Mes fanfics</a>
+                        <a href="/src/View/MyAccount/MyFanartsView.php">Mes fanarts</a>
+                        <a href="">Mes avis</a>
+                    </div>
                 </div>
 
-                <div class="grid-y">
-                    <span>Score: <?= $account[0][6];?></span>
-                    <span>Grade: <?= $account[0][7];?></span>
-                </div>
-
-                <div class="grid-y">
-                    <a href="/src/View/MyAccount/MyFanfictionsView.php">Mes fanfics</a>
-                    <a href="/src/View/MyAccount/MyFanartsView.php">Mes fanarts</a>
-                    <a href="">Mes avis</a>
+                <div class="grid-y align-spaced" id="myaccount-right-container">
+                    <div>
+                        <div id="myaccount-right-img-container"><img src="/assets/profil_images/<?= $account[0][1];?>" alt="img"><a href="">Modifier</a></div>
+                    </div>
+                    <div>
+                        <a href="">Modifier mon mot de passe</a><br/>
+                        <a href="">Supprimer mon compte</a>
+                    </div>
                 </div>
             </div>
-
-            <div class="grid-y align-spaced" id="myaccount-right-container">
-                <div>
-                    <div id="myaccount-right-img-container"><img src="/assets/profil_images/<?= $account[0][1];?>" alt="img"><a href="">Modifier</a></div>
-                </div>
-                <div>
-                    <a href="">Modifier mon mot de passe</a><br/>
-                    <a href="">Supprimer mon compte</a>
-                </div>
-            </div>
-        </div>
+        </main>
         <?php include(__DIR__."/../footer.php"); ?>
     </div>
 

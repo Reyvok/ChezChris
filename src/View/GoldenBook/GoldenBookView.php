@@ -35,10 +35,10 @@ else
             <?php endif;?>
         </div>
 
-        <div class="grid-y align-spaced solidBorder" style="padding-bottom: 10px; margin-bottom: 10px;">
+        <div class="grid-y align-spaced callout" style="padding-bottom: 10px; margin-bottom: 10px;">
 
             <?php foreach($opinions as $opinion): ?>
-                <div class="grid-y solidBorder goldenbook-opinion-container">
+                <div class="grid-y callout small goldenbook-opinion-container">
                     <div class="grid-x align-justify goldenbook-head-container">
                         <div class="grid-x">
                             <div class="goldenbook-title-container"><h2><?= $opinion[0];?></h2></div>

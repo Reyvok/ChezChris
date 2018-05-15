@@ -1,4 +1,4 @@
-<footer>
+<footer class="callout">
     Mentions légales
 </footer>
 <script src="/foundation/js/vendor/jquery.js"></script>

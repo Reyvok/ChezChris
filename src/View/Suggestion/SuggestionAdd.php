@@ -2,6 +2,11 @@
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "Suggestions";
 
+if(!isset($_SESSION['username'])){
+    header("Location: ./../Authentification/LoginView.php");
+    exit();
+}
+
 include(__DIR__."/../../Model/Suggestion/SuggestionModel.php");
 $suggestionModel = new SuggestionModel();
 
@@ -15,7 +20,7 @@ $suggestionModel = new SuggestionModel();
         <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
-            <div class="solidBorder">
+            <div class="callout">
                 <h2>Laisser une suggestion</h2>
                 <form method="post" action="" id="suggestion-form">
                     <input id="suggestion-title" type="text" name="title" title="Titre" placeholder="Titre">

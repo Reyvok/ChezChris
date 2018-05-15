@@ -25,17 +25,18 @@ unset($fanartModel);
         </div>
 
 
-        <div class="grid-y align-spaced solidBorder fanarts-container">
+        <div class="grid-y align-spaced callout fanarts-container">
 
             <?php for($i=0; $i<sizeof($fanarts); $i+=5): ?>
                 <div class="grid-x align-spaced fanarts-line-container">
                 <?php for($j=0; $j<5; $j++): ?>
                     <?php if($i+$j==sizeof($fanarts)) break; ?>
 
-                    <div class="grid-y solidBorder fanarts-art-container">
+                    <div class="grid-y callout small fanarts-art-container">
                         <div><h2><?= $fanarts[$i+$j][0];?></h2></div>
                         <?php if(isset($_SESSION['idUser']) && ($_SESSION['role']==='admin' || $_SESSION['idUser'] === $fanarts[$i+$j][4])):?><div><a href="/src/View/Fanarts/FanartDelete.php?id=<?= $fanarts[$i+$j][5];?>">Supprimer</a></div><?php endif;?>
-                        <div><?= $fanarts[$i+$j][3]." - ".$fanarts[$i+$j][2]; ?></div>
+                        <div><?= $fanarts[$i+$j][3]; ?></div>
+                        <div><?= $fanarts[$i+$j][2]; ?></div>
                         <div class="fanarts-art-img-container"><img src="/assets/fanarts/<?= $fanarts[$i+$j][1];?>" alt="<?= $fanarts[$i+$j][1];?>"/></div>
                     </div>
 

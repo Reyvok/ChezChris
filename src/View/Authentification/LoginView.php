@@ -12,7 +12,7 @@ $_SESSION['page'] = "Connexion";
         <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
-            <div class="solidBorder">
+            <div class="callout">
                 <h2>Connexion :</h2>
                 <form method="post" action="" id="login-form">
                     <?php if(isset($_SESSION['errorLogin'])){echo("<div>".$_SESSION['errorLogin']."</div><br/>"); unset($_SESSION['errorLogin']);} ?>

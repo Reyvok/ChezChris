@@ -1,10 +1,10 @@
-<header class="grid-x align-justify">
+<header class="grid-x align-justify callout">
     <div class="grid-x">
         <div class="grid-y" style="padding-right: 10px">
             <div><h1 style="margin-bottom: 0px; height: 50px">Chez Chris</h1></div>
             <div class="grid-x align-right"><h2 style="margin-bottom: 0px; height: 50px"><?php echo $_SESSION['page']; ?></h2></div>
         </div>
-        <div class="solidBorder">Réseaux</div>
+        <div class="callout">Réseaux</div>
     </div>
     <div>
         <?php

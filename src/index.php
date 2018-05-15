@@ -40,25 +40,25 @@ unset($goldenBookModel);
             <div class="grid-y align-spaced home-left-container">
 
                 <!-------- News container -------->
-                <div class="grid-y align-spaced solidBorder home-news-container">
+                <div class="grid-y align-spaced callout home-news-container">
                     <div class="cell medium"><h2>Dernières news</h2></div>
 
                     <div class="grid-x align-spaced text-center">
-                        <div class="cell auto solidBorder" id="home-news1">
+                        <div class="cell auto callout small" id="home-news1">
                             <div class="grid-x align-justify home-news-news-container">
                                 <div><strong><?= $last3News[0][0]; ?></strong></div>
                                 <div><?= explode(" ",$last3News[0][2])[0]." - ".$last3News[0][3]; ?></div>
                             </div>
                             <div class="home-news-text-container" style="overflow: scroll"><?= $last3News[0][1]; ?></div>
                         </div>
-                        <div class="cell auto solidBorder" id="home-news2">
+                        <div class="cell auto callout small" id="home-news2">
                             <div class="grid-x align-justify home-news-news-container">
                                 <div><strong><?= $last3News[1][0]; ?></strong></div>
                                 <div><?= explode(" ",$last3News[1][2])[0]." - ".$last3News[1][3]; ?></div>
                             </div>
                             <div class="home-news-text-container" style="overflow: scroll"><?= $last3News[1][1]; ?></div>
                         </div>
-                        <div class="cell auto solidBorder" id="home-news3">
+                        <div class="cell auto callout small" id="home-news3">
                             <div class="grid-x align-justify home-news-news-container">
                                 <div><strong><?= $last3News[2][0]; ?></strong></div>
                                 <div><?= explode(" ",$last3News[2][2])[0]." - ".$last3News[2][3]; ?></div>
@@ -71,10 +71,10 @@ unset($goldenBookModel);
 
                 <!-------- Fan container -------->
                 <div class="grid-x align-spaced home-fan-container">
-                    <div class="grid-y align-spaced solidBorder home-fiction-container">
+                    <div class="grid-y align-spaced callout home-fiction-container">
                         <div class="cell medium"><h2>Dernière fiction</h2></div>
 
-                        <div class="grid-y solidBorder" id="home-fanfiction">
+                        <div class="grid-y callout small" id="home-fanfiction">
                             <div class="grid-x align-justify">
                                 <div><strong><?= $lastFanfic[0][0]; ?></strong></div>
                                 <div><?= $lastFanfic[0][3]; ?></div>
@@ -97,10 +97,10 @@ unset($goldenBookModel);
                         </div>
                     </div>
 
-                    <div class="grid-y align-spaced solidBorder home-art-container">
+                    <div class="grid-y align-spaced callout home-art-container">
                         <div class="cell medium"><h2>Dernier fanart</h2></div>
 
-                        <div class="grid-y solidBorder" id="home-fanart">
+                        <div class="grid-y callout small" id="home-fanart">
                             <div class="cell auto">
                                 <div><strong><?= $lastFanart[0][0]; ?></strong></div>
                             </div>
@@ -119,30 +119,36 @@ unset($goldenBookModel);
 
             <!-------- Topics & Opinions container -------->
             <div class="grid-y align-spaced home-right-container">
-                <div class="grid-y align-spaced solidBorder home-topic-container">
+                <div class="grid-y align-spaced callout home-topic-container">
                     <div class="cell medium"><h2>Derniers topics</h2></div>
 
-                    <div class="grid-y solidBorder" id="home-topic1">
+                    <div class="grid-y callout small" id="home-topic1">
                         <div class="grid-x align-justify">
                             <div><strong><?= $last2Topics[0][0]; ?></strong></div>
                             <div><?= explode(" ",$last2Topics[0][1])[0]." - ".$last2Topics[0][2]; ?></div>
                         </div>
                         <div class="cell auto" style="overflow: scroll"><?= $last2Topics[0][3]; ?></div>
                     </div>
-                    <div class="cell medium solidBorder" id="home-topic2">Topic 2</div>
+                    <div class="grid-y callout small" id="home-topic2">
+                        <div class="grid-x align-justify">
+                            <div><strong><?= $last2Topics[1][0]; ?></strong></div>
+                            <div><?= explode(" ",$last2Topics[1][1])[0]." - ".$last2Topics[1][2]; ?></div>
+                        </div>
+                        <div class="cell auto" style="overflow: scroll"><?= $last2Topics[1][3]; ?></div>
+                    </div>
                 </div>
 
-                <div class="grid-y align-spaced solidBorder home-opinion-container">
+                <div class="grid-y align-spaced callout home-opinion-container">
                     <div class="cell medium"><h2>Derniers avis</h2></div>
 
-                    <div class="grid-y solidBorder" id="home-opinion1">
+                    <div class="grid-y callout small" id="home-opinion1">
                         <div class="grid-x align-justify">
                             <div><strong><?= $last2Opinions[0][0]." - ".$last2Opinions[0][2]; ?></strong></div>
                             <div><?= explode(" ",$last2Opinions[0][3])[0]." - ".$last2Opinions[0][4]; ?></div>
                         </div>
                         <div class="cell auto" style="overflow: scroll"><?= $last2Opinions[0][1]; ?></div>
                     </div>
-                    <div class="grid-y solidBorder" id="home-opinion2">
+                    <div class="grid-y callout small" id="home-opinion2">
                         <div class="grid-x align-justify">
                             <div><strong><?= $last2Opinions[1][0]." - ".$last2Opinions[1][2]; ?></strong></div>
                             <div><?= explode(" ",$last2Opinions[1][3])[0]." - ".$last2Opinions[1][4]; ?></div>

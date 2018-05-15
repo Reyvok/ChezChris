@@ -3,6 +3,11 @@
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "Fanarts";
 
+if(!isset($_SESSION['username'])){
+    header("Location: ./../Authentification/LoginView.php");
+    exit();
+}
+
 include(__DIR__."/../../Model/Fanarts/FanartModel.php");
 $fanartModel = new FanartModel();
 
@@ -12,29 +17,31 @@ $fanartModel = new FanartModel();
 
 <body>
 
-<div id="page">
-    <?php include(__DIR__."/../nav.php"); ?>
+    <div id="page">
+        <?php include(__DIR__."/../nav.php"); ?>
 
-    <div class="grid-y align-spaced solidBorder" id="fanart-add-container">
+        <main>
+            <div class="grid-y align-spaced callout" id="fanart-add-container">
 
-        <div><h2>Ajouter un fanart</h2></div>
+                <div><h2>Ajouter un fanart</h2></div>
 
-        <div class="grid-y">
-            <form enctype="multipart/form-data" method="post" action="">
-                <input id="fanart-add-title-container" type="text" name="title" placeholder="Titre"/>
-                <input type="hidden" name="MAX_FILE_SIZE" value="8388608"/>
-                <input id="fanart-add-file-container" name="file" type="file"/>
-                <div id="fanart-add-buttons-container">
-                    <button type="submit">Publier</button>
-                    <button type="button">Enregistrer comme brouillon</button>
-                    <button type="button">Annuler</button>
+                <div class="grid-y">
+                    <form enctype="multipart/form-data" method="post" action="">
+                        <input id="fanart-add-title-container" type="text" name="title" placeholder="Titre"/>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="8388608"/>
+                        <input id="fanart-add-file-container" name="file" type="file"/>
+                        <div id="fanart-add-buttons-container">
+                            <button type="submit">Publier</button>
+                            <button type="button">Enregistrer comme brouillon</button>
+                            <button type="button">Annuler</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div>
 
-    </div>
+            </div>
+        </main>
 
-    <?php
+        <?php
         if(isset($_POST['title']) && isset($_FILES['file']) && !empty($_FILES['file']['name'])){
             date_default_timezone_set('Europe/Paris');
             $target_dir = __DIR__."/../../../assets/fanarts/";
@@ -83,10 +90,10 @@ $fanartModel = new FanartModel();
                 }
             }
         }
-    ?>
+        ?>
 
-    <?php include(__DIR__."/../footer.php"); ?>
-</div>
+        <?php include(__DIR__."/../footer.php"); ?>
+    </div>
 
 </body>
 

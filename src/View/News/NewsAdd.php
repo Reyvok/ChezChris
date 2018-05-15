@@ -1,6 +1,7 @@
 <?php
 
 include(__DIR__."/../head.php");
+
 if(!isset($_SESSION['role']) || $_SESSION['role'] != 'admin'){
     header("Location: ./GoldenBookView.php");
     exit();

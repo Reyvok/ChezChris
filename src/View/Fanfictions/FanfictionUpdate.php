@@ -21,26 +21,28 @@ $fanfiction = $fanfictionModel->getFiction($_GET['id']);
 <div id="page">
     <?php include(__DIR__."/../nav.php"); ?>
 
-    <div class="grid-y align-spaced solidBorder" id="fanfiction-add-container">
+    <main>
+        <div class="grid-y align-spaced callout" id="fanfiction-add-container">
 
-        <div><h2>Ajouter une fanfiction</h2></div>
+            <div><h2>Ajouter une fanfiction</h2></div>
 
-        <div class="grid-y">
-            <form enctype="multipart/form-data" method="post" action="">
-                <input id="fanfiction-add-title-container" type="text" name="title" placeholder="Titre" value="<?php if(trim($fanfiction[0]) != "" && $fanfiction[0] != null) echo $fanfiction[0];?>"/>
-                <input id="fanfiction-add-text-container" type="text" name="text" placeholder="Texte" value="<?php if(trim($fanfiction[1]) != "" && $fanfiction[1] != null) echo $fanfiction[1];?>"/>
-                <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
-                <input id="fanart-add-file-container" name="file" type="file"/>
-                <?php if($fanfiction[2] != null) echo "<div>".$fanfiction[2]."</div>";?>
-                <div id="fanart-add-buttons-container">
-                    <button type="submit">Publier</button>
-                    <button type="button">Enregistrer comme brouillon</button>
-                    <button type="button">Annuler</button>
-                </div>
-            </form>
+            <div class="grid-y">
+                <form enctype="multipart/form-data" method="post" action="">
+                    <input id="fanfiction-add-title-container" type="text" name="title" placeholder="Titre" value="<?php if(trim($fanfiction[0]) != "" && $fanfiction[0] != null) echo $fanfiction[0];?>"/>
+                    <input id="fanfiction-add-text-container" type="text" name="text" placeholder="Texte" value="<?php if(trim($fanfiction[1]) != "" && $fanfiction[1] != null) echo $fanfiction[1];?>"/>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760"/>
+                    <input id="fanart-add-file-container" name="file" type="file"/>
+                    <?php if($fanfiction[2] != null) echo "<div>".$fanfiction[2]."</div>";?>
+                    <div id="fanart-add-buttons-container">
+                        <button type="submit">Publier</button>
+                        <button type="button">Enregistrer comme brouillon</button>
+                        <button type="button">Annuler</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
-
-    </div>
+    </main>
 
     <?php
     if(isset($_POST['title']) && isset($_FILES['file']) && !empty($_FILES['file']['name'])){

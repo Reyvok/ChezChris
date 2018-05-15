@@ -24,10 +24,10 @@ unset($fanficModel);
             <div><input title="search" placeholder="Rechercher"></div>
         </div>
 
-        <div class="grid-y align-spaced solidBorder fanfictions-container">
+        <div class="grid-y align-spaced callout fanfictions-container">
 
             <?php foreach($fictions as $fiction): ?>
-                <div class="grid-y solidBorder fanfictions-fiction-container">
+                <div class="grid-y callout small fanfictions-fiction-container">
                     <div class="grid-x align-justify">
                         <div class="grid-x">
                             <div class="fanfictions-title-container"><h2><?= $fiction[0];?></h2></div>
