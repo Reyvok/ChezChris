@@ -40,15 +40,15 @@ unset($accountModel);
 
                 <div class="grid-y align-spaced" id="myaccount-right-container">
                     <div>
-                        <div id="myaccount-right-img-container"><img src="/assets/profil_images/<?= $account[0][1];?>" alt="img"><a href="">Modifier</a></div>
+                        <div id="myaccount-right-img-container"><img src="/assets/profil_images/<?= $account[0][1];?>" alt="img"></div>
                     </div>
                     <div>
-                        <a href="">Modifier mon mot de passe</a><br/>
-                        <a href="">Supprimer mon compte</a>
+                        <a href="/src/View/MyAccount/MyAccountDelete.php">Supprimer mon compte</a>
                     </div>
                 </div>
             </div>
         </main>
+
         <?php include(__DIR__."/../footer.php"); ?>
     </div>
 

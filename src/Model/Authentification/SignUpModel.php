@@ -3,6 +3,7 @@ session_start();
 include(__DIR__."/../../Model/Account/AccountModel.php");
 $accountModel = new AccountModel();
 $usernames = $accountModel->getUsernames();
+$emails = $accountModel->getEmails();
 
 if(!isset($_POST['registration']) || $_POST['registration'] != "Inscription"){
     header("Location: ./../../View/Authentification/LoginView.php");
@@ -14,6 +15,7 @@ foreach($usernames as $username) if($_POST['username'] == $username[0] && !isset
 if(!isset($_POST['firstname']) || empty($_POST['firstname']) || !preg_match("/^[A-z ]{0,20}/",$_POST['firstname'])) $_SESSION['errorFName'] = "Prénom incorrect";
 if(!isset($_POST['lastname']) || empty($_POST['lastname']) || !preg_match("/^[A-z ]{0,20}/",$_POST['lastname'])) $_SESSION['errorLName'] = "Nom incorrect";
 if(!isset($_POST['mail']) || empty($_POST['mail']) || !preg_match("/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/",$_POST['mail'])) $_SESSION['errorMail'] = "Email incorrect";
+foreach($emails as $email) if($_POST['mail'] == $email[0] && !isset($_SESSION['errorMail'])) $_SESSION['errorMail'] = "Email déjà utilisé";
 if(!isset($_POST['password']) || !isset($_POST['confirmPassword']) || empty($_POST['password']) || empty($_POST['confirmPassword']) || !preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST['password']) || !preg_match("/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/",$_POST['confirmPassword'])) $_SESSION['errorPsswd'] = "Mot de passe incorrect";
 if($_POST['password']!=$_POST['confirmPassword'] && !isset($_SESSION['errorPsswd'])) $_SESSION['errorPsswd'] = "Mots de passe différents";
 

@@ -107,6 +107,18 @@ class AccountModel{
 
 
     /**
+     * Gett all emails in the base
+     * @return array|null
+     */
+    public function getEmails(){
+        $sql = "SELECT mail FROM account;";
+        $res = mysqli_query($this->link, $sql);
+        $mails = mysqli_fetch_all($res);
+        return $mails;
+    }
+
+
+    /**
      * Verify if there is an account with the given username and password
      * @param $username string
      * @param $password string
