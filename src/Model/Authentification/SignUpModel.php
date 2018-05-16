@@ -24,7 +24,13 @@ if(isset($_SESSION['errorUsername']) || isset($_SESSION['errorFName']) || isset(
 }
 
 $link = mysqli_connect(hostname, username, password, database);
-$sql = "INSERT INTO account VALUES(null, '".$_POST['username']."', null, '".$_POST['firstname']."', '".$_POST['lastname']."', '".$_POST['password']."', '".$_POST['mail']."', 5, 1, 2);";
+mysqli_set_charset($link, "utf8");
+$sql = "INSERT INTO account 
+        VALUES(null, '".mysqli_real_escape_string($link,$_POST['username'])."', null, 
+                      '".mysqli_real_escape_string($link,$_POST['firstname'])."', 
+                      '".mysqli_real_escape_string($link,$_POST['lastname'])."', 
+                      '".mysqli_real_escape_string($link,$_POST['password'])."', 
+                      '".mysqli_real_escape_string($link,$_POST['mail'])."', 5, 1, 2);";
 mysqli_query($link, $sql);
 
 header("Location: ./../../index.php");

@@ -8,6 +8,7 @@ class GoldenBookModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname, username, password, database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -20,7 +21,7 @@ class GoldenBookModel{
         $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username FROM opinion o
                 INNER JOIN account a ON o.author=a.id
                 INNER JOIN book b ON o.book=b.id
-                WHERE b.id=".$book."
+                WHERE b.id=".intval($book)."
                 ORDER BY o.pubDate LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $opinions = mysqli_fetch_all($res);
@@ -37,7 +38,7 @@ class GoldenBookModel{
         $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username, o.id FROM opinion o
                 INNER JOIN account a ON o.author=a.id
                 INNER JOIN book b ON o.book=b.id
-                WHERE b.id=".$book."
+                WHERE b.id=".intval($book)."
                 ORDER BY o.pubDate;";
         $res = mysqli_query($this->link, $sql);
         $opinions = mysqli_fetch_all($res);
@@ -62,7 +63,11 @@ class GoldenBookModel{
      * @param $data array
      */
     public function addOpinion($data){
-        $sql = "INSERT INTO opinion VALUES (null, '".$data['title']."', '".$data['text']."', ".$data['note'].", current_timestamp(), ".$_SESSION['idUser'].", ".$data['book'].");";
+        $sql = "INSERT INTO opinion VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                                  '".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                                  ".intval($data['note']).", current_timestamp(), 
+                                                  ".intval($_SESSION['idUser']).", 
+                                                  ".intval($data['book']).");";
         mysqli_query($this->link, $sql);
     }
 
@@ -72,7 +77,7 @@ class GoldenBookModel{
      * @param $id int
      */
     public function deleteOpinion($id){
-        $sql = "DELETE FROM opinion WHERE id=".$id.";";
+        $sql = "DELETE FROM opinion WHERE id=".intval($id).";";
         mysqli_query($this->link, $sql);
     }
 
@@ -82,7 +87,7 @@ class GoldenBookModel{
      * @param $title string
      */
     public function addBook($title){
-        $sql = "INSERT INTO book VALUES (null, '".$title."', null);";
+        $sql = "INSERT INTO book VALUES (null, '".mysqli_real_escape_string($this->link,$title)."', null);";
         mysqli_query($this->link, $sql);
     }
 }

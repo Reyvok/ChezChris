@@ -8,6 +8,7 @@ class ForumModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname, username, password, database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -26,7 +27,7 @@ class ForumModel{
 
         for($i=0; $i<2; $i++){
             $sql = "SELECT m.txt FROM message m
-                    WHERE m.topic=".$topics[$i][0]."
+                    WHERE m.topic=".intval($topics[$i][0])."
                     ORDER BY m.pubDate DESC
                     LIMIT 1;";
             $res = mysqli_query($this->link, $sql);

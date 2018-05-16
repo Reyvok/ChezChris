@@ -8,6 +8,7 @@ class FanfictionModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname,username,password,database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -31,7 +32,7 @@ class FanfictionModel{
      */
     public function getLast2Fictions($id){
         $sql = "SELECT f.title, f.txt FROM fanfiction f 
-                WHERE f.author=".$id." and f.status=1 ORDER BY pubDate DESC LIMIT 2;";
+                WHERE f.author=".intval($id)." and f.status=1 ORDER BY pubDate DESC LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $fanfiction = mysqli_fetch_all($res);
         return $fanfiction;
@@ -59,7 +60,7 @@ class FanfictionModel{
      */
     public function getFictionsOfUser($id){
         $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id FROM fanfiction f
-                WHERE f.author=".$id." ORDER BY f.pubDate DESC;";
+                WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fictions = mysqli_fetch_all($res);
         return $fictions;
@@ -73,7 +74,7 @@ class FanfictionModel{
      */
     public function getFiction($id){
         $sql = "SELECT f.title, f.txt, f.pathFile FROM fanfiction f
-                WHERE f.id=".$id.";";
+                WHERE f.id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
         $fiction = mysqli_fetch_all($res)[0];
         return $fiction;
@@ -85,7 +86,10 @@ class FanfictionModel{
      * @param $data array
      */
     public function addFanfiction($data){
-        $sql = "INSERT INTO fanfiction VALUES (null, '".$data['title']."', '".$data['text']."', '".$data['pathfile']."', 1, null, current_timestamp(), ".$_SESSION['idUser'].");";
+        $sql = "INSERT INTO fanfiction VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                                      '".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                                      '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 1, null, current_timestamp(), 
+                                                      ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }
 
@@ -95,7 +99,7 @@ class FanfictionModel{
      * @param $id int
      */
     public function deleteFanfiction($id){
-        $sql = "DELETE FROM fanfiction WHERE id=".$id.";";
+        $sql = "DELETE FROM fanfiction WHERE id=".intval($id).";";
         mysqli_query($this->link, $sql);
     }
 
@@ -106,9 +110,14 @@ class FanfictionModel{
      */
     public function editFanfiction($data){
         if(isset($data['pathfile'])){
-            $sql = "UPDATE fanfiction SET title='".$data['title']."', txt='".$data['text']."', pathFile='".$data['pathfile']."', pubDate=current_timestamp() WHERE id=".$data['id'].";";
+            $sql = "UPDATE fanfiction SET title='".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                          txt='".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                          pathFile='".mysqli_real_escape_string($this->link,$data['pathfile'])."', pubDate=current_timestamp() 
+                                          WHERE id=".intval($data['id']).";";
         }else{
-            $sql = "UPDATE fanfiction SET title='".$data['title']."', txt='".$data['text']."', pubDate=current_timestamp() WHERE id=".$data['id'].";";
+            $sql = "UPDATE fanfiction SET title='".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                          txt='".mysqli_real_escape_string($this->link,$data['text'])."', pubDate=current_timestamp() 
+                                          WHERE id=".intval($data['id']).";";
         }
         mysqli_query($this->link, $sql);
     }
@@ -120,7 +129,7 @@ class FanfictionModel{
      * @return int
      */
     public function getAuthor($idFiction){
-        $sql = "SELECT author FROM fanfiction WHERE id=".$idFiction.";";
+        $sql = "SELECT author FROM fanfiction WHERE id=".intval($idFiction).";";
         $res = mysqli_query($this->link, $sql);
         $author = mysqli_fetch_all($res)[0][0];
         return $author;
@@ -133,7 +142,7 @@ class FanfictionModel{
      * @return string|null
      */
     public function getPathFile($id){
-        $sql = "SELECT pathFile FROM fanfiction WHERE id=".$id.";";
+        $sql = "SELECT pathFile FROM fanfiction WHERE id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
         $path = mysqli_fetch_all($res)[0][0];
         return $path;

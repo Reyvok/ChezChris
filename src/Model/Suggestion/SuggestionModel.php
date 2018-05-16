@@ -8,6 +8,7 @@ class SuggestionModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname,username,password,database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -31,7 +32,7 @@ class SuggestionModel{
      */
     public function addSuggestion($data){
         $sql = "INSERT INTO suggestion VALUES
-                  (null, '".$data['title']."', '".$data['suggestion']."', current_timestamp(), ".$_SESSION['idUser'].");";
+                  (null, '".mysqli_real_escape_string($this->link,$data['title'])."', '".mysqli_real_escape_string($this->link,$data['suggestion'])."', current_timestamp(), ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }
 
@@ -41,7 +42,7 @@ class SuggestionModel{
      * @param $id int
      */
     public function deleteSuggestion($id){
-        $sql = "DELETE FROM suggestion WHERE id=".$id.";";
+        $sql = "DELETE FROM suggestion WHERE id=".intval($id).";";
         mysqli_query($this->link, $sql);
     }
 }

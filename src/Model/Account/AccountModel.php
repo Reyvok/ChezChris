@@ -6,6 +6,7 @@ class AccountModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname,username,password,database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -17,7 +18,7 @@ class AccountModel{
     public function getInformationsById($idUser){
         $sql = "SELECT a.username, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
                 INNER JOIN grade g ON a.grade=g.id
-                WHERE a.id=".$idUser.";";
+                WHERE a.id=".intval($idUser).";";
         $res = mysqli_query($this->link, $sql);
         $userData = mysqli_fetch_all($res);
         return $userData[0];
@@ -32,7 +33,7 @@ class AccountModel{
     public function getInformationsByUsername($username){
         $sql = "SELECT a.id, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
                 INNER JOIN grade g ON a.grade=g.id
-                WHERE username='".$username."';";
+                WHERE username='".mysqli_real_escape_string($this->link,$username)."';";
         $res = mysqli_query($this->link, $sql);
         $userData = mysqli_fetch_all($res);
         return $userData;
@@ -45,7 +46,7 @@ class AccountModel{
      * @return array|null
      */
     public function getImage($username){
-        $sql = "SELECT imagePath FROM account WHERE username='".$username."';";
+        $sql = "SELECT imagePath FROM account WHERE username='".mysqli_real_escape_string($this->link,$username)."';";
         $res = mysqli_query($this->link, $sql);
         $img = mysqli_fetch_all($res);
         return $img;
@@ -60,7 +61,7 @@ class AccountModel{
     public function getRole($username){
         $sql = "SELECT r.label FROM role r
                 INNER JOIN account a ON a.role=r.id
-                WHERE a.username = '".$username."';";
+                WHERE a.username = '".mysqli_real_escape_string($this->link,$username)."';";
         $res = mysqli_query($this->link, $sql);
         $role = mysqli_fetch_all($res);
         return $role;
@@ -73,7 +74,7 @@ class AccountModel{
      * @return array|null
      */
     public function getId($username){
-        $sql = "SELECT id FROM account WHERE username='".$username."';";
+        $sql = "SELECT id FROM account WHERE username='".mysqli_real_escape_string($this->link,$username)."';";
         $res = mysqli_query($this->link, $sql);
         $id = mysqli_fetch_all($res);
         return $id;
@@ -86,7 +87,7 @@ class AccountModel{
      * @return mixed
      */
     public function getUsername($id){
-        $sql = "SELECT username FROM account WHERE id=".$id.";";
+        $sql = "SELECT username FROM account WHERE id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
         $username = mysqli_fetch_all($res);
         return $username[0][0];
@@ -124,8 +125,21 @@ class AccountModel{
      * @param $data array of data
      */
     public function updateAccount($data){
-        if($data['imagePath'] != null) $sql = "UPDATE account SET username='".$data['username']."',firstname='".$data['firstname']."', lastname='".$data['lastname']."', imagePath='".$data['imagePath']."', password='".$data['password']."', mail='".$data['mail']."' WHERE id=".$data['id'];
-        else $sql = "UPDATE account SET username='".$data['username']."',firstname='".$data['firstname']."', lastname='".$data['lastname']."', password='".$data['password']."', mail='".$data['mail']."' WHERE id=".$data['id'];
+        if($data['imagePath'] != null)
+            $sql = "UPDATE account SET username='".mysqli_real_escape_string($this->link,$data['username'])."',
+                                        firstname='".mysqli_real_escape_string($this->link,$data['firstname'])."', 
+                                        lastname='".mysqli_real_escape_string($this->link,$data['lastname'])."', 
+                                        imagePath='".mysqli_real_escape_string($this->link,$data['imagePath'])."', 
+                                        password='".mysqli_real_escape_string($this->link,$data['password'])."', 
+                                        mail='".mysqli_real_escape_string($this->link,$data['mail'])."' 
+                                        WHERE id=".intval($data['id']);
+        else
+            $sql = "UPDATE account SET username='".mysqli_real_escape_string($this->link,$data['username'])."',
+                                        firstname='".mysqli_real_escape_string($this->link,$data['firstname'])."', 
+                                        lastname='".mysqli_real_escape_string($this->link,$data['lastname'])."', 
+                                        password='".mysqli_real_escape_string($this->link,$data['password'])."', 
+                                        mail='".mysqli_real_escape_string($this->link,$data['mail'])."' 
+                                        WHERE id=".intval($data['id']);
         mysqli_query($this->link, $sql);
     }
 

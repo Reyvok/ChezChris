@@ -8,6 +8,7 @@ class NewsModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname,username,password,database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -47,7 +48,7 @@ class NewsModel{
     public function getNewsById($id){
         $sql = "SELECT n.title, n.txt, n.pubDate, a.username FROM news n
                 INNER JOIN account a ON n.author=a.id
-                WHERE n.id=".$id.";";
+                WHERE n.id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
         $news = mysqli_fetch_all($res);
         return $news;
@@ -60,7 +61,7 @@ class NewsModel{
      */
     public function addNews($data){
         $sql = "INSERT INTO news VALUES
-                  (null, '".$data['title']."', '".$data['text']."', current_timestamp(), ".$_SESSION['idUser'].", 1);";
+                  (null, '".mysqli_real_escape_string($this->link,$data['title'])."', '".mysqli_real_escape_string($this->link,$data['text'])."', current_timestamp(), ".intval($_SESSION['idUser']).", 1);";
         mysqli_query($this->link, $sql);
     }
 
@@ -70,7 +71,7 @@ class NewsModel{
      * @param $id int
      */
     public function deleteNews($id){
-        $sql = "DELETE FROM news WHERE id=".$id.";";
+        $sql = "DELETE FROM news WHERE id=".intval($id).";";
         mysqli_query($this->link, $sql);
     }
 
@@ -81,7 +82,7 @@ class NewsModel{
      * @param $data array
      */
     public function editNews($id, $data){
-        $sql = "UPDATE news SET title='".$data['title']."', txt='".$data['text']."' WHERE id=".$id.";";
+        $sql = "UPDATE news SET title='".mysqli_real_escape_string($this->link,$data['title'])."', txt='".mysqli_real_escape_string($this->link,$data['text'])."' WHERE id=".intval($id).";";
         mysqli_query($this->link, $sql);
     }
 }

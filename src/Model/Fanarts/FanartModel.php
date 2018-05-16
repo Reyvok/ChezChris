@@ -8,6 +8,7 @@ class FanartModel{
 
     public function __construct(){
         $this->link = mysqli_connect(hostname,username,password,database);
+        mysqli_set_charset($this->link, "utf8");
     }
 
 
@@ -31,7 +32,7 @@ class FanartModel{
      */
     public function getLast2Fanarts($id){
         $sql = "SELECT f.title, f.pathFile FROM fanart f
-                WHERE f.author=".$id." and f.status=1 ORDER BY f.pubDate DESC LIMIT 2;";
+                WHERE f.author=".intval($id)." and f.status=1 ORDER BY f.pubDate DESC LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $fanart = mysqli_fetch_all($res);
         return $fanart;
@@ -59,7 +60,7 @@ class FanartModel{
      */
     public function getFanartsOfUser($id){
         $sql = "SELECT f.title, f.pathFile, f.pubDate, f.id FROM fanart f
-                WHERE f.author=".$id." ORDER BY f.pubDate DESC;";
+                WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fanarts = mysqli_fetch_all($res);
         return $fanarts;
@@ -71,7 +72,8 @@ class FanartModel{
      * @param $data array
      */
     public function addFanart($data){
-        $sql = "INSERT INTO fanart VALUES (null, '".$data['title']."', '".$data['pathfile']."', 1, null, current_timestamp(), ".$_SESSION['idUser'].");";
+        $sql = "INSERT INTO fanart VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                                  '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 1, null, current_timestamp(), ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }
 
@@ -81,7 +83,7 @@ class FanartModel{
      * @param $id int
      */
     public function deleteFanart($id){
-        $sql = "DELETE FROM fanart WHERE id=".$id.";";
+        $sql = "DELETE FROM fanart WHERE id=".intval($id).";";
         mysqli_query($this->link, $sql);
     }
 
@@ -92,7 +94,7 @@ class FanartModel{
      * @return int
      */
     public function getAuthor($idArt){
-        $sql = "SELECT author FROM fanart WHERE id=".$idArt.";";
+        $sql = "SELECT author FROM fanart WHERE id=".intval($idArt).";";
         $res = mysqli_query($this->link, $sql);
         $author = mysqli_fetch_all($res)[0][0];
         return $author;
@@ -105,7 +107,7 @@ class FanartModel{
      * @return string|null
      */
     public function getPathFile($id){
-        $sql = "SELECT pathFile FROM fanart WHERE id=".$id.";";
+        $sql = "SELECT pathFile FROM fanart WHERE id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
         $path = mysqli_fetch_all($res)[0][0];
         return $path;
