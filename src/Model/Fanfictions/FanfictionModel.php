@@ -17,7 +17,7 @@ class FanfictionModel{
      * @return array|null
      */
     public function getLastFiction(){
-        $sql = "SELECT f.title, f.txt, f.pathFile, a.username FROM fanfiction f 
+        $sql = "SELECT f.title, f.txt, f.pathFile, a.username, f.author FROM fanfiction f 
                 INNER JOIN account a ON f.author=a.id
                 WHERE status=1 ORDER BY pubDate DESC LIMIT 1;";
         $res = mysqli_query($this->link, $sql);

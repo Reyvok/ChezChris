@@ -17,7 +17,7 @@ class ForumModel{
      * @return array|null
      */
     public function getLast2Topics(){
-        $sql = "SELECT t.id, t.title, t.pubDate, a.username FROM topic t
+        $sql = "SELECT t.id, t.title, t.pubDate, a.username, t.author FROM topic t
                 INNER JOIN account a ON t.author=a.id
                 ORDER BY t.pubDate DESC
                 LIMIT 2;";
@@ -32,7 +32,7 @@ class ForumModel{
                     LIMIT 1;";
             $res = mysqli_query($this->link, $sql);
             $messages = mysqli_fetch_all($res);
-            $return[$i] = [$topics[$i][1], $topics[$i][2], $topics[$i][3], $messages[0][0]];
+            $return[$i] = [$topics[$i][1], $topics[$i][2], $topics[$i][3], $topics[$i][4], $messages[0][0]];
         }
         return $return;
     }

@@ -25,7 +25,10 @@ unset($newsModel);
                     <div class='grid-y align-spaced callout small news-news-container'>
                         <div class='grid-x align-justify'>
                             <div class='news-title-container'><h2><?= $new[1];?></h2></div>
-                            <div class='news-author-container'><?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'):?><a href="/src/View/News/NewsEdit.php?id=<?=$new[0];?>">Modifier</a><a href="/src/View/News/NewsDelete.php?id=<?=$new[0];?>">Supprimer</a><?php endif;?><?= $new[4]." - ".$new[3];?></div>
+                            <div class='news-author-container'><?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'):?>
+                                    <a href="/src/View/News/NewsEdit.php?id=<?=$new[0];?>">Modifier</a>
+                                    <a href="/src/View/News/NewsDelete.php?id=<?=$new[0];?>">Supprimer</a>
+                                    <?php endif;?><?= $new[3]." - <a href='/src/View/Account/AccountView.php?id=".$new[5]."'>".$new[4]."</a>";?></div>
                         </div>
                         <div class='cell auto news-message-container'><p><?= $new[2];?></p></div>
                     </div>

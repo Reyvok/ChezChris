@@ -17,7 +17,7 @@ class FanartModel{
      * @return array|null
      */
     public function getLastFanart(){
-        $sql = "SELECT f.title, f.pathFile, a.username FROM fanart f
+        $sql = "SELECT f.title, f.pathFile, a.username, f.author FROM fanart f
                 INNER JOIN account a ON f.author=a.id
                 WHERE f.status=1 ORDER BY f.pubDate DESC LIMIT 1;";
         $res = mysqli_query($this->link, $sql);

@@ -38,7 +38,7 @@ unset($fanficModel);
                             <?php if(isset($_SESSION['idUser']) && $_SESSION['idUser'] === $fiction[5]):?><div><a href="/src/View/Fanfictions/FanfictionUpdate.php?id=<?= $fiction[6];?>">Modifier</a></div><?php endif;?>
 
                         </div>
-                        <div class="fanfictions-author-container"><?= $fiction[4]." - ".$fiction[3];?></div>
+                        <div class="fanfictions-author-container"><?= $fiction[3]." - <a href='/src/View/Account/AccountView.php?id=".$fiction[5]."'>".$fiction[4]."</a>";?></div>
                     </div>
                     <?php if($fiction[1] != null || trim($fiction[1]) != ""): ?>
                         <div class="fanfictions-resume-container"><p><?= $fiction[1];?></p></div>

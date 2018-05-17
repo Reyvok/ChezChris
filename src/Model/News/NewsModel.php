@@ -17,7 +17,7 @@ class NewsModel{
      * @return array|null
      */
     public function getLast3News(){
-        $sql = "SELECT n.title, n.txt, n.pubDate, a.username FROM news n 
+        $sql = "SELECT n.title, n.txt, n.pubDate, a.username, n.author FROM news n 
                 INNER JOIN account a ON n.author=a.id
                 WHERE status=1 ORDER BY pubDate DESC LIMIT 3;";
         $res = mysqli_query($this->link, $sql);
@@ -31,7 +31,7 @@ class NewsModel{
      * @return array|null
      */
     public function getNews(){
-        $sql = "SELECT n.id, n.title, n.txt, n.pubDate, a.username FROM news n
+        $sql = "SELECT n.id, n.title, n.txt, n.pubDate, a.username, n.author FROM news n
                 INNER JOIN account a ON n.author=a.id
                 WHERE n.status=1 ORDER BY n.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);

@@ -17,7 +17,7 @@ class SuggestionModel{
      * @return array|null
      */
     public function getSuggestions(){
-        $sql = "SELECT s.id, s.title, s.txt, s.pubDate, a.username FROM suggestion s
+        $sql = "SELECT s.id, s.title, s.txt, s.pubDate, a.username, s.author FROM suggestion s
                 INNER JOIN account a ON s.author=a.id
                 ORDER BY s.pubDate;";
         $res = mysqli_query($this->link, $sql);

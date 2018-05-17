@@ -48,7 +48,7 @@ else
                             <?php if(isset($_SESSION['username']) && $opinion[4] == $_SESSION['username']):?>
                             <div><a href="/src/View/GoldenBook/OpinionDelete.php?id=<?=$opinion[5];?>">Supprimer</a></div>
                             <?php endif;?>
-                            <div><?= $opinion[4];?></div>
+                            <div><a href="/src/View/Account/AccountView.php?id=<?= $opinion[6];?>"><?= $opinion[4];?></a></div>
                             <div><?= $opinion[3];?></div>
                         </div>
                     </div>

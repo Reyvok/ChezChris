@@ -18,7 +18,7 @@ class GoldenBookModel{
      * @return array|null
      */
     public function getLast2Opinions($book){
-        $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username FROM opinion o
+        $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username, o.author FROM opinion o
                 INNER JOIN account a ON o.author=a.id
                 INNER JOIN book b ON o.book=b.id
                 WHERE b.id=".intval($book)."
@@ -35,7 +35,7 @@ class GoldenBookModel{
      * @return array|null
      */
     public function getOpinions($book){
-        $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username, o.id FROM opinion o
+        $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username, o.id, o.author FROM opinion o
                 INNER JOIN account a ON o.author=a.id
                 INNER JOIN book b ON o.book=b.id
                 WHERE b.id=".intval($book)."
