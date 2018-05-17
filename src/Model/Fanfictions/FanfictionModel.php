@@ -32,7 +32,7 @@ class FanfictionModel{
      */
     public function getLast2Fictions($id){
         $sql = "SELECT f.title, f.txt FROM fanfiction f 
-                WHERE f.author=".intval($id)." and f.status=1 ORDER BY pubDate DESC LIMIT 2;";
+                WHERE f.author=".intval($id)." and f.status=1 ORDER BY f.pubDate DESC LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $fanfiction = mysqli_fetch_all($res);
         return $fanfiction;
@@ -46,7 +46,21 @@ class FanfictionModel{
     public function getFictions(){
         $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, a.username, f.author, f.id FROM fanfiction f
                 INNER JOIN account a ON f.author=a.id
-                WHERE status=1 ORDER BY f.pubDate DESC;";
+                WHERE f.status=1 ORDER BY f.pubDate DESC;";
+        $res = mysqli_query($this->link, $sql);
+        $fictions = mysqli_fetch_all($res);
+        return $fictions;
+    }
+
+
+    /**
+     * Get the fictions of a user with the non published ones
+     * @param $id int
+     * @return array|null
+     */
+    public function getMyFictions($id){
+        $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id FROM fanfiction f
+                WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fictions = mysqli_fetch_all($res);
         return $fictions;
@@ -60,7 +74,7 @@ class FanfictionModel{
      */
     public function getFictionsOfUser($id){
         $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id FROM fanfiction f
-                WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC;";
+                WHERE f.author=".intval($id)." and f.status=1 ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fictions = mysqli_fetch_all($res);
         return $fictions;

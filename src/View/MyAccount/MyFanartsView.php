@@ -4,7 +4,7 @@ $_SESSION['page'] = "Mes fanarts";
 
 include(__DIR__."/../../Model/Fanarts/FanartModel.php");
 $fanartModel = new FanartModel();
-$fanarts = $fanartModel->getFanartsOfUser($_SESSION['idUser']);
+$fanarts = $fanartModel->getMyFanarts($_SESSION['idUser']);
 unset($fanartModel);
 
 ?>

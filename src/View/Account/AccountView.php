@@ -28,7 +28,7 @@ $_SESSION['page'] = $user[0];
     <div id="page">
         <?php include(__DIR__."/../nav.php"); ?>
 
-        <div class="grid-x align-spaced solidBorder account-container">
+        <div class="grid-x align-spaced callout account-container">
             <div class="grid-y align-spaced">
                 <div class="grid-x">
                     <div><img src="/assets/profil_images/<?=$user[1];?>" alt="img" style="height:100px; width:auto;"></div>
@@ -44,7 +44,7 @@ $_SESSION['page'] = $user[0];
                 </div>
             </div>
 
-            <div class="grid-y align-spaced solidBorder" id="account-fanarts-container">
+            <div class="grid-y align-spaced callout" id="account-fanarts-container">
                 <div><h2>Ses derniers fanarts</h2></div>
 
                 <?php foreach($fanarts as $fanart):?>
@@ -56,11 +56,11 @@ $_SESSION['page'] = $user[0];
 
             </div>
 
-            <div class="grid-y align-spaced solidBorder" id="account-fanfictions-container">
+            <div class="grid-y align-spaced callout" id="account-fanfictions-container">
                 <div><h2>Ses dernières fictions</h2></div>
 
                 <?php foreach($fictions as $fiction): ?>
-                    <div class="grid-y solidBorder account-fiction-container">
+                    <div class="grid-y callout small account-fiction-container">
                         <div><h3><?= $fiction[0]; ?></h3></div>
                         <div class="account-fiction-resume-container"><p><?= $fiction[1]; ?></p></div>
                     </div>

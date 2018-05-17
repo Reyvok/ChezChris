@@ -4,7 +4,7 @@ $_SESSION['page'] = "Mes fanfictions";
 
 include(__DIR__."/../../Model/Fanfictions/FanfictionModel.php");
 $fanficModel = new FanfictionModel();
-$fictions = $fanficModel->getFictionsOfUser($_SESSION['idUser']);
+$fictions = $fanficModel->getMyFictions($_SESSION['idUser']);
 unset($fanficModel);
 
 ?>
