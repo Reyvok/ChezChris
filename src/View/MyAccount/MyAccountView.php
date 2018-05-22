@@ -34,7 +34,7 @@ unset($accountModel);
                     <div class="grid-y">
                         <a href="/src/View/MyAccount/MyFanfictionsView.php">Mes fanfics</a>
                         <a href="/src/View/MyAccount/MyFanartsView.php">Mes fanarts</a>
-                        <a href="">Mes avis</a>
+                        <a href="/src/View/MyAccount/MyOpinionsView.php">Mes avis</a>
                     </div>
                 </div>
 

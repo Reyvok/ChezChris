@@ -39,7 +39,25 @@ class GoldenBookModel{
                 INNER JOIN account a ON o.author=a.id
                 INNER JOIN book b ON o.book=b.id
                 WHERE b.id=".intval($book)."
-                ORDER BY o.pubDate;";
+                ORDER BY o.pubDate DESC;";
+        $res = mysqli_query($this->link, $sql);
+        $opinions = mysqli_fetch_all($res);
+        return $opinions;
+    }
+
+
+    /**
+     * Get all of the opinions of a user about a book
+     * @param $book int
+     * @param $username string
+     * @return array|null
+     */
+    public function getMyOpinions($book, $username){
+        $sql = "SELECT o.title, o.txt, o.note, o.pubDate, o.id FROM opinion o
+                INNER JOIN account a ON o.author=a.id
+                INNER JOIN book b ON o.book=b.id
+                WHERE b.id=".intval($book)." and a.username='".mysqli_real_escape_string($this->link,$username)."'
+                ORDER BY o.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $opinions = mysqli_fetch_all($res);
         return $opinions;

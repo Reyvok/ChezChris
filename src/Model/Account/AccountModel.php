@@ -11,6 +11,21 @@ class AccountModel{
 
 
     /**
+     * Get the informations of all accounts
+     * @return array|null
+     */
+    public function getAllAccounts(){
+        $sql = "SELECT a.id, a.username, a.imagePath, a.firstname, a.lastname, a.mail, a.score, g.label
+                FROM account a
+                INNER JOIN grade g ON a.grade=g.id
+                ORDER BY a.username ASC;";
+        $res = mysqli_query($this->link, $sql);
+        $accounts = mysqli_fetch_all($res);
+        return $accounts;
+    }
+
+
+    /**
      * Get the informations of a user by id
      * @param $idUser int
      * @return array|null

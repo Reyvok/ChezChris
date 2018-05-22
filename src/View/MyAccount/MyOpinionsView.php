@@ -6,9 +6,9 @@ include(__DIR__."/../../Model/GoldenBook/GoldenBookModel.php");
 $goldenbookModel = new GoldenBookModel();
 $books = $goldenbookModel->getBooks();
 if(isset($_GET['book']))
-    $opinions = $goldenbookModel->getOpinions($_GET['book']);
+    $opinions = $goldenbookModel->getMyOpinions($_GET['book'], $_SESSION['username']);
 else
-    $opinions = $goldenbookModel->getOpinions(1);
+    $opinions = $goldenbookModel->getMyOpinions(1, $_SESSION['username']);
 
 ?>
 
@@ -23,7 +23,7 @@ else
             <div style="margin-left: 20px;">
                 <select id="books" name="books" title="books" onchange="window.location = $(this).val();">
                     <?php foreach($books as $book): ?>
-                        <option value="/src/View/GoldenBook/GoldenBookView.php?book=<?=$book[0];?>" <?php if(isset($_GET['book']) && $_GET['book']==$book[0]):?>selected<?php endif;?>><?= $book[1];?></option>
+                        <option value="/src/View/MyAccount/MyOpinionsView.php?book=<?=$book[0];?>" <?php if(isset($_GET['book']) && $_GET['book']==$book[0]):?>selected<?php endif;?>><?= $book[1];?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -45,10 +45,7 @@ else
                             <div><?= $opinion[2];?></div>
                         </div>
                         <div class="grid-y goldenbook-author-container">
-                            <?php if(isset($_SESSION['username']) && $opinion[4] == $_SESSION['username']):?>
-                                <div><a href="/src/View/GoldenBook/OpinionDelete.php?id=<?=$opinion[5];?>">Supprimer</a></div>
-                            <?php endif;?>
-                            <div><a href="/src/View/Account/AccountView.php?id=<?= $opinion[6];?>"><?= $opinion[4];?></a></div>
+                            <div><a href="/src/View/GoldenBook/OpinionDelete.php?id=<?=$opinion[4];?>">Supprimer</a></div>
                             <div><?= $opinion[3];?></div>
                         </div>
                     </div>
