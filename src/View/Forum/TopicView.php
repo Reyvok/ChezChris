@@ -26,8 +26,16 @@ unset($forumModel);
         <main>
             <div class="grid-y callout">
                 <?php foreach($messages as $message): ?>
-                    <div class="callout small">
-                        <div><?=$message[1];?></div>
+                    <div class="grid-x align-justify callout small">
+                        <div class="grid-y" style="max-width: 80%;">
+                            <div><?=$message[1];?></div>
+                            <div><?=$message[2];?></div>
+                        </div>
+                        <div class="grid-y">
+                            <div><?=$message[5];?></div>
+                            <div><?=explode(" ", $message[3])[0];?></div>
+                            <div><?=explode(" ", $message[3])[1];?></div>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>

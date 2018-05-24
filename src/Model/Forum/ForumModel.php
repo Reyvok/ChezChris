@@ -72,7 +72,8 @@ class ForumModel{
     public function getTopics($idTheme){
         $sql = "SELECT t.id, t.title, t.pubDate, t.author, a.username FROM topic t
                 INNER JOIN account a ON t.author=a.id
-                WHERE t.theme=".intval($idTheme).";";
+                WHERE t.theme=".intval($idTheme)."
+                ORDER BY t.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $topics = mysqli_fetch_all($res);
         return $topics;
@@ -87,7 +88,8 @@ class ForumModel{
     public function getMessages($idTopic){
         $sql = "SELECT m.id, m.title, m.txt, m.pubDate, m.author, a.username FROM message m
                 INNER JOIN account a ON m.author=a.id
-                WHERE m.topic=".intval($idTopic).";";
+                WHERE m.topic=".intval($idTopic)."
+                ORDER BY m.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $messages = mysqli_fetch_all($res);
         return $messages;
@@ -102,8 +104,8 @@ class ForumModel{
     public function getCategoryTitle($id){
         $sql = "SELECT title FROM category WHERE id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
-        $title = mysqli_fetch_all($res);
-        return $title[0][0];
+        $title = mysqli_fetch_all($res)[0][0];
+        return $title;
     }
 
 
@@ -115,15 +117,65 @@ class ForumModel{
     public function getThemeTitle($id){
         $sql = "SELECT title FROM theme WHERE id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
-        $title = mysqli_fetch_all($res);
-        return $title[0][0];
+        $title = mysqli_fetch_all($res)[0][0];
+        return $title;
     }
 
 
+    /**
+     * Get the title of a topic
+     * @param $id int
+     * @return mixed
+     */
     public function getTopicTitle($id){
         $sql = "SELECT title FROM topic WHERE id=".intval($id).";";
         $res = mysqli_query($this->link, $sql);
         $title = mysqli_fetch_all($res)[0][0];
         return $title;
+    }
+
+
+    /**
+     * Count the number of themes about a category
+     * @param $id int
+     * @return mixed
+     */
+    public function countThemesOfCategory($id){
+        $sql = "SELECT count(t.id) FROM theme t
+                INNER JOIN category ca ON t.category=ca.id
+                WHERE ca.id=".intval($id).";";
+        $res = mysqli_query($this->link, $sql);
+        $count = mysqli_fetch_all($res)[0][0];
+        return $count;
+    }
+
+
+    /**
+     * Count the number of topics about a theme
+     * @param $id int
+     * @return mixed
+     */
+    public function countTopicsOfTheme($id){
+        $sql = "SELECT count(t.id) FROM topic t
+                INNER JOIN theme th ON t.theme=th.id
+                WHERE th.id=".intval($id).";";
+        $res = mysqli_query($this->link, $sql);
+        $count = mysqli_fetch_all($res)[0][0];
+        return $count;
+    }
+
+
+    /**
+     * Count the number of messages about a topic
+     * @param $id int
+     * @return mixed
+     */
+    public function countMessagesOfTopic($id){
+        $sql = "SELECT count(m.id) FROM message m
+                INNER JOIN topic t ON m.topic=t.id
+                WHERE t.id=".intval($id).";";
+        $res = mysqli_query($this->link, $sql);
+        $count = mysqli_fetch_all($res)[0][0];
+        return $count;
     }
 }

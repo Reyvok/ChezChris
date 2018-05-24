@@ -5,7 +5,7 @@ $_SESSION['page'] = "Forum";
 include(__DIR__."/../../Model/Forum/ForumModel.php");
 $forumModel = new ForumModel();
 $categories = $forumModel->getCategories();
-unset($forumModel);
+
 ?>
 
 
@@ -21,7 +21,7 @@ unset($forumModel);
                     <div class="callout small">
                         <div class="grid-x align-justify">
                             <div><a href="/src/View/Forum/ThemesView.php?category=<?=$category[0];?>"><h3><?=$category[1];?></h3></a></div>
-                            <div>Thèmes</div>
+                            <div><?=$forumModel->countThemesOfCategory($category[0]);?> thème(s)</div>
                         </div>
                     </div>
                 <?php endforeach; ?>

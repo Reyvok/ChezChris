@@ -13,7 +13,6 @@ $_SESSION['page'] = $theme;
 
 $topics = $forumModel->getTopics($_GET['theme']);
 
-unset($forumModel);
 ?>
 
 
@@ -29,7 +28,11 @@ unset($forumModel);
                     <div class="callout small">
                         <div class="grid-x align-justify">
                             <div><a href="/src/View/Forum/TopicView.php?topic=<?=$topic[0];?>"><h3><?=$topic[1];?></h3></a></div>
-                            <div>Messages</div>
+                            <div class="grid-y">
+                                <div><?=$forumModel->countMessagesOfTopic($topic[0]);?> message(s)</div>
+                                <div>Créé par <?=$topic[4];?></div>
+                                <div>le <?=explode(" ", $topic[2])[0];?></div>
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>

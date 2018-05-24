@@ -13,7 +13,6 @@ $_SESSION['page'] = $category;
 
 $themes = $forumModel->getThemes($_GET['category']);
 
-unset($forumModel);
 ?>
 
 
@@ -29,7 +28,7 @@ unset($forumModel);
                     <div class="callout small">
                         <div class="grid-x align-justify">
                             <div><a href="/src/View/Forum/TopicsView.php?theme=<?=$theme[0];?>"><h3><?=$theme[1];?></h3></a></div>
-                            <div>Topics</div>
+                            <div><?=$forumModel->countTopicsOfTheme($theme[0]);?> topic(s)</div>
                         </div>
                     </div>
                 <?php endforeach; ?>
