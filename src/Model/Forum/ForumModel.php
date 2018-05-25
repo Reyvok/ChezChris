@@ -178,4 +178,52 @@ class ForumModel{
         $count = mysqli_fetch_all($res)[0][0];
         return $count;
     }
+
+
+
+    /**
+     * Add a category
+     * @param $title string
+     */
+    public function addCategory($title){
+        $sql = "INSERT INTO category VALUES(null, '".mysqli_real_escape_string($this->link, $title)."');";
+        mysqli_query($this->link, $sql);
+    }
+
+
+
+    /**
+     * Add a theme
+     * @param $category int
+     * @param $title string
+     */
+    public function addTheme($category, $title){
+        $sql = "INSERT INTO theme VALUES(null, '".mysqli_real_escape_string($this->link, $title)."', ".intval($category).");";
+        mysqli_query($this->link, $sql);
+    }
+
+
+
+    /**
+     * Add a topic
+     * @param $theme int
+     * @param $title string
+     * @param $author int
+     */
+    public function addTopic($theme, $title, $author){
+        $sql = "INSERT INTO topic VALUES(null, '".mysqli_real_escape_string($this->link,$title)."', ".intval($theme).", ".intval($author).", current_timestamp());";
+        mysqli_query($this->link, $sql);
+    }
+
+
+
+    /**
+     * Add a message
+     * @param $topic int
+     * @param $data array
+     */
+    public function addMessage($topic, $data){
+        $sql = "INSERT INTO message VALUES(null, '".mysqli_real_escape_string($this->link, $data['title'])."', '".mysqli_real_escape_string($this->link, $data['text'])."', ".intval($topic).", ".intval($data['author']).", current_timestamp());";
+        mysqli_query($this->link, $sql);
+    }
 }

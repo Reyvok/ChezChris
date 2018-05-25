@@ -13,7 +13,6 @@ $_SESSION['page'] = $topic;
 
 $messages = $forumModel->getMessages($_GET['topic']);
 
-unset($forumModel);
 ?>
 
 
@@ -38,8 +37,34 @@ unset($forumModel);
                         </div>
                     </div>
                 <?php endforeach; ?>
+
+                <div class="callout">
+                    <form method="post" action="">
+                        <h3>Ajouter un message</h3>
+                        <input type="text" name="title" placeholder="Titre"/>
+                        <input type="text" name="text" placeholder="Message"/>
+                        <input type="submit" name="submit" value="Publier"/>
+                    </form>
+                </div>
             </div>
         </main>
+
+        <?php
+        if(isset($_POST['submit']) && $_POST['submit']=="Publier"){
+            if(!isset($_SESSION['idUser']) || !is_numeric($_SESSION['idUser'])){
+                //header("Location: ./../Authentification/LoginView.php");
+                exit();
+            }
+            if(isset($_POST['title']) && $_POST['title'] != null && $_POST['title'] != "" && isset($_POST['text']) && $_POST['text'] != null && $_POST['text'] != ""){
+                $data['title'] = $_POST['title'];
+                $data['text'] = $_POST['text'];
+                $data['author'] = $_SESSION['idUser'];
+                $forumModel->addMessage($_GET['topic'], $data);
+                //header("Refresh:0");
+                exit();
+            }
+        }
+        ?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

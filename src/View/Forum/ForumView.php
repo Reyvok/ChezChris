@@ -16,6 +16,9 @@ $categories = $forumModel->getCategories();
         <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
+            <div><a href="/src/View/Forum/CategoryAdd.php">Créer une nouvelle catégorie</a></div>
+            <?php endif; ?>
             <div class="grid-y align-spaced callout">
                 <?php foreach($categories as $category): ?>
                     <div class="callout small">

@@ -23,6 +23,7 @@ $topics = $forumModel->getTopics($_GET['theme']);
         <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
+            <div><a href="/src/View/Forum/TopicAdd.php?theme=<?=$_GET['theme'];?>">Créer un nouveau topic</a></div>
             <div class="grid-y callout">
                 <?php foreach($topics as $topic): ?>
                     <div class="callout small">

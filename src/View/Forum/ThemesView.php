@@ -23,6 +23,9 @@ $themes = $forumModel->getThemes($_GET['category']);
         <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
+            <div><a href="/src/View/Forum/ThemeAdd.php?category=<?=$_GET['category'];?>">Créer un nouveau thème</a></div>
+            <?php endif; ?>
             <div class="grid-y callout">
                 <?php foreach($themes as $theme): ?>
                     <div class="callout small">
