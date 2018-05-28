@@ -21,20 +21,16 @@ $fanartModel = new FanartModel();
         <?php include(__DIR__."/../nav.php"); ?>
 
         <main>
-            <div class="grid-y align-spaced callout" id="fanart-add-container">
+            <div class="grid-y align-spaced callout">
 
                 <div><h2>Ajouter un fanart</h2></div>
 
                 <div class="grid-y">
                     <form enctype="multipart/form-data" method="post" action="">
-                        <input id="fanart-add-title-container" type="text" name="title" placeholder="Titre"/>
+                        <input type="text" name="title" placeholder="Titre"/>
                         <input type="hidden" name="MAX_FILE_SIZE" value="8388608"/>
-                        <input id="fanart-add-file-container" name="file" type="file"/>
-                        <div id="fanart-add-buttons-container">
-                            <button type="submit">Publier</button>
-                            <button type="button">Enregistrer comme brouillon</button>
-                            <button type="button">Annuler</button>
-                        </div>
+                        <input name="file" type="file"/>
+                        <input type="submit" name="submit" value="Publier">
                     </form>
                 </div>
 

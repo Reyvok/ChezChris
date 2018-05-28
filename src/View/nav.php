@@ -9,7 +9,7 @@
     <div>
         <?php
             if(isset($_SESSION['username'])):?>
-                <span><?= $_SESSION['username'];?></span>
+                <span><a href="/src/View/MyAccount/MyAccountView.php"><?= $_SESSION['username'];?></a></span>
                 <?php if(isset($_SESSION['imagePath'])):?>
                     <img style="height: 50px; width:auto;" src="/assets/profil_images/<?= $_SESSION['imagePath'] ;?>" alt="img">
                 <?php endif; ?>

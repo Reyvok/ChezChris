@@ -19,7 +19,7 @@ class FanartModel{
     public function getLastFanart(){
         $sql = "SELECT f.title, f.pathFile, a.username, f.author FROM fanart f
                 INNER JOIN account a ON f.author=a.id
-                WHERE f.status=1 ORDER BY f.pubDate DESC LIMIT 1;";
+                ORDER BY f.pubDate DESC LIMIT 1;";
         $res = mysqli_query($this->link, $sql);
         $fanart = mysqli_fetch_all($res);
         return $fanart;
@@ -32,7 +32,7 @@ class FanartModel{
      */
     public function getLast2Fanarts($id){
         $sql = "SELECT f.title, f.pathFile FROM fanart f
-                WHERE f.author=".intval($id)." and f.status=1 ORDER BY f.pubDate DESC LIMIT 2;";
+                WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $fanart = mysqli_fetch_all($res);
         return $fanart;
@@ -46,7 +46,7 @@ class FanartModel{
     public function getFanarts(){
         $sql = "SELECT f.title, f.pathFile, f.pubDate, a.username, f.author, f.id FROM fanart f
                 INNER JOIN account a ON f.author=a.id
-                WHERE f.status=1 ORDER BY f.pubDate DESC;";
+                ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fanarts = mysqli_fetch_all($res);
         return $fanarts;
@@ -54,7 +54,7 @@ class FanartModel{
 
 
     /**
-     * Get the fanarts of a user with the non published ones
+     * Get the fanarts of a user
      * @param $id int
      * @return array|null
      */
@@ -74,7 +74,7 @@ class FanartModel{
      */
     public function getFanartsOfUser($id){
         $sql = "SELECT f.title, f.pathFile, f.pubDate, f.id FROM fanart f
-                WHERE f.author=".intval($id)." and f.status=1 ORDER BY f.pubDate DESC;";
+                WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fanarts = mysqli_fetch_all($res);
         return $fanarts;
@@ -87,7 +87,7 @@ class FanartModel{
      */
     public function addFanart($data){
         $sql = "INSERT INTO fanart VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
-                                                  '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 1, null, current_timestamp(), ".intval($_SESSION['idUser']).");";
+                                                  '".mysqli_real_escape_string($this->link,$data['pathfile'])."', null, current_timestamp(), ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }
 

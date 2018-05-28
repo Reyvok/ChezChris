@@ -118,12 +118,10 @@ create table if not exists fanart(
 id int not null auto_increment,
 title tinytext not null,
 pathFile tinytext not null,
-status int not null,
 note float(2,1),
 pubDate datetime not null default current_timestamp,
 author int not null,
 primary key(id),
-constraint status_fanart foreign key(status) references status(id), 
 constraint author_fanart foreign key(author) references account(id)
 ) default charset=utf8;
 

@@ -59,7 +59,7 @@ class FanfictionModel{
      * @return array|null
      */
     public function getMyFictions($id){
-        $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id FROM fanfiction f
+        $sql = "SELECT f.title, f.txt, f.pathFile, f.pubDate, f.id, f.status FROM fanfiction f
                 WHERE f.author=".intval($id)." ORDER BY f.pubDate DESC;";
         $res = mysqli_query($this->link, $sql);
         $fictions = mysqli_fetch_all($res);
@@ -109,6 +109,19 @@ class FanfictionModel{
 
 
     /**
+     * Add a fanfiction as a draft
+     * @param $data array
+     */
+    public function addFanfictionToDrafts($data){
+        $sql = "INSERT INTO fanfiction VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                                      '".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                                      '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 2, null, current_timestamp(), 
+                                                      ".intval($_SESSION['idUser']).");";
+        mysqli_query($this->link, $sql);
+    }
+
+
+    /**
      * Delete a fanfiction
      * @param $id int
      */
@@ -126,11 +139,38 @@ class FanfictionModel{
         if(isset($data['pathfile'])){
             $sql = "UPDATE fanfiction SET title='".mysqli_real_escape_string($this->link,$data['title'])."', 
                                           txt='".mysqli_real_escape_string($this->link,$data['text'])."', 
-                                          pathFile='".mysqli_real_escape_string($this->link,$data['pathfile'])."', pubDate=current_timestamp() 
+                                          pathFile='".mysqli_real_escape_string($this->link,$data['pathfile'])."', 
+                                          pubDate=current_timestamp(),
+                                          status=1
                                           WHERE id=".intval($data['id']).";";
         }else{
             $sql = "UPDATE fanfiction SET title='".mysqli_real_escape_string($this->link,$data['title'])."', 
-                                          txt='".mysqli_real_escape_string($this->link,$data['text'])."', pubDate=current_timestamp() 
+                                          txt='".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                          pubDate=current_timestamp(),
+                                          status=1
+                                          WHERE id=".intval($data['id']).";";
+        }
+        mysqli_query($this->link, $sql);
+    }
+
+
+    /**
+     * Edit a fanfiction as a draft
+     * @param $data array
+     */
+    public function editFanfictionToDrafts($data){
+        if(isset($data['pathfile'])){
+            $sql = "UPDATE fanfiction SET title='".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                          txt='".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                          pathFile='".mysqli_real_escape_string($this->link,$data['pathfile'])."', 
+                                          pubDate=current_timestamp(),
+                                          status=2
+                                          WHERE id=".intval($data['id']).";";
+        }else{
+            $sql = "UPDATE fanfiction SET title='".mysqli_real_escape_string($this->link,$data['title'])."', 
+                                          txt='".mysqli_real_escape_string($this->link,$data['text'])."', 
+                                          pubDate=current_timestamp(),
+                                          status=2
                                           WHERE id=".intval($data['id']).";";
         }
         mysqli_query($this->link, $sql);
