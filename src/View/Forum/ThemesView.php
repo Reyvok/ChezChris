@@ -30,7 +30,10 @@ $themes = $forumModel->getThemes($_GET['category']);
                 <?php foreach($themes as $theme): ?>
                     <div class="callout small">
                         <div class="grid-x align-justify">
-                            <div><a href="/src/View/Forum/TopicsView.php?theme=<?=$theme[0];?>"><h3><?=$theme[1];?></h3></a></div>
+                            <div class="grid-x">
+                                <div><a href="/src/View/Forum/TopicsView.php?theme=<?=$theme[0];?>"><h3><?=$theme[1];?></h3></a></div>
+                                <div><a href="/src/Model/Forum/ThemeDeleteModel.php?category=<?=$_GET['category'];?>&theme=<?=$theme[0];?>">Supprimer</a></div>
+                            </div>
                             <div><?=$forumModel->countTopicsOfTheme($theme[0]);?> topic(s)</div>
                         </div>
                     </div>

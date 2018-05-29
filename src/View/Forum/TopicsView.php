@@ -28,7 +28,12 @@ $topics = $forumModel->getTopics($_GET['theme']);
                 <?php foreach($topics as $topic): ?>
                     <div class="callout small">
                         <div class="grid-x align-justify">
-                            <div><a href="/src/View/Forum/TopicView.php?topic=<?=$topic[0];?>"><h3><?=$topic[1];?></h3></a></div>
+                            <div class="grid-x">
+                                <div><a href="/src/View/Forum/TopicView.php?topic=<?=$topic[0];?>"><h3><?=$topic[1];?></h3></a></div>
+                                <?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
+                                <div><a href="/src/Model/Forum/TopicDeleteModel.php?theme=<?=$_GET['theme'];?>&topic=<?=$topic[0];?>">Supprimer</a></div>
+                                <?php endif; ?>
+                            </div>
                             <div class="grid-y">
                                 <div><?=$forumModel->countMessagesOfTopic($topic[0]);?> message(s)</div>
                                 <div>Créé par <?=$topic[4];?></div>

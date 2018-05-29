@@ -23,7 +23,10 @@ $categories = $forumModel->getCategories();
                 <?php foreach($categories as $category): ?>
                     <div class="callout small">
                         <div class="grid-x align-justify">
-                            <div><a href="/src/View/Forum/ThemesView.php?category=<?=$category[0];?>"><h3><?=$category[1];?></h3></a></div>
+                            <div class="grid-x">
+                                <div><a href="/src/View/Forum/ThemesView.php?category=<?=$category[0];?>"><h3><?=$category[1];?></h3></a></div>
+                                <div><a href="/src/Model/Forum/CategoryDeleteModel.php?category=<?=$category[0];?>">Supprimer</a></div>
+                            </div>
                             <div><?=$forumModel->countThemesOfCategory($category[0]);?> thème(s)</div>
                         </div>
                     </div>

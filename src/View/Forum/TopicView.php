@@ -27,7 +27,12 @@ $messages = $forumModel->getMessages($_GET['topic']);
                 <?php foreach($messages as $message): ?>
                     <div class="grid-x align-justify callout small">
                         <div class="grid-y" style="max-width: 80%;">
-                            <div><?=$message[1];?></div>
+                            <div class="grid-x">
+                                <div><h4><?=$message[1];?></h4></div>
+                                <?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
+                                <div><a href="/src/Model/Forum/MessageDeleteModel.php?topic=<?=$_GET['topic'];?>&message=<?=$message[0];?>">Supprimer</a></div>
+                                <?php endif; ?>
+                            </div>
                             <div><?=$message[2];?></div>
                         </div>
                         <div class="grid-y">
