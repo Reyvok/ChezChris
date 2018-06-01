@@ -32,7 +32,9 @@ $themes = $forumModel->getThemes($_GET['category']);
                         <div class="grid-x align-justify">
                             <div class="grid-x">
                                 <div><a href="/src/View/Forum/TopicsView.php?theme=<?=$theme[0];?>"><h3><?=$theme[1];?></h3></a></div>
+								<?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
                                 <div><a href="/src/Model/Forum/ThemeDeleteModel.php?category=<?=$_GET['category'];?>&theme=<?=$theme[0];?>">Supprimer</a></div>
+								<?php endif; ?>
                             </div>
                             <div><?=$forumModel->countTopicsOfTheme($theme[0]);?> topic(s)</div>
                         </div>

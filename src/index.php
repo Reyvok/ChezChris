@@ -40,7 +40,7 @@ unset($goldenBookModel);
             <div class="grid-y align-spaced home-left-container">
 
                 <!-------- News container -------->
-                <div class="grid-y align-spaced callout home-news-container">
+                <div class="grid-y align-spaced callout">
                     <div class="cell medium"><h2>Dernières news</h2></div>
 
                     <div class="grid-x align-spaced text-center">

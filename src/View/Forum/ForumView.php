@@ -25,7 +25,9 @@ $categories = $forumModel->getCategories();
                         <div class="grid-x align-justify">
                             <div class="grid-x">
                                 <div><a href="/src/View/Forum/ThemesView.php?category=<?=$category[0];?>"><h3><?=$category[1];?></h3></a></div>
+								<?php if(isset($_SESSION['role']) && $_SESSION['role']=='admin'): ?>
                                 <div><a href="/src/Model/Forum/CategoryDeleteModel.php?category=<?=$category[0];?>">Supprimer</a></div>
+								<?php endif; ?>
                             </div>
                             <div><?=$forumModel->countThemesOfCategory($category[0]);?> thème(s)</div>
                         </div>
