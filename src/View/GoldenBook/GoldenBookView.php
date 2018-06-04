@@ -45,7 +45,7 @@ else
                             <div><?= $opinion[2];?></div>
                         </div>
                         <div class="grid-y goldenbook-author-container">
-                            <?php if(isset($_SESSION['username']) && $opinion[4] == $_SESSION['username']):?>
+                            <?php if((isset($_SESSION['username']) && $opinion[4] == $_SESSION['username']) || (isset($_SESSION['role']) && $_SESSION['role']=="admin")):?>
                                 <div><a href="/src/View/GoldenBook/OpinionDelete.php?id=<?=$opinion[5];?>">Supprimer</a></div>
                             <?php endif;?>
                             <div><a href="/src/View/Account/AccountView.php?id=<?= $opinion[6];?>"><?= $opinion[4];?></a></div>
@@ -62,6 +62,3 @@ else
     </div>
 
 </body>
-
-
-</html>

@@ -13,7 +13,17 @@ $books = $goldenbookModel->getBooks();
 
 ?>
 
-
+<?php
+if(isset($_POST['book']) && isset($_POST['title']) && isset($_POST['text']) && isset($_POST['note'])){
+    $data['book'] = $_POST['book'];
+    $data['title'] = $_POST['title'];
+    $data['text'] = $_POST['text'];
+    $data['note'] = $_POST['note'];
+    $goldenbookModel->addOpinion($data);
+    header("Location: ./GoldenBookView.php");
+    exit();
+}
+?>
 
 <body>
 
@@ -44,18 +54,6 @@ $books = $goldenbookModel->getBooks();
                 </div>
             </div>
         </main>
-
-        <?php
-            if(isset($_POST['book']) && isset($_POST['title']) && isset($_POST['text']) && isset($_POST['note'])){
-                $data['book'] = $_POST['book'];
-                $data['title'] = $_POST['title'];
-                $data['text'] = $_POST['text'];
-                $data['note'] = $_POST['note'];
-                $goldenbookModel->addOpinion($data);
-                header("Location: ./GoldenBookView.php");
-                exit();
-            }
-        ?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

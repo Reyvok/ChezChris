@@ -13,7 +13,52 @@ $fanartModel = new FanartModel();
 
 ?>
 
+<?php
+if(isset($_POST['submit']) && $_POST['submit']=="Publier") {
+    if (isset($_POST['title']) && isset($_FILES['file']) && !empty($_FILES['file']['name'])) {
+        date_default_timezone_set('Europe/Paris');
+        $target_dir = __DIR__ . "/../../../assets/fanarts/";
+        $imageFileType = strtolower(pathinfo($target_dir . basename($_FILES["file"]["name"]), PATHINFO_EXTENSION));
+        $imagePath = "fa_" . $_SESSION['username'] . "_" . date("Y-m-d_h-i-s") . "." . $imageFileType;
+        $target_file = $target_dir . $imagePath;
+        $uploadOk = 1;
 
+        if (getimagesize($_FILES["file"]["tmp_name"]) == false) {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+
+        if ($_FILES["file"]["size"] > $_POST['MAX_FILE_SIZE']) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif") {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                $data['title'] = $_POST['title'];
+                $data['pathfile'] = $imagePath;
+                $fanartModel->addFanart($data);
+                header("Location: ./FanartView.php");
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    }
+}
+?>
 
 <body>
 
@@ -36,57 +81,6 @@ $fanartModel = new FanartModel();
 
             </div>
         </main>
-
-        <?php
-        if(isset($_POST['title']) && isset($_FILES['file']) && !empty($_FILES['file']['name'])){
-            date_default_timezone_set('Europe/Paris');
-            $target_dir = __DIR__."/../../../assets/fanarts/";
-            $imageFileType = strtolower(pathinfo($target_dir.basename($_FILES["file"]["name"]), PATHINFO_EXTENSION));
-            $imagePath = "fa_".$_SESSION['username']."_".date("Y-m-d_h-i-s").".".$imageFileType;
-            $target_file = $target_dir.$imagePath;
-            $uploadOk = 1;
-
-            // Check if image file is a actual image or fake image
-            if (getimagesize($_FILES["file"]["tmp_name"]) == false){
-                echo "File is not an image.";
-                $uploadOk = 0;
-            }
-
-            // Check if file already exists
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
-            }
-
-            // Check file size
-            if ($_FILES["file"]["size"] > $_POST['MAX_FILE_SIZE']) {
-                echo "Sorry, your file is too large.";
-                $uploadOk = 0;
-            }
-
-            // Allow certain file formats
-            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif") {
-                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                $uploadOk = 0;
-            }
-
-            // Check if $uploadOk is set to 0 by an error
-            if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
-            } else {
-                if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                    $data['title'] = $_POST['title'];
-                    $data['pathfile'] = $imagePath;
-                    $fanartModel->addFanart($data);
-                    echo "The file " . basename($_FILES["file"]["name"]) . " has been uploaded.";
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
-                }
-            }
-        }
-        ?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

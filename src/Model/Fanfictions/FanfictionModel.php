@@ -102,7 +102,7 @@ class FanfictionModel{
     public function addFanfiction($data){
         $sql = "INSERT INTO fanfiction VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
                                                       '".mysqli_real_escape_string($this->link,$data['text'])."', 
-                                                      '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 1, null, current_timestamp(), 
+                                                      '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 1, current_timestamp(), 
                                                       ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }
@@ -115,7 +115,7 @@ class FanfictionModel{
     public function addFanfictionToDrafts($data){
         $sql = "INSERT INTO fanfiction VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
                                                       '".mysqli_real_escape_string($this->link,$data['text'])."', 
-                                                      '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 2, null, current_timestamp(), 
+                                                      '".mysqli_real_escape_string($this->link,$data['pathfile'])."', 2, current_timestamp(), 
                                                       ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }

@@ -87,7 +87,7 @@ class FanartModel{
      */
     public function addFanart($data){
         $sql = "INSERT INTO fanart VALUES (null, '".mysqli_real_escape_string($this->link,$data['title'])."', 
-                                                  '".mysqli_real_escape_string($this->link,$data['pathfile'])."', null, current_timestamp(), ".intval($_SESSION['idUser']).");";
+                                                  '".mysqli_real_escape_string($this->link,$data['pathfile'])."', current_timestamp(), ".intval($_SESSION['idUser']).");";
         mysqli_query($this->link, $sql);
     }
 

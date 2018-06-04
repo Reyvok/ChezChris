@@ -15,7 +15,22 @@ $messages = $forumModel->getMessages($_GET['topic']);
 
 ?>
 
-
+<?php
+if(isset($_POST['submit']) && $_POST['submit']=="Publier"){
+    if(!isset($_SESSION['idUser']) || !is_numeric($_SESSION['idUser'])){
+        header("Location: ./../Authentification/LoginView.php");
+        exit();
+    }
+    if(isset($_POST['title']) && $_POST['title'] != null && $_POST['title'] != "" && isset($_POST['text']) && $_POST['text'] != null && $_POST['text'] != ""){
+        $data['title'] = $_POST['title'];
+        $data['text'] = $_POST['text'];
+        $data['author'] = $_SESSION['idUser'];
+        $forumModel->addMessage($_GET['topic'], $data);
+        header("Refresh:0");
+        exit();
+    }
+}
+?>
 
 <body>
 
@@ -53,23 +68,6 @@ $messages = $forumModel->getMessages($_GET['topic']);
                 </div>
             </div>
         </main>
-
-        <?php
-        if(isset($_POST['submit']) && $_POST['submit']=="Publier"){
-            if(!isset($_SESSION['idUser']) || !is_numeric($_SESSION['idUser'])){
-                //header("Location: ./../Authentification/LoginView.php");
-                exit();
-            }
-            if(isset($_POST['title']) && $_POST['title'] != null && $_POST['title'] != "" && isset($_POST['text']) && $_POST['text'] != null && $_POST['text'] != ""){
-                $data['title'] = $_POST['title'];
-                $data['text'] = $_POST['text'];
-                $data['author'] = $_SESSION['idUser'];
-                $forumModel->addMessage($_GET['topic'], $data);
-                //header("Refresh:0");
-                exit();
-            }
-        }
-        ?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

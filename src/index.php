@@ -163,6 +163,3 @@ unset($goldenBookModel);
     </div>
 
 </body>
-
-
-</html>

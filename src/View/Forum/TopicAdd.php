@@ -18,7 +18,15 @@ if(!isset($_SESSION['idUser']) || !is_numeric($_SESSION['idUser'])){
 
 ?>
 
-
+<?php
+if(isset($_POST['submit']) && $_POST['submit']=="Créer"){
+    if(isset($_POST['title']) && $_POST['title']!="" && $_POST['title']!=null){
+        $forumModel->addTopic($_GET['theme'], $_POST['title'], $_SESSION['idUser']);
+        header("Location: ./TopicsView.php?theme=".$_GET['theme']);
+        exit();
+    }
+}
+?>
 
 <body>
 
@@ -34,16 +42,6 @@ if(!isset($_SESSION['idUser']) || !is_numeric($_SESSION['idUser'])){
             </form>
         </div>
     </main>
-
-    <?php
-    if(isset($_POST['submit']) && $_POST['submit']=="Créer"){
-        if(isset($_POST['title']) && $_POST['title']!="" && $_POST['title']!=null){
-            $forumModel->addTopic($_GET['theme'], $_POST['title'], $_SESSION['idUser']);
-            header("Location: ./TopicsView.php?theme=".$_GET['theme']);
-            exit();
-        }
-    }
-    ?>
 
     <?php include(__DIR__."/../footer.php"); ?>
 </div>

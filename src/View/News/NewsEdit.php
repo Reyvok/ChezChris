@@ -13,7 +13,28 @@ $news = $newsModel->getNewsById($_GET['id'])[0];
 
 ?>
 
+<?php
+if(isset($_POST['submit']) && $_POST['submit']=="Publier") {
+    if (isset($_POST['title']) && isset($_POST['text'])) {
+        $data['title'] = $_POST['title'];
+        $data['text'] = $_POST['text'];
+        $newsModel->editNews($_GET['id'], $data);
+        header("Location: ./NewsView.php");
+        exit();
+    }
 
+} else if(isset($_POST['draft']) && $_POST['draft']=="Enregistrer comme brouillon"){
+
+    if(isset($_POST['title']) && $_POST['title']!="") $data['title'] = $_POST['title'];
+    else $data['title'] = null;
+    if(isset($_POST['text']) && $_POST['text']!="") $data['text'] = $_POST['text'];
+    else $data['text'] = null;
+    if($data['title']==null && $data['text']==null) exit();
+    $newsModel->editNewsToDrafts($_GET['id'], $data);
+    header("Location: ./NewsView.php");
+    exit();
+}
+?>
 
 <body>
 
@@ -37,33 +58,7 @@ $news = $newsModel->getNewsById($_GET['id'])[0];
         </div>
     </main>
 
-    <?php
-    if(isset($_POST['submit']) && $_POST['submit']=="Publier") {
-        if (isset($_POST['title']) && isset($_POST['text'])) {
-            $data['title'] = $_POST['title'];
-            $data['text'] = $_POST['text'];
-            $newsModel->editNews($_GET['id'], $data);
-            header("Location: ./NewsView.php");
-            exit();
-        }
-
-    } else if(isset($_POST['draft']) && $_POST['draft']=="Enregistrer comme brouillon"){
-
-        if(isset($_POST['title']) && $_POST['title']!="") $data['title'] = $_POST['title'];
-        else $data['title'] = null;
-        if(isset($_POST['text']) && $_POST['text']!="") $data['text'] = $_POST['text'];
-        else $data['text'] = null;
-        if($data['title']==null && $data['text']==null) exit();
-        $newsModel->editNewsToDrafts($_GET['id'], $data);
-        header("Location: ./NewsView.php");
-        exit();
-    }
-    ?>
-
     <?php include(__DIR__."/../footer.php"); ?>
 </div>
 
 </body>
-
-
-</html>

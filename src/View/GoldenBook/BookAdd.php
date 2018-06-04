@@ -12,7 +12,14 @@ $goldenBookModel = new GoldenBookModel();
 
 ?>
 
-
+<?php
+if(isset($_POST['title'])){
+    $title = $_POST['title'];
+    $goldenBookModel->addBook($title);
+    header("Location: ./GoldenBookView.php");
+    exit();
+}
+?>
 
 <body>
 
@@ -33,14 +40,6 @@ $goldenBookModel = new GoldenBookModel();
 
             </div>
         </main>
-
-        <?php
-        if(isset($_POST['title'])){
-            $title = $_POST['title'];
-            $goldenBookModel->addBook($title);
-            header("Location: ./GoldenBookView.php");
-            exit();
-        };?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

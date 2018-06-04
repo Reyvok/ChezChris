@@ -12,7 +12,13 @@ $suggestionModel = new SuggestionModel();
 
 ?>
 
-
+<?php
+if(isset($_POST['title']) && isset($_POST['suggestion'])){
+    $data['title'] = $_POST['title'];
+    $data['suggestion'] = $_POST['suggestion'];
+    $suggestionModel->addSuggestion($data);
+}
+?>
 
 <body>
 
@@ -29,14 +35,6 @@ $suggestionModel = new SuggestionModel();
                 </form>
             </div>
         </main>
-
-        <?php
-            if(isset($_POST['title']) && isset($_POST['suggestion'])){
-                $data['title'] = $_POST['title'];
-                $data['suggestion'] = $_POST['suggestion'];
-                $suggestionModel->addSuggestion($data);
-            }
-        ?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

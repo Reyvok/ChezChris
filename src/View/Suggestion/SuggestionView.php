@@ -35,6 +35,3 @@ unset($suggestionModel);
     </div>
 
 </body>
-
-
-</html>

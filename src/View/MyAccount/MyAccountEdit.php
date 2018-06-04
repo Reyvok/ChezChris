@@ -8,7 +8,23 @@ $account = $accountModel->getInformationsByUsername($_SESSION['username']);
 
 ?>
 
-
+<?php
+if(isset($_POST['submit']) && $_POST['submit']=="Confirmer") {
+    if (isset($_POST['username']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['confirmPassword'])) {
+        $data['id'] = $_SESSION['idUser'];
+        $data['username'] = $_POST['username'];
+        $data['firstname'] = $_POST['firstname'];
+        $data['lastname'] = $_POST['lastname'];
+        $data['mail'] = $_POST['mail'];
+        $data['password'] = $_POST['password'];
+        $data['confirmPassword'] = $_POST['confirmPassword'];
+        $data['oldImage'] = $account[0][1];
+        if (isset($_FILES['file']) && !empty($_FILES['file']['name'])) $data['imagePath'] = $_FILES['file']['name'];
+        else $data['imagePath'] = null;
+        $accountModel->verifyUpdate($data);
+    }
+}
+?>
 
 <body>
 
@@ -40,29 +56,13 @@ $account = $accountModel->getInformationsByUsername($_SESSION['username']);
                                 <?php endif; ?>
                                 <div><input type="hidden" name="MAX_FILE_SIZE" value="8388608"/></div>
                                 <div><input name="file" type="file"/></div>
-                                <div><input type="submit" value="Confirmer"></div>
+                                <div><input type="submit" name="submit" value="Confirmer"></div>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </main>
-
-        <?php
-            if(isset($_POST['username']) && isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['mail']) && isset($_POST['password']) && isset($_POST['confirmPassword'])){
-                $data['id'] = $_SESSION['idUser'];
-                $data['username'] = $_POST['username'];
-                $data['firstname'] = $_POST['firstname'];
-                $data['lastname'] = $_POST['lastname'];
-                $data['mail'] = $_POST['mail'];
-                $data['password'] = $_POST['password'];
-                $data['confirmPassword'] = $_POST['confirmPassword'];
-                $data['oldImage'] = $account[0][1];
-                if(isset($_FILES['file']) && !empty($_FILES['file']['name'])) $data['imagePath'] = $_FILES['file']['name'];
-                else $data['imagePath'] = null;
-                $accountModel->verifyUpdate($data);
-            }
-        ?>
 
         <?php include(__DIR__."/../footer.php"); ?>
     </div>

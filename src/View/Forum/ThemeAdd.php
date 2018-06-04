@@ -18,7 +18,15 @@ if(!isset($_SESSION['role']) && $_SESSION['role']!='admin'){
 
 ?>
 
-
+<?php
+if(isset($_POST['submit']) && $_POST['submit']=="Créer"){
+    if(isset($_POST['title']) && $_POST['title']!="" && $_POST['title']!=null){
+        $forumModel->addTheme($_GET['category'], $_POST['title']);
+        header("Location: ./ThemesView.php?category=".$_GET['category']);
+        exit();
+    }
+}
+?>
 
 <body>
 
@@ -34,16 +42,6 @@ if(!isset($_SESSION['role']) && $_SESSION['role']!='admin'){
             </form>
         </div>
     </main>
-
-    <?php
-    if(isset($_POST['submit']) && $_POST['submit']=="Créer"){
-        if(isset($_POST['title']) && $_POST['title']!="" && $_POST['title']!=null){
-            $forumModel->addTheme($_GET['category'], $_POST['title']);
-            header("Location: ./ThemesView.php?category=".$_GET['category']);
-            exit();
-        }
-    }
-    ?>
 
     <?php include(__DIR__."/../footer.php"); ?>
 </div>
