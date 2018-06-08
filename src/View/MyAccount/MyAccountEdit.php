@@ -43,7 +43,7 @@ if(isset($_POST['submit']) && $_POST['submit']=="Confirmer") {
                                 <?php if(isset($_SESSION['errorFName'])) echo '<div>'.$_SESSION['errorFName'].'</div>'; unset($_SESSION['errorFName']);?>
                                 <div><label>Nom : </label><input title="Nom" type="text" name="lastname" <?php if($account[0][3]!=null) echo 'value="'.$account[0][3].'"';?>><br/></div>
                                 <?php if(isset($_SESSION['errorLName'])) echo '<div>'.$_SESSION['errorLName'].'</div>'; unset($_SESSION['errorLName']);?>
-                                <div><label>*Adresse mail : </label><input title="Adresse mail" type="email" name="mail" value="<?= $account[0][5];?>"><br/><br/></div>
+                                <div><label>*Adresse mail : </label><input title="Adresse mail" type="email" name="mail" value="<?= $account[0][4];?>"><br/><br/></div>
                                 <?php if(isset($_SESSION['errorMail'])) echo '<div>'.$_SESSION['errorMail'].'</div>'; unset($_SESSION['errorMail']);?>
                                 <div><label>*Mot de passe : </label><input title="Mot de passe" type="password" name="password" value=""><br/></div>
                                 <?php if(isset($_SESSION['errorPassword'])) echo '<div>'.$_SESSION['errorPassword'].'</div>'; unset($_SESSION['errorPassword']);?>

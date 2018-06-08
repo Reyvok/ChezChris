@@ -34,8 +34,8 @@ $_SESSION['page'] = $user[0];
                     <div><img src="/assets/profil_images/<?=$user[1];?>" alt="img" style="height:100px; width:auto;"></div>
                     <div class="grid-y">
                         <div><?= $user[0];?></div>
+                        <div><?= $user[5];?></div>
                         <div><?= $user[6];?></div>
-                        <div><?= $user[7];?></div>
                     </div>
                 </div>
                 <div>

@@ -1,12 +1,6 @@
 <?php
 include(__DIR__."/../head.php");
 $_SESSION['page'] = "Mon compte";
-
-include(__DIR__."/../../Model/Account/AccountModel.php");
-$accountModel = new AccountModel();
-$account = $accountModel->getInformationsByUsername($_SESSION['username']);
-unset($accountModel);
-
 ?>
 
 

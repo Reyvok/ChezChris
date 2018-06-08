@@ -31,7 +31,7 @@ class AccountModel{
      * @return array|null
      */
     public function getInformationsById($idUser){
-        $sql = "SELECT a.username, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
+        $sql = "SELECT a.username, a.imagePath, a.firstname, a.lastname, a.mail, a.score, g.label FROM account a
                 INNER JOIN grade g ON a.grade=g.id
                 WHERE a.id=".intval($idUser).";";
         $res = mysqli_query($this->link, $sql);
@@ -46,7 +46,7 @@ class AccountModel{
      * @return array|null
      */
     public function getInformationsByUsername($username){
-        $sql = "SELECT a.id, a.imagePath, a.firstname, a.lastname, a.password, a.mail, a.score, g.label FROM account a
+        $sql = "SELECT a.id, a.imagePath, a.firstname, a.lastname, a.mail, a.score, g.label FROM account a
                 INNER JOIN grade g ON a.grade=g.id
                 WHERE username='".mysqli_real_escape_string($this->link,$username)."';";
         $res = mysqli_query($this->link, $sql);
@@ -140,7 +140,7 @@ class AccountModel{
      * @return array|null
      */
     public function verifyUsernameAndPassword($username, $password){
-        $sql = "SELECT count(*) FROM account WHERE username='".mysqli_real_escape_string($this->link,$username)."' and password='".mysqli_real_escape_string($this->link,$password)."';";
+        $sql = "SELECT count(*) FROM account WHERE username='".mysqli_real_escape_string($this->link,$username)."' and password='".hash('sha256',mysqli_real_escape_string($this->link,$password))."';";
         $res = mysqli_query($this->link, $sql);
         $data = mysqli_fetch_all($res);
         return $data[0];
@@ -157,14 +157,14 @@ class AccountModel{
                                         firstname='".mysqli_real_escape_string($this->link,$data['firstname'])."', 
                                         lastname='".mysqli_real_escape_string($this->link,$data['lastname'])."', 
                                         imagePath='".mysqli_real_escape_string($this->link,$data['imagePath'])."', 
-                                        password='".mysqli_real_escape_string($this->link,$data['password'])."', 
+                                        password='".mysqli_real_escape_string($this->link,hash('sha256',$data['password']))."', 
                                         mail='".mysqli_real_escape_string($this->link,$data['mail'])."' 
                                         WHERE id=".intval($data['id']);
         else
             $sql = "UPDATE account SET username='".mysqli_real_escape_string($this->link,$data['username'])."',
                                         firstname='".mysqli_real_escape_string($this->link,$data['firstname'])."', 
                                         lastname='".mysqli_real_escape_string($this->link,$data['lastname'])."', 
-                                        password='".mysqli_real_escape_string($this->link,$data['password'])."', 
+                                        password='".mysqli_real_escape_string($this->link,hash('sha256',$data['password']))."', 
                                         mail='".mysqli_real_escape_string($this->link,$data['mail'])."' 
                                         WHERE id=".intval($data['id']);
         mysqli_query($this->link, $sql);

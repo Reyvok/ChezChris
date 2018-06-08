@@ -22,13 +22,13 @@ unset($accountModel);
                     <div class="grid-y">
                         <div>Prénom: <span id="myaccount-firstname"><?= $account[0][2];?></span></div>
                         <div>Nom: <span id="myaccount-lastname"><?= $account[0][3];?></span></div>
-                        <div>Email: <span id="myaccount-email"><?= $account[0][5];?></span></div>
+                        <div>Email: <span id="myaccount-email"><?= $account[0][4];?></span></div>
                         <div><a href="/src/View/MyAccount/MyAccountEdit.php">Modifier</a></div>
                     </div>
 
                     <div class="grid-y">
-                        <span>Score: <?= $account[0][6];?></span>
-                        <span>Grade: <?= $account[0][7];?></span>
+                        <span>Score: <?= $account[0][5];?></span>
+                        <span>Grade: <?= $account[0][6];?></span>
                     </div>
 
                     <div class="grid-y">

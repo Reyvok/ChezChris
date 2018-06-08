@@ -31,7 +31,7 @@ $sql = "INSERT INTO account
         VALUES(null, '".mysqli_real_escape_string($link,$_POST['username'])."', null, 
                       '".mysqli_real_escape_string($link,$_POST['firstname'])."', 
                       '".mysqli_real_escape_string($link,$_POST['lastname'])."', 
-                      '".mysqli_real_escape_string($link,$_POST['password'])."', 
+                      '".mysqli_real_escape_string($link,hash('sha256',$_POST['password']))."', 
                       '".mysqli_real_escape_string($link,$_POST['mail'])."', 5, 1, 2);";
 mysqli_query($link, $sql);
 
