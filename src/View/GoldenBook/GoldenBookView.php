@@ -8,7 +8,7 @@ $books = $goldenbookModel->getBooks();
 if(isset($_GET['book']))
     $opinions = $goldenbookModel->getOpinions($_GET['book']);
 else
-    $opinions = $goldenbookModel->getOpinions(1);
+    $opinions = $goldenbookModel->getOpinions($books[0][0]);
 
 ?>
 

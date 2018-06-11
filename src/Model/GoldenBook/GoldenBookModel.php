@@ -21,7 +21,6 @@ class GoldenBookModel{
         $sql = "SELECT o.title, o.txt, o.note, o.pubDate, a.username, o.author FROM opinion o
                 INNER JOIN account a ON o.author=a.id
                 INNER JOIN book b ON o.book=b.id
-                WHERE b.id=".intval($book)."
                 ORDER BY o.pubDate LIMIT 2;";
         $res = mysqli_query($this->link, $sql);
         $opinions = mysqli_fetch_all($res);

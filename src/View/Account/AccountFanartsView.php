@@ -26,14 +26,8 @@ unset($fanartModel);
 <div id="page">
     <?php include(__DIR__."/../nav.php"); ?>
 
-    <div class="grid-x align-justify" style="margin-top: 10px; margin-bottom: 5px;">
-        <div class="grid-x">
-            <div style="margin-left: 20px;"><button>Trier par</button></div>
-        </div>
-        <div><input title="search" placeholder="Rechercher"></div>
-    </div>
 
-
+    <main>
     <div class="grid-y align-spaced callout fanarts-container">
 
         <?php for($i=0; $i<sizeof($fanarts); $i+=5): ?>
@@ -52,6 +46,7 @@ unset($fanartModel);
         <?php endfor; ?>
 
     </div>
+    </main>
 
     <?php include(__DIR__."/../footer.php"); ?>
 </div>
